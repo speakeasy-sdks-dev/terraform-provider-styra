@@ -1,0 +1,201 @@
+overlay: 1.0.0
+info:
+  title: Overlay adding Speakeasy annotations for the Terraform provider to the Styra DAS OpenAPI spec
+  version: 0.1.0
+actions:
+  - target: $
+    update:
+      security:
+        - bearer: []
+  - target: $["components"]
+    update:
+      securitySchemes:
+        bearer:
+          type: http
+          scheme: bearer
+  - target: $["servers"]
+    update:
+      - description: The Styra DAS API server for the current tenant.
+        url: https://{dasId}.styra.com
+        variables:
+          dasId:
+            default: example
+            description: The domain of your Styra DAS tenant. Note that EU-based tenant DAS IDs append .svc to the tenant name (e.g., 'example.svc').
+  # Libraries
+  - target: $["components"]["schemas"]["libraries.v1.CreateLibraryRequest"]
+    update:
+      x-speakeasy-entity: Library
+  - target: $["components"]["schemas"]["libraries.v1.LibraryEntityExpanded"]
+    update:
+      x-speakeasy-entity: Library
+  - target: $["components"]["schemas"]["libraries.v1.LibraryResponse"]
+    update:
+      x-speakeasy-entity: Library
+  - target: $["paths"]["/v1/libraries/{id}"]["delete"]
+    update:
+      x-speakeasy-entity-operation: Library#delete
+  - target: $["paths"]["/v1/libraries/{id}"]["get"]
+    update:
+      x-speakeasy-entity-operation: Library#read
+  - target: $["paths"]["/v1/libraries/{id}"]["put"]
+    update:
+      x-speakeasy-entity-operation: Library#create,update
+  # Policies
+  - target: $["components"]["schemas"]["policies.v1.PoliciesListResponse"]
+    update:
+      x-speakeasy-entity: Policy
+  - target: $["components"]["schemas"]["policies.v1.PoliciesPutRequest"]["properties"]["signature"]
+    update:
+      x-speakeasy-ignore: true
+  - target: $["paths"]["/v1/policies/{policy}"]["delete"]
+    update:
+      x-speakeasy-entity-operation: Policy#delete
+  - target: $["paths"]["/v1/policies/{policy}"]["get"]
+    update:
+      x-speakeasy-entity-operation: Policy#read
+  - target: $["paths"]["/v1/policies/{policy}"]["put"]
+    update:
+      x-speakeasy-entity-operation: Policy#create,update
+  # Secrets
+  - target: $["components"]["schemas"]["secrets.v1.Secret"]
+    update:
+      x-speakeasy-entity: Secret
+  - target: $["components"]["schemas"]["secrets.v1.SecretsPutRequest"]
+    update:
+      x-speakeasy-param-sensitive: true
+  - target: $["paths"]["/v1/secrets/{secretId}"]["delete"]
+    update:
+      x-speakeasy-entity-operation: Secret#delete
+  - target: $["paths"]["/v1/secrets/{secretId}"]["get"]
+    update:
+      x-speakeasy-entity-operation: Secret#read
+  - target: $["paths"]["/v1/secrets/{secretId}"]["put"]
+    update:
+      x-speakeasy-entity-operation: Secret#create,update
+  # Stacks
+  - target: $["components"]["schemas"]["stacks.v1.StackConfig"]
+    update:
+      x-speakeasy-entity: Stack
+  - target: $["components"]["schemas"]["stacks.v1.StackConfig"]["properties"]["info"]
+    update:
+      x-speakeasy-ignore: true
+  - target: $["components"]["schemas"]["stacks.v1.StackConfig"]["properties"]["warnings"]
+    update:
+      x-speakeasy-ignore: true
+  - target: $["components"]["schemas"]["stacks.v1.StacksGetResponse"]["properties"]["request_id"]
+    update:
+      x-speakeasy-ignore: true
+  - target: $["components"]["schemas"]["stacks.v1.StacksPostRequest"]
+    update:
+      x-speakeasy-entity: Stack
+  - target: $["components"]["schemas"]["stacks.v1.StacksPostResponse"]["properties"]["request_id"]
+    update:
+      x-speakeasy-ignore: true
+  - target: $["components"]["schemas"]["stacks.v1.StacksPutRequest"]
+    update:
+      x-speakeasy-entity: Stack
+  - target: $["components"]["schemas"]["stacks.v1.StacksPutResponse"]
+    update:
+      x-speakeasy-entity: Stack
+  - target: $["components"]["schemas"]["stacks.v1.StacksPutResponse"]["properties"]["request_id"]
+    update:
+      x-speakeasy-ignore: true
+  - target: $["paths"]["/v1/stacks"]["post"]
+    update:
+      x-speakeasy-entity-operation: Stack#create
+  - target: $["paths"]["/v1/stacks/{stack}"]["delete"]
+    update:
+      x-speakeasy-entity-operation: Stack#delete
+  - target: $["paths"]["/v1/stacks/{stack}"]["delete"]["parameters"][0]
+    update:
+      x-speakeasy-match: id
+  - target: $["paths"]["/v1/stacks/{stack}"]["get"]
+    update:
+      x-speakeasy-entity-operation: Stack#read
+  - target: $["paths"]["/v1/stacks/{stack}"]["get"]["parameters"][0]
+    update:
+      x-speakeasy-match: id
+  - target: $["paths"]["/v1/stacks/{stack}"]["get"]["parameters"][1]
+    update:
+      x-speakeasy-ignore: true
+  - target: $["paths"]["/v1/stacks/{stack}"]["put"]
+    update:
+      x-speakeasy-entity-operation: Stack#update
+  - target: $["paths"]["/v1/stacks/{stack}"]["put"]["parameters"][0]
+    update:
+      x-speakeasy-match: id
+  # Systems
+  - target: $["components"]["schemas"]["systems.v1.SystemConfig"]
+    update:
+      x-speakeasy-entity: System
+  - target: $["components"]["schemas"]["systems.v1.SystemConfig"]["properties"]["info"]
+    update:
+      x-speakeasy-ignore: true
+  - target: $["components"]["schemas"]["systems.v1.SystemConfig"]["properties"]["install"]
+    update:
+      x-speakeasy-ignore: true
+  - target: $["components"]["schemas"]["systems.v1.SystemConfig"]["properties"]["warnings"]
+    update:
+      x-speakeasy-ignore: true
+  - target: $["components"]["schemas"]["systems.v1.SystemsGetResponse"]
+    update:
+      x-speakeasy-entity: System
+  - target: $["components"]["schemas"]["systems.v1.SystemsPostRequest"]
+    update:
+      x-speakeasy-entity: System
+  - target: $["paths"]["/v1/systems"]["post"]
+    update:
+      x-speakeasy-entity-operation: System#create
+  - target: $["paths"]["/v1/systems/{system}"]["delete"]
+    update:
+      x-speakeasy-entity-operation: System#delete
+  - target: $["paths"]["/v1/systems/{system}"]["delete"]["parameters"][0]
+    update:
+      x-speakeasy-match: id
+  - target: $["paths"]["/v1/systems/{system}"]["get"]
+    update:
+      x-speakeasy-entity-operation: System#read
+  - target: $["paths"]["/v1/systems/{system}"]["get"]["parameters"][0]
+    update:
+      x-speakeasy-match: id
+  - target: $["paths"]["/v1/systems/{system}"]["get"]["parameters"][1]
+    update:
+      x-speakeasy-ignore: true
+  - target: $["paths"]["/v1/systems/{system}"]["get"]["parameters"][2]
+    update:
+      x-speakeasy-ignore: true
+  - target: $["paths"]["/v1/systems/{system}"]["get"]["parameters"][3]
+    update:
+      x-speakeasy-ignore: true
+  - target: $["paths"]["/v1/systems/{system}"]["get"]["parameters"][4]
+    update:
+      x-speakeasy-ignore: true
+  - target: $["paths"]["/v1/systems/{system}"]["get"]["parameters"][5]
+    update:
+      x-speakeasy-ignore: true
+  - target: $["paths"]["/v1/systems/{system}"]["put"]
+    update:
+      x-speakeasy-entity-operation: System#update
+  - target: $["paths"]["/v1/systems/{system}"]["put"]["parameters"][0]
+    update:
+      x-speakeasy-match: id
+  # Circular reference overrides
+  - target: $["components"]["schemas"]["crypto.FilterTree"]
+    update:
+      x-speakeasy-type-override: any
+  - target: $["components"]["schemas"]["crypto.Signature"]["properties"]["signatures"]
+    update:
+      x-speakeasy-type-override: any
+  - target: $["components"]["schemas"]["data.v1.BuiltinMocks"]
+    update:
+      x-speakeasy-type-override: any
+  - target: $["components"]["schemas"]["data.v1.BuiltinMocksResponse"]
+    update:
+      x-speakeasy-type-override: any
+  # Delete unnecessary paths
+  - target: $["paths"]["/v1/invitations/{id}"]
+    remove: true
+  - target: $["paths"]["/v1/invitations/{token}"]
+    remove: true
+  - target: $.paths.*.*[?(!@.x-speakeasy-entity-operation && @.operationId)]
+    remove: true
