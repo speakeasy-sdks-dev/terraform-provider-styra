@@ -3,8 +3,8 @@
 package shared
 
 type PoliciesV1PolicyGetResponse struct {
-	RequestID *string     `json:"request_id,omitempty"`
-	Result    interface{} `json:"result"`
+	RequestID *string `json:"request_id,omitempty"`
+	Result    any     `json:"result"`
 }
 
 func (o *PoliciesV1PolicyGetResponse) GetRequestID() *string {
@@ -14,7 +14,7 @@ func (o *PoliciesV1PolicyGetResponse) GetRequestID() *string {
 	return o.RequestID
 }
 
-func (o *PoliciesV1PolicyGetResponse) GetResult() interface{} {
+func (o *PoliciesV1PolicyGetResponse) GetResult() any {
 	if o == nil {
 		return nil
 	}

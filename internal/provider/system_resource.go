@@ -80,7 +80,6 @@ func (r *SystemResource) Metadata(ctx context.Context, req resource.MetadataRequ
 func (r *SystemResource) Schema(ctx context.Context, req resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = schema.Schema{
 		MarkdownDescription: "System Resource",
-
 		Attributes: map[string]schema.Attribute{
 			"authz": schema.SingleNestedAttribute{
 				Computed: true,
@@ -2645,6 +2644,10 @@ func (r *SystemResource) Read(ctx context.Context, req resource.ReadRequest, res
 	}
 	if res == nil {
 		resp.Diagnostics.AddError("unexpected response from API", fmt.Sprintf("%v", res))
+		return
+	}
+	if res.StatusCode == 404 {
+		resp.State.RemoveResource(ctx)
 		return
 	}
 	if res.StatusCode != 200 {

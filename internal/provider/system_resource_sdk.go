@@ -118,7 +118,7 @@ func (r *SystemResourceModel) ToSharedSystemsV1SystemsPostRequest() *shared.Syst
 				RoleArn:        roleArn,
 			}
 		}
-		var entrypoints []string = nil
+		var entrypoints []string = []string{}
 		for _, entrypointsItem := range r.BundleRegistry.Entrypoints {
 			entrypoints = append(entrypoints, entrypointsItem.ValueString())
 		}
@@ -168,7 +168,7 @@ func (r *SystemResourceModel) ToSharedSystemsV1SystemsPostRequest() *shared.Syst
 	} else {
 		contextBundleDataOnly = nil
 	}
-	var contextBundleRoots []string = nil
+	var contextBundleRoots []string = []string{}
 	for _, contextBundleRootsItem := range r.ContextBundleRoots {
 		contextBundleRoots = append(contextBundleRoots, contextBundleRootsItem.ValueString())
 	}
@@ -193,7 +193,7 @@ func (r *SystemResourceModel) ToSharedSystemsV1SystemsPostRequest() *shared.Syst
 				Path:     path,
 			}
 		}
-		var columns []shared.SystemsV1ColumnMapping = nil
+		var columns []shared.SystemsV1ColumnMapping = []shared.SystemsV1ColumnMapping{}
 		for _, columnsItem := range decisionMappingsValue.Columns {
 			key := columnsItem.Key.ValueString()
 			path1 := columnsItem.Path.ValueString()
@@ -281,7 +281,7 @@ func (r *SystemResourceModel) ToSharedSystemsV1SystemsPostRequest() *shared.Syst
 		} else {
 			timeoutSeconds = nil
 		}
-		var trustedCaCerts []string = nil
+		var trustedCaCerts []string = []string{}
 		for _, trustedCaCertsItem := range r.DeploymentParameters.TrustedCaCerts {
 			trustedCaCerts = append(trustedCaCerts, trustedCaCertsItem.ValueString())
 		}
@@ -363,7 +363,7 @@ func (r *SystemResourceModel) ToSharedSystemsV1SystemsPostRequest() *shared.Syst
 			service := bundlesValue.Service.ValueString()
 			var signing *shared.SystemsV1VerificationConfig
 			if bundlesValue.Signing != nil {
-				var excludeFiles []string = nil
+				var excludeFiles []string = []string{}
 				for _, excludeFilesItem := range bundlesValue.Signing.ExcludeFiles {
 					excludeFiles = append(excludeFiles, excludeFilesItem.ValueString())
 				}
@@ -436,7 +436,7 @@ func (r *SystemResourceModel) ToSharedSystemsV1SystemsPostRequest() *shared.Syst
 			}
 			bundles[bundlesKey] = bundlesInst
 		}
-		var services []shared.SystemsV1OpaConfigServiceDeclaration = nil
+		var services []shared.SystemsV1OpaConfigServiceDeclaration = []shared.SystemsV1OpaConfigServiceDeclaration{}
 		for _, servicesItem := range r.ExternalBundles.Services {
 			allowInsecureTLS := new(bool)
 			if !servicesItem.AllowInsecureTLS.IsUnknown() && !servicesItem.AllowInsecureTLS.IsNull() {
@@ -501,7 +501,7 @@ func (r *SystemResourceModel) ToSharedSystemsV1SystemsPostRequest() *shared.Syst
 					audience := servicesItem.Credentials.GcpMetadata.Audience.ValueString()
 					endpoint2 := servicesItem.Credentials.GcpMetadata.Endpoint.ValueString()
 					idTokenPath := servicesItem.Credentials.GcpMetadata.IDTokenPath.ValueString()
-					var scopes []string = nil
+					var scopes []string = []string{}
 					for _, scopesItem := range servicesItem.Credentials.GcpMetadata.Scopes {
 						scopes = append(scopes, scopesItem.ValueString())
 					}
@@ -530,7 +530,7 @@ func (r *SystemResourceModel) ToSharedSystemsV1SystemsPostRequest() *shared.Syst
 					clientSecret := servicesItem.Credentials.Oauth2.ClientSecret.ValueString()
 					grantType := servicesItem.Credentials.Oauth2.GrantType.ValueString()
 					includeJtiClaim := servicesItem.Credentials.Oauth2.IncludeJtiClaim.ValueBool()
-					var scopes1 []string = nil
+					var scopes1 []string = []string{}
 					for _, scopesItem1 := range servicesItem.Credentials.Oauth2.Scopes {
 						scopes1 = append(scopes1, scopesItem1.ValueString())
 					}
@@ -2092,7 +2092,7 @@ func (r *SystemResourceModel) ToSharedSystemsV1SystemsPutRequest() *shared.Syste
 				RoleArn:        roleArn,
 			}
 		}
-		var entrypoints []string = nil
+		var entrypoints []string = []string{}
 		for _, entrypointsItem := range r.BundleRegistry.Entrypoints {
 			entrypoints = append(entrypoints, entrypointsItem.ValueString())
 		}
@@ -2142,7 +2142,7 @@ func (r *SystemResourceModel) ToSharedSystemsV1SystemsPutRequest() *shared.Syste
 	} else {
 		contextBundleDataOnly = nil
 	}
-	var contextBundleRoots []string = nil
+	var contextBundleRoots []string = []string{}
 	for _, contextBundleRootsItem := range r.ContextBundleRoots {
 		contextBundleRoots = append(contextBundleRoots, contextBundleRootsItem.ValueString())
 	}
@@ -2167,7 +2167,7 @@ func (r *SystemResourceModel) ToSharedSystemsV1SystemsPutRequest() *shared.Syste
 				Path:     path,
 			}
 		}
-		var columns []shared.SystemsV1ColumnMapping = nil
+		var columns []shared.SystemsV1ColumnMapping = []shared.SystemsV1ColumnMapping{}
 		for _, columnsItem := range decisionMappingsValue.Columns {
 			key := columnsItem.Key.ValueString()
 			path1 := columnsItem.Path.ValueString()
@@ -2255,7 +2255,7 @@ func (r *SystemResourceModel) ToSharedSystemsV1SystemsPutRequest() *shared.Syste
 		} else {
 			timeoutSeconds = nil
 		}
-		var trustedCaCerts []string = nil
+		var trustedCaCerts []string = []string{}
 		for _, trustedCaCertsItem := range r.DeploymentParameters.TrustedCaCerts {
 			trustedCaCerts = append(trustedCaCerts, trustedCaCertsItem.ValueString())
 		}
@@ -2337,7 +2337,7 @@ func (r *SystemResourceModel) ToSharedSystemsV1SystemsPutRequest() *shared.Syste
 			service := bundlesValue.Service.ValueString()
 			var signing *shared.SystemsV1VerificationConfig
 			if bundlesValue.Signing != nil {
-				var excludeFiles []string = nil
+				var excludeFiles []string = []string{}
 				for _, excludeFilesItem := range bundlesValue.Signing.ExcludeFiles {
 					excludeFiles = append(excludeFiles, excludeFilesItem.ValueString())
 				}
@@ -2410,7 +2410,7 @@ func (r *SystemResourceModel) ToSharedSystemsV1SystemsPutRequest() *shared.Syste
 			}
 			bundles[bundlesKey] = bundlesInst
 		}
-		var services []shared.SystemsV1OpaConfigServiceDeclaration = nil
+		var services []shared.SystemsV1OpaConfigServiceDeclaration = []shared.SystemsV1OpaConfigServiceDeclaration{}
 		for _, servicesItem := range r.ExternalBundles.Services {
 			allowInsecureTLS := new(bool)
 			if !servicesItem.AllowInsecureTLS.IsUnknown() && !servicesItem.AllowInsecureTLS.IsNull() {
@@ -2475,7 +2475,7 @@ func (r *SystemResourceModel) ToSharedSystemsV1SystemsPutRequest() *shared.Syste
 					audience := servicesItem.Credentials.GcpMetadata.Audience.ValueString()
 					endpoint2 := servicesItem.Credentials.GcpMetadata.Endpoint.ValueString()
 					idTokenPath := servicesItem.Credentials.GcpMetadata.IDTokenPath.ValueString()
-					var scopes []string = nil
+					var scopes []string = []string{}
 					for _, scopesItem := range servicesItem.Credentials.GcpMetadata.Scopes {
 						scopes = append(scopes, scopesItem.ValueString())
 					}
@@ -2504,7 +2504,7 @@ func (r *SystemResourceModel) ToSharedSystemsV1SystemsPutRequest() *shared.Syste
 					clientSecret := servicesItem.Credentials.Oauth2.ClientSecret.ValueString()
 					grantType := servicesItem.Credentials.Oauth2.GrantType.ValueString()
 					includeJtiClaim := servicesItem.Credentials.Oauth2.IncludeJtiClaim.ValueBool()
-					var scopes1 []string = nil
+					var scopes1 []string = []string{}
 					for _, scopesItem1 := range servicesItem.Credentials.Oauth2.Scopes {
 						scopes1 = append(scopes1, scopesItem1.ValueString())
 					}

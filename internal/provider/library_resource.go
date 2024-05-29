@@ -46,7 +46,6 @@ func (r *LibraryResource) Metadata(ctx context.Context, req resource.MetadataReq
 func (r *LibraryResource) Schema(ctx context.Context, req resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = schema.Schema{
 		MarkdownDescription: "Library Resource",
-
 		Attributes: map[string]schema.Attribute{
 			"description": schema.StringAttribute{
 				Required: true,
@@ -599,6 +598,10 @@ func (r *LibraryResource) Read(ctx context.Context, req resource.ReadRequest, re
 	}
 	if res == nil {
 		resp.Diagnostics.AddError("unexpected response from API", fmt.Sprintf("%v", res))
+		return
+	}
+	if res.StatusCode == 404 {
+		resp.State.RemoveResource(ctx)
 		return
 	}
 	if res.StatusCode != 200 {

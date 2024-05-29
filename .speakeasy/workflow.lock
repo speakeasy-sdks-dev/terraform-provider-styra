@@ -1,0 +1,31 @@
+speakeasyVersion: 1.297.0
+sources:
+    openapi:
+        sourceNamespace: openapi
+        sourceRevisionDigest: sha256:46f5f250eacdd2d84a7a777094ef5491d5f7e83c246b8dc3a597f50609b8145d
+        sourceBlobDigest: sha256:dfc6ddfbca3d63df69e143e8252eb761979040cb6bdde4c3b63c88c259272e19
+        tags:
+            - latest
+            - main
+targets:
+    styra-terraform:
+        source: openapi
+        sourceNamespace: openapi
+        sourceRevisionDigest: sha256:46f5f250eacdd2d84a7a777094ef5491d5f7e83c246b8dc3a597f50609b8145d
+        sourceBlobDigest: sha256:dfc6ddfbca3d63df69e143e8252eb761979040cb6bdde4c3b63c88c259272e19
+        outLocation: /github/workspace/repo
+workflow:
+    workflowVersion: 1.0.0
+    speakeasyVersion: latest
+    sources:
+        openapi:
+            inputs:
+                - location: openapi.yaml
+            overlays:
+                - location: styra_overlay.yaml
+            registry:
+                location: registry.speakeasyapi.dev/styra/styra/openapi
+    targets:
+        styra-terraform:
+            target: terraform
+            source: openapi

@@ -6,6 +6,8 @@ sources:
             - location: openapi.yaml
         overlays:
             - location: styra_overlay.yaml
+        registry:
+            location: registry.speakeasyapi.dev/styra/styra/openapi
 targets:
     styra-terraform:
         target: terraform

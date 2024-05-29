@@ -3,18 +3,18 @@
 package shared
 
 type CryptoSignature struct {
-	Excluded   interface{} `json:"excluded,omitempty"`
-	Signatures interface{} `json:"signatures,omitempty"`
+	Excluded   any `json:"excluded,omitempty"`
+	Signatures any `json:"signatures,omitempty"`
 }
 
-func (o *CryptoSignature) GetExcluded() interface{} {
+func (o *CryptoSignature) GetExcluded() any {
 	if o == nil {
 		return nil
 	}
 	return o.Excluded
 }
 
-func (o *CryptoSignature) GetSignatures() interface{} {
+func (o *CryptoSignature) GetSignatures() any {
 	if o == nil {
 		return nil
 	}

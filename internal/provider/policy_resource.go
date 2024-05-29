@@ -47,7 +47,6 @@ func (r *PolicyResource) Metadata(ctx context.Context, req resource.MetadataRequ
 func (r *PolicyResource) Schema(ctx context.Context, req resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = schema.Schema{
 		MarkdownDescription: "Policy Resource",
-
 		Attributes: map[string]schema.Attribute{
 			"if_none_match": schema.StringAttribute{
 				Optional:    true,
@@ -235,6 +234,10 @@ func (r *PolicyResource) Read(ctx context.Context, req resource.ReadRequest, res
 	}
 	if res == nil {
 		resp.Diagnostics.AddError("unexpected response from API", fmt.Sprintf("%v", res))
+		return
+	}
+	if res.StatusCode == 404 {
+		resp.State.RemoveResource(ctx)
 		return
 	}
 	if res.StatusCode != 200 {

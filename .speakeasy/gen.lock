@@ -3,14 +3,16 @@ id: 53fed213-041c-4563-833e-e9ee4d3bb0ba
 management:
   docChecksum: 23e1d1699a3a5304c5c38fd685db6a38
   docVersion: 2.0.0
-  speakeasyVersion: 1.237.0
-  generationVersion: 2.298.2
-  releaseVersion: 0.1.0
-  configChecksum: 66e23a02564223d45d5272b599a8dfb2
+  speakeasyVersion: 1.297.0
+  generationVersion: 2.338.1
+  releaseVersion: 0.2.0
+  configChecksum: 032487a04aa75415990a5109ce6a0199
+  repoURL: https://github.com/StyraInc/terraform-provider-styra.git
 features:
   terraform:
+    additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.4
-    core: 3.13.0
+    core: 3.21.0
     globalSecurity: 2.81.6
     globalServerURLs: 2.82.1
     ignores: 2.81.1
@@ -235,18 +237,23 @@ generatedFiles:
   - USAGE.md
   - internal/provider/provider.go
   - examples/provider/provider.tf
+  - examples/resources/styra_library/import.sh
   - internal/provider/library_resource.go
   - internal/provider/library_resource_sdk.go
   - examples/resources/styra_library/resource.tf
+  - examples/resources/styra_policy/import.sh
   - internal/provider/policy_resource.go
   - internal/provider/policy_resource_sdk.go
   - examples/resources/styra_policy/resource.tf
+  - examples/resources/styra_secret/import.sh
   - internal/provider/secret_resource.go
   - internal/provider/secret_resource_sdk.go
   - examples/resources/styra_secret/resource.tf
+  - examples/resources/styra_stack/import.sh
   - internal/provider/stack_resource.go
   - internal/provider/stack_resource_sdk.go
   - examples/resources/styra_stack/resource.tf
+  - examples/resources/styra_system/import.sh
   - internal/provider/system_resource.go
   - internal/provider/system_resource_sdk.go
   - examples/resources/styra_system/resource.tf

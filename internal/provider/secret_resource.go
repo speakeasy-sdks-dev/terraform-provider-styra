@@ -49,7 +49,6 @@ func (r *SecretResource) Metadata(ctx context.Context, req resource.MetadataRequ
 func (r *SecretResource) Schema(ctx context.Context, req resource.SchemaRequest, resp *resource.SchemaResponse) {
 	resp.Schema = schema.Schema{
 		MarkdownDescription: "Secret Resource",
-
 		Attributes: map[string]schema.Attribute{
 			"description": schema.StringAttribute{
 				Required: true,
@@ -243,6 +242,10 @@ func (r *SecretResource) Read(ctx context.Context, req resource.ReadRequest, res
 	}
 	if res == nil {
 		resp.Diagnostics.AddError("unexpected response from API", fmt.Sprintf("%v", res))
+		return
+	}
+	if res.StatusCode == 404 {
+		resp.State.RemoveResource(ctx)
 		return
 	}
 	if res.StatusCode != 200 {

@@ -3,7 +3,7 @@
 package shared
 
 type SystemsV1AwsSigningAuthPlugin struct {
-	EnvironmentCredentials interface{}                            `json:"environment_credentials,omitempty"`
+	EnvironmentCredentials any                                    `json:"environment_credentials,omitempty"`
 	MetadataCredentials    *SystemsV1AwsMetadataCredentialService `json:"metadata_credentials,omitempty"`
 	ProfileCredentials     *SystemsV1AwsProfileCredentialService  `json:"profile_credentials,omitempty"`
 	// the AWS service to sign requests with, eg execute-api or s3 (default: s3)
@@ -11,7 +11,7 @@ type SystemsV1AwsSigningAuthPlugin struct {
 	WebIdentityCredentials *SystemsV1AwsWebIdentityCredentialService `json:"web_identity_credentials,omitempty"`
 }
 
-func (o *SystemsV1AwsSigningAuthPlugin) GetEnvironmentCredentials() interface{} {
+func (o *SystemsV1AwsSigningAuthPlugin) GetEnvironmentCredentials() any {
 	if o == nil {
 		return nil
 	}

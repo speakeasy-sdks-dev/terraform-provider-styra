@@ -7,7 +7,7 @@ import (
 )
 
 type SystemsV1AllowedMapping struct {
-	Expected interface{} `json:"expected,omitempty"`
+	Expected any `json:"expected,omitempty"`
 	// when set to true, decision is Allowed when the mapped property IS NOT equal to the expected value
 	Negated *bool `default:"false" json:"negated"`
 	// dot-separated decision property path
@@ -25,7 +25,7 @@ func (s *SystemsV1AllowedMapping) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *SystemsV1AllowedMapping) GetExpected() interface{} {
+func (o *SystemsV1AllowedMapping) GetExpected() any {
 	if o == nil {
 		return nil
 	}
