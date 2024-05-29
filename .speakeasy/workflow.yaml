@@ -1,9 +1,12 @@
 workflowVersion: 1.0.0
+speakeasyVersion: latest
 sources:
     openapi:
         inputs:
-            - location: tmp/generated.yaml
+            - location: openapi.yaml
+        overlays:
+            - location: styra_overlay.yaml
 targets:
     styra-terraform:
         target: terraform
-        source: my-source
+        source: openapi
