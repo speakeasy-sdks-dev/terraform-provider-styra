@@ -14,6 +14,7 @@ func (r *StackDataSourceModel) RefreshFromSharedStacksV1StackConfig(resp shared.
 		r.Authz = nil
 	} else {
 		r.Authz = &tfTypes.SystemsV1AuthzConfig{}
+		r.Authz.RoleBindings = []tfTypes.SystemsV1V1RoleBindingConfig{}
 		if len(r.Authz.RoleBindings) > len(resp.Authz.RoleBindings) {
 			r.Authz.RoleBindings = r.Authz.RoleBindings[:len(resp.Authz.RoleBindings)]
 		}
@@ -29,6 +30,7 @@ func (r *StackDataSourceModel) RefreshFromSharedStacksV1StackConfig(resp shared.
 			}
 		}
 	}
+	r.Datasources = []tfTypes.SystemsV1DatasourceConfig{}
 	if len(r.Datasources) > len(resp.Datasources) {
 		r.Datasources = r.Datasources[:len(resp.Datasources)]
 	}
@@ -59,6 +61,7 @@ func (r *StackDataSourceModel) RefreshFromSharedStacksV1StackConfig(resp shared.
 		r.Errors = make(map[string]tfTypes.SystemsV1AgentErrors)
 		for systemsV1AgentErrorsKey, systemsV1AgentErrorsValue := range resp.Errors {
 			var systemsV1AgentErrorsResult tfTypes.SystemsV1AgentErrors
+			systemsV1AgentErrorsResult.Errors = []tfTypes.MetaV1Status{}
 			for errorsCount, errorsItem := range systemsV1AgentErrorsValue.Errors {
 				var errors2 tfTypes.MetaV1Status
 				errors2.Code = types.StringValue(errorsItem.Code)
@@ -95,6 +98,7 @@ func (r *StackDataSourceModel) RefreshFromSharedStacksV1StackConfig(resp shared.
 	}
 	r.Metadata.LastModifiedBy = types.StringPointerValue(resp.Metadata.LastModifiedBy)
 	r.Metadata.LastModifiedThrough = types.StringPointerValue(resp.Metadata.LastModifiedThrough)
+	r.MigrationHistory = []tfTypes.SystemsV1MigrationRecord{}
 	if len(r.MigrationHistory) > len(resp.MigrationHistory) {
 		r.MigrationHistory = r.MigrationHistory[:len(resp.MigrationHistory)]
 	}
@@ -119,6 +123,7 @@ func (r *StackDataSourceModel) RefreshFromSharedStacksV1StackConfig(resp shared.
 	}
 	r.MinimumOpaVersion = types.StringPointerValue(resp.MinimumOpaVersion)
 	r.Name = types.StringValue(resp.Name)
+	r.Policies = []tfTypes.SystemsV1PolicyConfig{}
 	if len(r.Policies) > len(resp.Policies) {
 		r.Policies = r.Policies[:len(resp.Policies)]
 	}
@@ -128,6 +133,7 @@ func (r *StackDataSourceModel) RefreshFromSharedStacksV1StackConfig(resp shared.
 		policies1.Enforcement.Enforced = types.BoolValue(policiesItem.Enforcement.Enforced)
 		policies1.Enforcement.Type = types.StringValue(policiesItem.Enforcement.Type)
 		policies1.ID = types.StringValue(policiesItem.ID)
+		policies1.Modules = []tfTypes.SystemsV1Module{}
 		for modulesCount, modulesItem := range policiesItem.Modules {
 			var modules1 tfTypes.SystemsV1Module
 			modules1.Name = types.StringValue(modulesItem.Name)

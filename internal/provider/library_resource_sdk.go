@@ -81,6 +81,7 @@ func (r *LibraryResourceModel) ToSharedLibrariesV1CreateLibraryRequest() *shared
 
 func (r *LibraryResourceModel) RefreshFromSharedLibrariesV1LibraryResponse(resp *shared.LibrariesV1LibraryResponse) {
 	if resp != nil {
+		r.Result.Datasources = []tfTypes.SystemsV1DatasourceConfig{}
 		if len(r.Result.Datasources) > len(resp.Result.Datasources) {
 			r.Result.Datasources = r.Result.Datasources[:len(resp.Result.Datasources)]
 		}
@@ -127,6 +128,7 @@ func (r *LibraryResourceModel) RefreshFromSharedLibrariesV1LibraryResponse(resp 
 			r.Result.Metadata.LastModifiedBy = types.StringPointerValue(resp.Result.Metadata.LastModifiedBy)
 			r.Result.Metadata.LastModifiedThrough = types.StringPointerValue(resp.Result.Metadata.LastModifiedThrough)
 		}
+		r.Result.Policies = []tfTypes.SystemsV1PolicyConfig{}
 		if len(r.Result.Policies) > len(resp.Result.Policies) {
 			r.Result.Policies = r.Result.Policies[:len(resp.Result.Policies)]
 		}
@@ -136,6 +138,7 @@ func (r *LibraryResourceModel) RefreshFromSharedLibrariesV1LibraryResponse(resp 
 			policies1.Enforcement.Enforced = types.BoolValue(policiesItem.Enforcement.Enforced)
 			policies1.Enforcement.Type = types.StringValue(policiesItem.Enforcement.Type)
 			policies1.ID = types.StringValue(policiesItem.ID)
+			policies1.Modules = []tfTypes.SystemsV1Module{}
 			for modulesCount, modulesItem := range policiesItem.Modules {
 				var modules1 tfTypes.SystemsV1Module
 				modules1.Name = types.StringValue(modulesItem.Name)
@@ -231,11 +234,13 @@ func (r *LibraryResourceModel) RefreshFromSharedLibrariesV1LibraryResponse(resp 
 			}
 			r.Result.SourceControl.UseWorkspaceSettings = types.BoolValue(resp.Result.SourceControl.UseWorkspaceSettings)
 		}
+		r.Result.UsedBy = []tfTypes.LibrariesV1SystemUsingLibrary{}
 		if len(r.Result.UsedBy) > len(resp.Result.UsedBy) {
 			r.Result.UsedBy = r.Result.UsedBy[:len(resp.Result.UsedBy)]
 		}
 		for usedByCount, usedByItem := range resp.Result.UsedBy {
 			var usedBy1 tfTypes.LibrariesV1SystemUsingLibrary
+			usedBy1.Bundles = []tfTypes.LibrariesV1SystemBundle{}
 			for bundlesCount, bundlesItem := range usedByItem.Bundles {
 				var bundles1 tfTypes.LibrariesV1SystemBundle
 				bundles1.BundleID = types.StringValue(bundlesItem.BundleID)

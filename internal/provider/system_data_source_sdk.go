@@ -13,6 +13,7 @@ import (
 func (r *SystemDataSourceModel) RefreshFromSharedSystemsV1SystemsGetResponse(resp *shared.SystemsV1SystemsGetResponse) {
 	if resp != nil {
 		r.RequestID = types.StringPointerValue(resp.RequestID)
+		r.Result.Authz.RoleBindings = []tfTypes.SystemsV1V1RoleBindingConfig{}
 		if len(r.Result.Authz.RoleBindings) > len(resp.Result.Authz.RoleBindings) {
 			r.Result.Authz.RoleBindings = r.Result.Authz.RoleBindings[:len(resp.Result.Authz.RoleBindings)]
 		}
@@ -99,6 +100,7 @@ func (r *SystemDataSourceModel) RefreshFromSharedSystemsV1SystemsGetResponse(res
 		for _, v := range resp.Result.ContextBundleRoots {
 			r.Result.ContextBundleRoots = append(r.Result.ContextBundleRoots, types.StringValue(v))
 		}
+		r.Result.Datasources = []tfTypes.SystemsV1DatasourceConfig{}
 		if len(r.Result.Datasources) > len(resp.Result.Datasources) {
 			r.Result.Datasources = r.Result.Datasources[:len(resp.Result.Datasources)]
 		}
@@ -141,6 +143,7 @@ func (r *SystemDataSourceModel) RefreshFromSharedSystemsV1SystemsGetResponse(res
 					systemsV1RuleDecisionMappingsResult.Allowed.Negated = types.BoolPointerValue(systemsV1RuleDecisionMappingsValue.Allowed.Negated)
 					systemsV1RuleDecisionMappingsResult.Allowed.Path = types.StringValue(systemsV1RuleDecisionMappingsValue.Allowed.Path)
 				}
+				systemsV1RuleDecisionMappingsResult.Columns = []tfTypes.SystemsV1ColumnMapping{}
 				for columnsCount, columnsItem := range systemsV1RuleDecisionMappingsValue.Columns {
 					var columns1 tfTypes.SystemsV1ColumnMapping
 					columns1.Key = types.StringValue(columnsItem.Key)
@@ -201,6 +204,7 @@ func (r *SystemDataSourceModel) RefreshFromSharedSystemsV1SystemsGetResponse(res
 			r.Result.Errors = make(map[string]tfTypes.SystemsV1AgentErrors)
 			for systemsV1AgentErrorsKey, systemsV1AgentErrorsValue := range resp.Result.Errors {
 				var systemsV1AgentErrorsResult tfTypes.SystemsV1AgentErrors
+				systemsV1AgentErrorsResult.Errors = []tfTypes.MetaV1Status{}
 				for errorsCount, errorsItem := range systemsV1AgentErrorsValue.Errors {
 					var errors2 tfTypes.MetaV1Status
 					errors2.Code = types.StringValue(errorsItem.Code)
@@ -263,6 +267,7 @@ func (r *SystemDataSourceModel) RefreshFromSharedSystemsV1SystemsGetResponse(res
 					r.Result.ExternalBundles.Bundles[systemsV1OpaConfigBundleDeclarationKey] = systemsV1OpaConfigBundleDeclarationResult
 				}
 			}
+			r.Result.ExternalBundles.Services = []tfTypes.SystemsV1OpaConfigServiceDeclaration{}
 			if len(r.Result.ExternalBundles.Services) > len(resp.Result.ExternalBundles.Services) {
 				r.Result.ExternalBundles.Services = r.Result.ExternalBundles.Services[:len(resp.Result.ExternalBundles.Services)]
 			}
@@ -442,6 +447,7 @@ func (r *SystemDataSourceModel) RefreshFromSharedSystemsV1SystemsGetResponse(res
 		}
 		r.Result.Metadata.LastModifiedBy = types.StringPointerValue(resp.Result.Metadata.LastModifiedBy)
 		r.Result.Metadata.LastModifiedThrough = types.StringPointerValue(resp.Result.Metadata.LastModifiedThrough)
+		r.Result.MigrationHistory = []tfTypes.SystemsV1MigrationRecord{}
 		if len(r.Result.MigrationHistory) > len(resp.Result.MigrationHistory) {
 			r.Result.MigrationHistory = r.Result.MigrationHistory[:len(resp.Result.MigrationHistory)]
 		}
@@ -467,6 +473,7 @@ func (r *SystemDataSourceModel) RefreshFromSharedSystemsV1SystemsGetResponse(res
 		r.Result.MinimumOpaVersion = types.StringPointerValue(resp.Result.MinimumOpaVersion)
 		r.Result.MockOpaEnabled = types.BoolPointerValue(resp.Result.MockOpaEnabled)
 		r.Result.Name = types.StringValue(resp.Result.Name)
+		r.Result.Policies = []tfTypes.SystemsV1PolicyConfig{}
 		if len(r.Result.Policies) > len(resp.Result.Policies) {
 			r.Result.Policies = r.Result.Policies[:len(resp.Result.Policies)]
 		}
@@ -476,6 +483,7 @@ func (r *SystemDataSourceModel) RefreshFromSharedSystemsV1SystemsGetResponse(res
 			policies1.Enforcement.Enforced = types.BoolValue(policiesItem.Enforcement.Enforced)
 			policies1.Enforcement.Type = types.StringValue(policiesItem.Enforcement.Type)
 			policies1.ID = types.StringValue(policiesItem.ID)
+			policies1.Modules = []tfTypes.SystemsV1Module{}
 			for modulesCount, modulesItem := range policiesItem.Modules {
 				var modules1 tfTypes.SystemsV1Module
 				modules1.Name = types.StringValue(modulesItem.Name)
@@ -549,6 +557,7 @@ func (r *SystemDataSourceModel) RefreshFromSharedSystemsV1SystemsGetResponse(res
 			r.Result.SourceControl.Origin.URL = types.StringValue(resp.Result.SourceControl.Origin.URL)
 		}
 		r.Result.Status = types.StringValue(resp.Result.Status)
+		r.Result.Tokens = []tfTypes.TokensV1Token{}
 		if len(r.Result.Tokens) > len(resp.Result.Tokens) {
 			r.Result.Tokens = r.Result.Tokens[:len(resp.Result.Tokens)]
 		}
