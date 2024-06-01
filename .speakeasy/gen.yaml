@@ -17,6 +17,6 @@ terraform:
   additionalDependencies: {}
   additionalResources: []
   allowUnknownFieldsInWeakUnions: false
-  author: Styra
+  author: StyraInc
   environmentVariables: []
   packageName: styra
