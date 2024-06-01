@@ -4,8 +4,8 @@ package provider
 
 import (
 	"context"
-	"github.com/Styra/terraform-provider-styra/internal/sdk"
-	"github.com/Styra/terraform-provider-styra/internal/sdk/models/shared"
+	"github.com/StyraInc/terraform-provider-styra/internal/sdk"
+	"github.com/StyraInc/terraform-provider-styra/internal/sdk/models/shared"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/provider"
 	"github.com/hashicorp/terraform-plugin-framework/provider/schema"

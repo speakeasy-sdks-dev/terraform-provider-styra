@@ -3,7 +3,7 @@
 package shared
 
 import (
-	"github.com/Styra/terraform-provider-styra/internal/sdk/internal/utils"
+	"github.com/StyraInc/terraform-provider-styra/internal/sdk/internal/utils"
 )
 
 // SystemsV1SystemsPostRequestTypeParameters - system type parameter values (for template.* types)

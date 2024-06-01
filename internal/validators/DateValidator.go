@@ -4,7 +4,7 @@ package validators
 
 import (
 	"context"
-	"github.com/Styra/terraform-provider-styra/internal/sdk/types"
+	"github.com/StyraInc/terraform-provider-styra/internal/sdk/types"
 	"github.com/hashicorp/terraform-plugin-framework-validators/helpers/validatordiag"
 	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 )

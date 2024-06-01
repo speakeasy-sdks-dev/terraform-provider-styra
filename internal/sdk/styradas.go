@@ -5,9 +5,9 @@ package sdk
 import (
 	"context"
 	"fmt"
-	"github.com/Styra/terraform-provider-styra/internal/sdk/internal/hooks"
-	"github.com/Styra/terraform-provider-styra/internal/sdk/internal/utils"
-	"github.com/Styra/terraform-provider-styra/internal/sdk/models/shared"
+	"github.com/StyraInc/terraform-provider-styra/internal/sdk/internal/hooks"
+	"github.com/StyraInc/terraform-provider-styra/internal/sdk/internal/utils"
+	"github.com/StyraInc/terraform-provider-styra/internal/sdk/models/shared"
 	"net/http"
 	"time"
 )
@@ -170,7 +170,7 @@ func New(opts ...SDKOption) *StyraDas {
 			OpenAPIDocVersion: "2.0.0",
 			SDKVersion:        "0.0.1",
 			GenVersion:        "2.338.7",
-			UserAgent:         "speakeasy-sdk/go 0.0.1 2.338.7 2.0.0 github.com/Styra/terraform-provider-styra/internal/sdk",
+			UserAgent:         "speakeasy-sdk/go 0.0.1 2.338.7 2.0.0 github.com/StyraInc/terraform-provider-styra/internal/sdk",
 			ServerDefaults: []map[string]string{
 				{},
 				{

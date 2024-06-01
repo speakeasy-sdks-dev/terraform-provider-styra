@@ -3,7 +3,7 @@
 package provider
 
 import (
-	"github.com/Styra/terraform-provider-styra/internal/sdk/models/shared"
+	"github.com/StyraInc/terraform-provider-styra/internal/sdk/models/shared"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"time"
 )

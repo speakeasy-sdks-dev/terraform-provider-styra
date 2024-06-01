@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/Styra/terraform-provider-styra/internal/sdk/models/shared"
+	"github.com/StyraInc/terraform-provider-styra/internal/sdk/models/shared"
 	"net/http"
 )
 

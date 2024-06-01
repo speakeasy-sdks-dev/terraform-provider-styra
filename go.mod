@@ -1,4 +1,4 @@
-module github.com/Styra/terraform-provider-styra
+module github.com/StyraInc/terraform-provider-styra
 
 go 1.21
 

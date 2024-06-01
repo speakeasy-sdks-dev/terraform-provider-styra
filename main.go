@@ -7,7 +7,7 @@ import (
 	"flag"
 	"log"
 
-	"github.com/Styra/terraform-provider-styra/internal/provider"
+	"github.com/StyraInc/terraform-provider-styra/internal/provider"
 	"github.com/hashicorp/terraform-plugin-framework/providerserver"
 )
 
@@ -30,7 +30,7 @@ func main() {
 	flag.Parse()
 
 	opts := providerserver.ServeOpts{
-		Address: "registry.terraform.io/Styra/styra",
+		Address: "registry.terraform.io/StyraInc/styra",
 		Debug:   debug,
 	}
 

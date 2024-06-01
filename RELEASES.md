@@ -19,3 +19,13 @@ Based on:
 - [terraform v0.2.1] .
 ### Releases
 - [Terraform v0.2.1] https://registry.terraform.io/providers/Styra/styra/0.2.1 - .
+
+## 2024-06-01 02:12:20
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.299.4 (2.338.7) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [terraform v0.2.2] .
+### Releases
+- [Terraform v0.2.2] https://registry.terraform.io/providers/StyraInc/styra/0.2.2 - .

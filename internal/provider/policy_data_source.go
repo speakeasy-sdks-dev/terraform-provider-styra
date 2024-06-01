@@ -5,8 +5,8 @@ package provider
 import (
 	"context"
 	"fmt"
-	"github.com/Styra/terraform-provider-styra/internal/sdk"
-	"github.com/Styra/terraform-provider-styra/internal/sdk/models/operations"
+	"github.com/StyraInc/terraform-provider-styra/internal/sdk"
+	"github.com/StyraInc/terraform-provider-styra/internal/sdk/models/operations"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/types"

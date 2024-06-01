@@ -3,10 +3,10 @@ id: 53fed213-041c-4563-833e-e9ee4d3bb0ba
 management:
   docChecksum: 23e1d1699a3a5304c5c38fd685db6a38
   docVersion: 2.0.0
-  speakeasyVersion: 1.299.3
+  speakeasyVersion: 1.299.4
   generationVersion: 2.338.7
-  releaseVersion: 0.2.1
-  configChecksum: 1ac161d6269f26d5d7f240c298ea1d43
+  releaseVersion: 0.2.2
+  configChecksum: 45e37886be57c21d59de167c2d74d652
   repoURL: https://github.com/StyraInc/terraform-provider-styra.git
 features:
   terraform:

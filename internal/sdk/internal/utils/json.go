@@ -13,7 +13,7 @@ import (
 	"time"
 	"unsafe"
 
-	"github.com/Styra/terraform-provider-styra/internal/sdk/types"
+	"github.com/StyraInc/terraform-provider-styra/internal/sdk/types"
 
 	"github.com/ericlagergren/decimal"
 )

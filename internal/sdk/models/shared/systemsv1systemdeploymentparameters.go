@@ -3,7 +3,7 @@
 package shared
 
 import (
-	"github.com/Styra/terraform-provider-styra/internal/sdk/internal/utils"
+	"github.com/StyraInc/terraform-provider-styra/internal/sdk/internal/utils"
 )
 
 // Discovery - discovery config settings for OPAs linked to the system. (in case of conflict with system-type defined setting, this value takes precedence)

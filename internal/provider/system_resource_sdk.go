@@ -4,8 +4,8 @@ package provider
 
 import (
 	"encoding/json"
-	tfTypes "github.com/Styra/terraform-provider-styra/internal/provider/types"
-	"github.com/Styra/terraform-provider-styra/internal/sdk/models/shared"
+	tfTypes "github.com/StyraInc/terraform-provider-styra/internal/provider/types"
+	"github.com/StyraInc/terraform-provider-styra/internal/sdk/models/shared"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"time"
 )
