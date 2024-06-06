@@ -153,6 +153,25 @@ components:
           type: array
       required:
         - results
+    analysis.v1.AllowedValue:
+      properties:
+        error:
+          type: string
+        value:
+          type: boolean
+    analysis.v1.ColumnValue:
+      properties:
+        error:
+          type: string
+        key:
+          type: string
+        type:
+          type: string
+        value:
+          $ref: '#/components/schemas/analysis.v1.ColumnValue.value'
+      required:
+        - key
+    analysis.v1.ColumnValue.value: {}
     analysis.v1.DecisionResponse:
       properties:
         request_id:
@@ -223,23 +242,27 @@ components:
         - result
     analysis.v1.ElasticSearchDecision:
       properties:
-        Decision:
+        agent_id:
           type: string
-        processed:
-          format: date-time
-          type: string
-      required:
-        - Decision
-    analysis.v1.LogEntry:
-      properties:
+        allowed:
+          $ref: '#/components/schemas/analysis.v1.AllowedValue'
         bundles:
           additionalProperties:
             $ref: '#/components/schemas/logs.BundleInfoV1'
           description: configured bundles
           type: object
+        columns:
+          items:
+            $ref: '#/components/schemas/analysis.v1.ColumnValue'
+          type: array
+        cursor:
+          type: string
         decision_id:
           description: unique decision ID
           type: string
+        decision_type:
+          format: byte
+          type: integer
         erased:
           description: erased fields
           items:
@@ -247,8 +270,14 @@ components:
           type: array
         error:
           $ref: '#/components/schemas/analysis.v1.LogEntry.error'
+        filtered_fields:
+          items:
+            type: string
+          type: array
         input:
           $ref: '#/components/schemas/analysis.v1.LogEntry.input'
+        kafka_topic:
+          type: string
         labels:
           additionalProperties:
             type: string
@@ -265,8 +294,18 @@ components:
         path:
           description: evaluated path
           type: string
+        policy_type:
+          type: string
+        processed:
+          format: date-time
+          type: string
         query:
           description: ad-hoc query
+          type: string
+        reason:
+          $ref: '#/components/schemas/analysis.v1.ReasonValue'
+        received:
+          format: date-time
           type: string
         req_id:
           description: request ID
@@ -280,15 +319,32 @@ components:
         revision:
           description: bundle revision
           type: string
+        stacks:
+          items:
+            type: string
+          type: array
+        system_id:
+          type: string
+        system_type:
+          type: string
         timestamp:
           description: OPA-side decision timestamp
           format: date-time
           type: string
+      required:
+        - columns
+        - decision_type
     analysis.v1.LogEntry.error: {}
     analysis.v1.LogEntry.input: {}
     analysis.v1.LogEntry.nd_builtin_cache:
       type: object
     analysis.v1.LogEntry.result: {}
+    analysis.v1.ReasonValue:
+      properties:
+        error:
+          type: string
+        value:
+          type: string
     authz.v1.CheckPermissionInput:
       properties:
         action:
@@ -357,23 +413,6 @@ components:
         - subjects
         - role_name
         - metadata
-    authz.v1.RoleBindingParameters:
-      properties:
-        description:
-          type: string
-        id:
-          type: string
-        role_name:
-          type: string
-        subjects:
-          items:
-            type: string
-          type: array
-      required:
-        - id
-        - description
-        - subjects
-        - role_name
     authz.v1.RoleBindingsDeleteResponse:
       properties:
         request_id:
@@ -512,22 +551,6 @@ components:
         - subjects
         - id
         - metadata
-    authz.v2.RoleBindingParameters:
-      properties:
-        resource_filter:
-          $ref: '#/components/schemas/authz.v2.ResourceFilter'
-        role_id:
-          description: role ID e.g., SystemOwner
-          type: string
-        subjects:
-          description: list of subjects
-          items:
-            $ref: '#/components/schemas/authz.v2.Subject'
-          type: array
-      required:
-        - resource_filter
-        - role_id
-        - subjects
     authz.v2.RoleBindingsDeleteResponse:
       properties:
         request_id:
@@ -582,9 +605,9 @@ components:
             $ref: '#/components/schemas/authz.v2.Subject'
           type: array
       required:
+        - resource_filter
         - role_id
         - subjects
-        - resource_filter
     authz.v2.RoleBindingsPostResponse:
       properties:
         request_id:
@@ -644,30 +667,10 @@ components:
           description: resource type e.g., system
           type: string
       required:
+        - id
         - resource_kind
         - inherit_roles
-        - id
         - metadata
-    authz.v2.RoleParameters:
-      properties:
-        description:
-          description: description for the role
-          type: string
-        id:
-          description: role ID e.g., SystemOwner
-          type: string
-        inherit_roles:
-          description: roles to be assigned as a result of the described action
-          items:
-            $ref: '#/components/schemas/authz.v2.InheritRoles'
-          type: array
-        resource_kind:
-          description: resource type e.g., system
-          type: string
-      required:
-        - id
-        - resource_kind
-        - inherit_roles
     authz.v2.RolesListResponse:
       properties:
         request_id:
@@ -749,12 +752,12 @@ components:
           format: date-time
           type: string
       required:
-        - repo
-        - ref
-        - commit
         - path
         - timestamp
         - id
+        - repo
+        - ref
+        - commit
         - roots
     bundles.v1.SBOM:
       properties:
@@ -1737,6 +1740,9 @@ components:
             raw_body:
               description: Base64 encoded payload
               type: string
+            timeout:
+              default: 60s
+              type: string
             url:
               type: string
           required:
@@ -2108,6 +2114,8 @@ components:
                 Must be `okta`
                 <br />
                 A Data Source that reads users, groups, roles, and applications from Okta services.
+            credentials:
+              type: string
             okta_client_id:
               type: string
             okta_client_secret:
@@ -2125,8 +2133,6 @@ components:
               type: string
           required:
             - okta_tenant
-            - okta_client_id
-            - okta_client_secret
           type: object
       example:
         category: okta
@@ -2161,11 +2167,11 @@ components:
         message:
           type: string
       required:
-        - files_to_delete
         - author
         - email
         - message
         - files
+        - files_to_delete
         - branch
     git.v1.CommitInput:
       properties:
@@ -2195,6 +2201,14 @@ components:
       properties:
         request_id:
           type: string
+    git.v1.GetFileChangesResponse:
+      properties:
+        request_id:
+          type: string
+        result:
+          $ref: '#/components/schemas/git.v1.RepoFileChanges'
+      required:
+        - result
     git.v1.GetFilesResponse:
       properties:
         request_id:
@@ -2203,28 +2217,6 @@ components:
           $ref: '#/components/schemas/git.v1.RepoFiles'
       required:
         - result
-    git.v1.GitCommitPolicyMetadata:
-      properties:
-        commit:
-          type: string
-        id:
-          type: string
-        path:
-          type: string
-        ref:
-          type: string
-        repo:
-          type: string
-        timestamp:
-          format: date-time
-          type: string
-      required:
-        - id
-        - repo
-        - ref
-        - commit
-        - path
-        - timestamp
     git.v1.GitRepoConfig:
       properties:
         commit:
@@ -2258,14 +2250,28 @@ components:
           $ref: '#/components/schemas/git.v1.Commit'
       required:
         - result
-    git.v1.RepoFiles:
+    git.v1.RepoFileChanges:
       properties:
         branch:
           type: string
+        changed_files:
+          items:
+            type: string
+          type: array
         deleted_files:
           items:
             type: string
           type: array
+        files:
+          additionalProperties:
+            type: string
+          type: object
+      required:
+        - files
+    git.v1.RepoFiles:
+      properties:
+        branch:
+          type: string
         files:
           additionalProperties:
             type: string
@@ -2312,11 +2318,11 @@ components:
           description: Repository URL
           type: string
       required:
-        - url
         - reference
         - commit
         - credentials
         - path
+        - url
         - sha
     git.v1.VerifyConfigRequest:
       properties:
@@ -2342,11 +2348,11 @@ components:
           type: string
       required:
         - id
+        - reference
         - commit
         - credentials
         - path
         - url
-        - reference
     git.v1.VerifyConfigResponse:
       properties:
         request_id:
@@ -2365,6 +2371,8 @@ components:
             type: string
           type: array
         auth_url:
+          type: string
+        certificate:
           type: string
         client_id:
           type: string
@@ -2387,6 +2395,8 @@ components:
         metadata:
           type: string
         override_discovery_issuer_url:
+          type: string
+        private_key:
           type: string
         proxy_url:
           type: string
@@ -2428,6 +2438,8 @@ components:
         - key_certificate
         - email_attribute
         - allow_idp_initiated
+        - private_key
+        - certificate
     identity-providers.v1.ProvidersDeleteResponse:
       properties:
         request_id:
@@ -2461,6 +2473,8 @@ components:
           type: array
         auth_url:
           type: string
+        certificate:
+          type: string
         client_id:
           type: string
         client_secret:
@@ -2482,6 +2496,8 @@ components:
         metadata:
           type: string
         override_discovery_issuer_url:
+          type: string
+        private_key:
           type: string
         proxy_url:
           type: string
@@ -2523,6 +2539,8 @@ components:
         - key_certificate
         - email_attribute
         - allow_idp_initiated
+        - private_key
+        - certificate
     identity-providers.v1.ProvidersPostResponse:
       properties:
         request_id:
@@ -2538,6 +2556,8 @@ components:
           type: array
         auth_url:
           type: string
+        certificate:
+          type: string
         client_id:
           type: string
         client_secret:
@@ -2559,6 +2579,8 @@ components:
         metadata:
           type: string
         override_discovery_issuer_url:
+          type: string
+        private_key:
           type: string
         proxy_url:
           type: string
@@ -2600,6 +2622,8 @@ components:
         - key_certificate
         - email_attribute
         - allow_idp_initiated
+        - private_key
+        - certificate
     identity-providers.v1.ProvidersPutResponse:
       properties:
         request_id:
@@ -2771,8 +2795,63 @@ components:
       properties:
         request_id:
           type: string
-    json.JsonPatchSpec:
-      type: object
+    json.MarshalOptions:
+      properties:
+        ExcludeLocationFile:
+          type: boolean
+        IncludeLocation:
+          $ref: '#/components/schemas/json.NodeToggle'
+        IncludeLocationText:
+          type: boolean
+      required:
+        - IncludeLocation
+        - IncludeLocationText
+        - ExcludeLocationFile
+    json.NodeToggle:
+      properties:
+        Annotations:
+          type: boolean
+        AnnotationsRef:
+          type: boolean
+        Comment:
+          type: boolean
+        Every:
+          type: boolean
+        Expr:
+          type: boolean
+        Head:
+          type: boolean
+        Import:
+          type: boolean
+        Package:
+          type: boolean
+        Rule:
+          type: boolean
+        SomeDecl:
+          type: boolean
+        Term:
+          type: boolean
+        With:
+          type: boolean
+      required:
+        - Term
+        - Package
+        - Comment
+        - Import
+        - Rule
+        - Head
+        - Expr
+        - SomeDecl
+        - Every
+        - With
+        - Annotations
+        - AnnotationsRef
+    json.Options:
+      properties:
+        MarshalOptions:
+          $ref: '#/components/schemas/json.MarshalOptions'
+      required:
+        - MarshalOptions
     keys.Config:
       properties:
         algorithm:
@@ -2874,9 +2953,9 @@ components:
             $ref: '#/components/schemas/libraries.v1.SystemUsingLibrary'
           type: array
       required:
-        - id
         - description
         - read_only
+        - id
         - policies
         - datasources
     libraries.v1.LibraryResponse:
@@ -2915,6 +2994,23 @@ components:
           type: string
       required:
         - system_id
+    location.Location:
+      properties:
+        JSONOptions:
+          $ref: '#/components/schemas/json.Options'
+        col:
+          format: int32
+          type: integer
+        file:
+          type: string
+        row:
+          format: int32
+          type: integer
+      required:
+        - file
+        - row
+        - col
+        - JSONOptions
     logreplay.v1.EntryReplayResult:
       properties:
         bundles:
@@ -2973,49 +3069,6 @@ components:
           format: date-time
           type: string
     logreplay.v1.EntryReplayResult.new_result: {}
-    logreplay.v1.ReplayAnalyzerStats:
-      properties:
-        analysis_errors:
-          description: number of invalid decisions that could not be replayed (<= entries_evaluated)
-          format: int64
-          type: integer
-        batches_analyzed:
-          description: number of fully analyzed decision batches (<= batches_observed)
-          format: int64
-          type: integer
-        batches_observed:
-          description: number of decision batches picked by the analyzers (<= batches_downloaded)
-          format: int64
-          type: integer
-        entries_evaluated:
-          description: number of replayed decisions (<= entries_scheduled)
-          format: int64
-          type: integer
-        entries_failed:
-          description: number of decisions evaluated to error (<= entries_evaluated)
-          format: int64
-          type: integer
-        entries_observed:
-          description: number of decisions in batches_observed batches
-          format: int64
-          type: integer
-        entries_scheduled:
-          description: number of decisions scheduled for replay (<= entries_observed)
-          format: int64
-          type: integer
-        results_changed:
-          description: number of observed decision changes (<= entries_evaluated)
-          format: int64
-          type: integer
-      required:
-        - batches_observed
-        - batches_analyzed
-        - entries_observed
-        - entries_evaluated
-        - entries_scheduled
-        - entries_failed
-        - analysis_errors
-        - results_changed
     logreplay.v1.ReplayRequest:
       properties:
         compare_full_results:
@@ -3025,12 +3078,16 @@ components:
         data_patches:
           description: list of JSON Patches to apply to the data namespace
           items:
-            $ref: '#/components/schemas/json.JsonPatchSpec'
+            items:
+              $ref: '#/components/schemas/logreplay.v1.ReplayRequest.data_patches'
+            type: array
           type: array
         decision_patches:
           description: list of JSON Patches to apply to the decisions before they evaluated
           items:
-            $ref: '#/components/schemas/json.JsonPatchSpec'
+            items:
+              $ref: '#/components/schemas/logreplay.v1.ReplayRequest.decision_patches'
+            type: array
           type: array
         deterministic_policies:
           default: true
@@ -3060,6 +3117,10 @@ components:
           items:
             type: string
           type: array
+    logreplay.v1.ReplayRequest.data_patches:
+      type: object
+    logreplay.v1.ReplayRequest.decision_patches:
+      type: object
     logreplay.v1.ReplayResponse:
       properties:
         mocks:
@@ -3232,11 +3293,15 @@ components:
         patches:
           description: JSONPatch to be applied to the datasource. Mutually exclusive with 'contents' and 'policy'
           items:
-            $ref: '#/components/schemas/json.JsonPatchSpec'
+            items:
+              $ref: '#/components/schemas/logreplay.v2.DraftSpec.patches'
+            type: array
           type: array
         policy:
           $ref: '#/components/schemas/logreplay.v2.PolicyRef'
     logreplay.v2.DraftSpec.contents: {}
+    logreplay.v2.DraftSpec.patches:
+      type: object
     logreplay.v2.PolicyRef:
       properties:
         context:
@@ -3263,7 +3328,9 @@ components:
         decision_patches:
           description: list of JSON Patches to apply to the decisions before they evaluated
           items:
-            $ref: '#/components/schemas/json.JsonPatchSpec'
+            items:
+              $ref: '#/components/schemas/logreplay.v2.ReplayRequest.decision_patches'
+            type: array
           type: array
         drafts:
           additionalProperties:
@@ -3294,6 +3361,8 @@ components:
           items:
             type: string
           type: array
+    logreplay.v2.ReplayRequest.decision_patches:
+      type: object
     logs.BundleInfoV1:
       properties:
         revision:
@@ -3677,15 +3746,6 @@ components:
         - description
         - id
         - metadata
-    secrets.v1.SecretBase:
-      properties:
-        description:
-          type: string
-        name:
-          type: string
-      required:
-        - name
-        - description
     secrets.v1.SecretsDeleteResponse:
       properties:
         request_id:
@@ -3873,26 +3933,6 @@ components:
         - policies
         - metadata
         - status
-    stacks.v1.StackParameters:
-      properties:
-        description:
-          type: string
-        name:
-          type: string
-        read_only:
-          type: boolean
-        source_control:
-          $ref: '#/components/schemas/stacks.v1.SourceControlConfig'
-        type:
-          type: string
-        type_parameters:
-          description: stack type parameter values (for template.* types)
-          type: object
-      required:
-        - name
-        - type
-        - description
-        - read_only
     stacks.v1.StacksComplianceRequest:
       properties:
         drafts:
@@ -3909,7 +3949,9 @@ components:
         group_by:
           description: group results by dot.path values (list of group levels with list of fields at each level)
           items:
-            $ref: '#/components/schemas/stacks.v1.StacksComplianceRequest.group_by'
+            items:
+              type: string
+            type: array
           type: array
         limit:
           description: maximum number of violations to return per monitor
@@ -3929,10 +3971,6 @@ components:
           items:
             $ref: '#/components/schemas/systems.v1.SortField'
           type: array
-    stacks.v1.StacksComplianceRequest.group_by:
-      items:
-        type: string
-      type: array
     stacks.v1.StacksComplianceResponse:
       properties:
         mocks:
@@ -4069,11 +4107,6 @@ components:
     status.v1.StatusPostResponse:
       properties:
         request_id:
-          type: string
-    systems.v1.AWSCredentials:
-      properties:
-        access_keys:
-          description: access key id and secret access key are looked under the key <name>/<access_keys>
           type: string
     systems.v1.AgentConfig:
       properties:
@@ -4371,16 +4404,16 @@ components:
           format: int64
           type: integer
       required:
-        - created_at
-        - revision
-        - revision_digest
-        - contents_digest
-        - id
-        - size
-        - active
-        - download_url
         - digest
+        - size
+        - revision_digest
+        - download_url
+        - id
         - version
+        - created_at
+        - active
+        - revision
+        - contents_digest
     systems.v1.BundleDistributionS3Config:
       properties:
         access_keys:
@@ -4528,14 +4561,6 @@ components:
       required:
         - key
         - path
-    systems.v1.ComplianceParameters:
-      properties:
-        extended:
-          description: run extended compliance validation that is specific for the system/stack type
-          type: boolean
-        policy_type:
-          description: policy type to narrow the monitor policy search (e.g. validating, mutating). Default (empty string or missing) is to run all monitoring policies
-          type: string
     systems.v1.ComplianceValidation:
       properties:
         all:
@@ -4929,6 +4954,8 @@ components:
           type: array
         reason:
           $ref: '#/components/schemas/systems.v1.ReasonMapping'
+    systems.v1.RuleParameters:
+      type: object
     systems.v1.ServerTLSConfig:
       properties:
         ca_cert:
@@ -4947,6 +4974,19 @@ components:
           type: string
       required:
         - field
+    systems.v1.SuggestedRules:
+      properties:
+        stateful:
+          additionalProperties:
+            $ref: '#/components/schemas/systems.v1.RuleParameters'
+          type: object
+        stateless:
+          additionalProperties:
+            $ref: '#/components/schemas/systems.v1.RuleParameters'
+          type: object
+      required:
+        - stateless
+        - stateful
     systems.v1.SystemConfig:
       properties:
         authz:
@@ -5079,8 +5119,8 @@ components:
           readOnly: true
           type: object
       required:
-        - type
         - name
+        - type
         - id
         - policies
         - authz
@@ -5132,65 +5172,6 @@ components:
         trusted_container_registry:
           description: trusted container registry
           type: string
-    systems.v1.SystemParameters:
-      properties:
-        bundle_download:
-          $ref: '#/components/schemas/systems.v1.BundleDownloadConfig'
-        bundle_registry:
-          $ref: '#/components/schemas/systems.v1.BundleRegistryConfig'
-        context_bundle_data_only:
-          description: only put data in the context bundle
-          type: boolean
-        context_bundle_roots:
-          description: list of path prefixes for policies/datasources that go into the second (context) bundle
-          items:
-            type: string
-          type: array
-        decision_mappings:
-          additionalProperties:
-            $ref: '#/components/schemas/systems.v1.RuleDecisionMappings'
-          description: location of key attributes and additional columns in the decisions grouped by policy entry point path
-          type: object
-        deployment_parameters:
-          $ref: '#/components/schemas/systems.v1.SystemDeploymentParameters'
-        description:
-          description: description for the system
-          type: string
-        error_setting:
-          description: 'error/warning configuration: one of "all", "errors", "none"'
-          type: string
-        external_bundles:
-          $ref: '#/components/schemas/systems.v1.ExternalBundleConfig'
-        external_id:
-          description: optional parameter to map Styra DAS system ID to external IDs used by a customer. (mapping can be retrieved with TranslateExternalIds operation)
-          type: string
-        filter_stacks:
-          description: when set, stacks that are not linked to this system will be filtered out of its bundles
-          type: boolean
-        kafka_topic:
-          description: optional parameter to specify the Kafka topic where the decision logs for this system should be published (ignored if Kafka is not configured for the workspace for decision export)
-          type: string
-        mock_opa_enabled:
-          description: enable mock OPAs for this system
-          type: boolean
-        name:
-          description: system name
-          type: string
-        read_only:
-          default: false
-          description: prevents users from modifying policies using Styra UIs
-          type: boolean
-        source_control:
-          $ref: '#/components/schemas/git.v1.SourceControlConfig'
-        type:
-          description: system type e.g. kubernetes
-          type: string
-        type_parameters:
-          description: system type parameter values (for template.* types)
-          type: object
-      required:
-        - name
-        - type
     systems.v1.SystemsComplianceRequest:
       properties:
         drafts:
@@ -5207,7 +5188,9 @@ components:
         group_by:
           description: group results by dot.path values (list of group levels with list of fields at each level)
           items:
-            $ref: '#/components/schemas/systems.v1.SystemsComplianceRequest.group_by'
+            items:
+              type: string
+            type: array
           type: array
         limit:
           description: maximum number of violations to return per monitor
@@ -5227,10 +5210,6 @@ components:
           items:
             $ref: '#/components/schemas/systems.v1.SortField'
           type: array
-    systems.v1.SystemsComplianceRequest.group_by:
-      items:
-        type: string
-      type: array
     systems.v1.SystemsComplianceResponse:
       properties:
         mocks:
@@ -5498,7 +5477,7 @@ components:
         request_id:
           type: string
         result:
-          type: string
+          $ref: '#/components/schemas/systems.v1.SuggestedRules'
       required:
         - result
     systems.v1.SystemsTestsRequest:
@@ -5555,9 +5534,9 @@ components:
         fail:
           type: boolean
         failed_at:
-          type: string
+          type: object
         location:
-          type: string
+          $ref: '#/components/schemas/location.Location'
         name:
           type: string
         package:
@@ -5921,16 +5900,6 @@ components:
       required:
         - enabled
         - id
-    users.v1.UserBase:
-      properties:
-        enabled:
-          type: boolean
-        roles:
-          items:
-            type: string
-          type: array
-      required:
-        - enabled
     users.v1.UsersDeleteResponse:
       properties:
         request_id:
@@ -6192,6 +6161,11 @@ components:
         - description
         - title
         - value
+    workspace.v1.RotateKeyRequest: {}
+    workspace.v1.RotateKeyResponse:
+      properties:
+        request_id:
+          type: string
     workspace.v1.S3Config:
       properties:
         access_keys:
@@ -6254,8 +6228,8 @@ components:
           description: 'S3 Bucket URL (ie: s3://styra-storage or gs://styra-storage/folder)'
           type: string
       required:
-        - url
         - region
+        - url
     workspace.v1.S3VerifyResponse:
       properties:
         request_id:
@@ -6321,18 +6295,6 @@ components:
           type: string
         result:
           $ref: '#/components/schemas/workspace.v1.WorkspaceConfig'
-    workspace.v1.WorkspaceParameters:
-      properties:
-        activity_exporter:
-          $ref: '#/components/schemas/workspace.v1.ActivityExporterConfig'
-        decisions_exporter:
-          $ref: '#/components/schemas/workspace.v1.DecisionExporterConfig'
-        github:
-          $ref: '#/components/schemas/workspace.v1.GithubConfiguration'
-        metrics_exporter:
-          $ref: '#/components/schemas/workspace.v1.MetricsExporterConfig'
-        source_control:
-          $ref: '#/components/schemas/git.v1.SourceControlConfig'
     workspace.v1.WorkspacePutRequest:
       properties:
         activity_exporter:
@@ -6446,7 +6408,7 @@ paths:
     get:
       operationId: GetAgentStatuses
       parameters:
-        - description: agent kind such as "agents", "datasources", "slps", "exporters"
+        - description: agent kind such as "agents", "datasources", "datasources-agents", "slps", "exporters"
           in: path
           name: kind
           required: true
@@ -6481,7 +6443,7 @@ paths:
     post:
       operationId: PostAgentStatus
       parameters:
-        - description: agent kind such as "agents", "datasources", "slps", "exporters"
+        - description: agent kind such as "agents", "datasources", "datasources-agents", "slps", "exporters"
           in: path
           name: kind
           required: true
@@ -6508,7 +6470,7 @@ paths:
     delete:
       operationId: DeleteAgentInfo
       parameters:
-        - description: agent kind such as "agents", "datasources", "slps", "exporters"
+        - description: agent kind such as "agents", "datasources", "datasources-agents", "slps", "exporters"
           in: path
           name: kind
           required: true
@@ -6535,7 +6497,7 @@ paths:
     put:
       operationId: UpdateAgentStatus
       parameters:
-        - description: agent kind such as "agents", "datasources", "slps", "exporters"
+        - description: agent kind such as "agents", "datasources", "datasources-agents", "slps", "exporters"
           in: path
           name: kind
           required: true
@@ -7953,6 +7915,32 @@ paths:
       summary: Create provider
       tags:
         - identity-providers
+  /v1/identity-providers/validate:
+    post:
+      operationId: ValidateProvider
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/identity-providers.v1.ProvidersPostRequest'
+        required: true
+        x-originalParamName: body
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/identity-providers.v1.ProvidersPostResponse'
+          description: OK
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/meta.v1.ErrorResponse'
+          description: Not Found
+      summary: Validate provider
+      tags:
+        - identity-providers
   /v1/identity-providers/{providerId}:
     delete:
       operationId: DeleteProvider
@@ -8403,7 +8391,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/git.v1.GetFilesResponse'
+                $ref: '#/components/schemas/git.v1.GetFileChangesResponse'
           description: OK
         "404":
           content:
@@ -9443,7 +9431,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/git.v1.GetFilesResponse'
+                $ref: '#/components/schemas/git.v1.GetFileChangesResponse'
           description: OK
         "404":
           content:
@@ -10005,7 +9993,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/git.v1.GetFilesResponse'
+                $ref: '#/components/schemas/git.v1.GetFileChangesResponse'
           description: OK
         "404":
           content:
@@ -11504,6 +11492,26 @@ paths:
       summary: Get S3 regions list
       tags:
         - workspace
+  /v1/workspace/rotate-key:
+    post:
+      operationId: RotateMTK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/workspace.v1.RotateKeyRequest'
+        required: true
+        x-originalParamName: body
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/workspace.v1.S3VerifyResponse'
+          description: OK
+      summary: Rotate master tenant key
+      tags:
+        - workspace
   /v1/workspace/s3-config:
     get:
       operationId: GetS3Config
@@ -11645,7 +11653,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/git.v1.GetFilesResponse'
+                $ref: '#/components/schemas/git.v1.GetFileChangesResponse'
           description: OK
         "404":
           content:
