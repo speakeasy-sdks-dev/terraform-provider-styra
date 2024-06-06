@@ -31,6 +31,8 @@ actions:
   - target: $["components"]["schemas"]["libraries.v1.LibraryResponse"]
     update:
       x-speakeasy-entity: Library
+  - target: $["components"]["schemas"]["libraries.v1.SourceControlConfig"]["properties"]["origin"]
+    remove: true
   - target: $["paths"]["/v1/libraries/{id}"]["delete"]
     update:
       x-speakeasy-entity-operation: Library#delete
@@ -60,7 +62,7 @@ actions:
   - target: $["components"]["schemas"]["secrets.v1.Secret"]
     update:
       x-speakeasy-entity: Secret
-  - target: $["components"]["schemas"]["secrets.v1.SecretsPutRequest"]
+  - target: $["components"]["schemas"]["secrets.v1.SecretsPutRequest"]["properties"]["secret"]
     update:
       x-speakeasy-param-sensitive: true
   - target: $["paths"]["/v1/secrets/{secretId}"]["delete"]
@@ -100,6 +102,8 @@ actions:
   - target: $["components"]["schemas"]["stacks.v1.StacksPutResponse"]["properties"]["request_id"]
     update:
       x-speakeasy-ignore: true
+  - target: $["components"]["schemas"]["stacks.v1.SourceControlConfig"]["properties"]["origin"]
+    remove: true
   - target: $["paths"]["/v1/stacks"]["post"]
     update:
       x-speakeasy-entity-operation: Stack#create
