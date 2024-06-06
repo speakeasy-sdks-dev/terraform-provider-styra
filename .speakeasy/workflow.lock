@@ -1,9 +1,9 @@
-speakeasyVersion: 1.299.4
+speakeasyVersion: 1.300.0
 sources:
     openapi:
         sourceNamespace: openapi
-        sourceRevisionDigest: sha256:0cfd4f9dd2ceefe559d7793060a790b9991d3963f72ae942b49e7f80c1c55994
-        sourceBlobDigest: sha256:d4c7433ec421d8e47902a875bed7e811c91c1e4a785424f5dc2a54b746d9edae
+        sourceRevisionDigest: sha256:8e93366fa09df71bcf8449f96f03a252d902b7f64b282d509148e40bb33db347
+        sourceBlobDigest: sha256:5a96b445056c6db67f9833aaa08cf0041522cbf3d8b44c426bf0ec01cec9511d
         tags:
             - latest
             - main
@@ -11,8 +11,8 @@ targets:
     styra-terraform:
         source: openapi
         sourceNamespace: openapi
-        sourceRevisionDigest: sha256:0cfd4f9dd2ceefe559d7793060a790b9991d3963f72ae942b49e7f80c1c55994
-        sourceBlobDigest: sha256:d4c7433ec421d8e47902a875bed7e811c91c1e4a785424f5dc2a54b746d9edae
+        sourceRevisionDigest: sha256:8e93366fa09df71bcf8449f96f03a252d902b7f64b282d509148e40bb33db347
+        sourceBlobDigest: sha256:5a96b445056c6db67f9833aaa08cf0041522cbf3d8b44c426bf0ec01cec9511d
         outLocation: /github/workspace/repo
 workflow:
     workflowVersion: 1.0.0

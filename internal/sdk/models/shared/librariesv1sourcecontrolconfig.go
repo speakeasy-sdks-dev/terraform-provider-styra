@@ -4,7 +4,6 @@ package shared
 
 type LibrariesV1SourceControlConfig struct {
 	LibraryOrigin        *GitV1GitRepoConfig `json:"library_origin,omitempty"`
-	Origin               *GitV1GitRepoConfig `json:"origin,omitempty"`
 	UseWorkspaceSettings bool                `json:"use_workspace_settings"`
 }
 
@@ -13,13 +12,6 @@ func (o *LibrariesV1SourceControlConfig) GetLibraryOrigin() *GitV1GitRepoConfig 
 		return nil
 	}
 	return o.LibraryOrigin
-}
-
-func (o *LibrariesV1SourceControlConfig) GetOrigin() *GitV1GitRepoConfig {
-	if o == nil {
-		return nil
-	}
-	return o.Origin
 }
 
 func (o *LibrariesV1SourceControlConfig) GetUseWorkspaceSettings() bool {

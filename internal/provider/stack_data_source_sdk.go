@@ -193,23 +193,6 @@ func (r *StackDataSourceModel) RefreshFromSharedStacksV1StackConfig(resp shared.
 		r.SourceControl = nil
 	} else {
 		r.SourceControl = &tfTypes.StacksV1SourceControlConfig{}
-		if resp.SourceControl.Origin == nil {
-			r.SourceControl.Origin = nil
-		} else {
-			r.SourceControl.Origin = &tfTypes.GitV1GitRepoConfig{}
-			r.SourceControl.Origin.Commit = types.StringValue(resp.SourceControl.Origin.Commit)
-			r.SourceControl.Origin.Credentials = types.StringValue(resp.SourceControl.Origin.Credentials)
-			r.SourceControl.Origin.Path = types.StringValue(resp.SourceControl.Origin.Path)
-			r.SourceControl.Origin.Reference = types.StringValue(resp.SourceControl.Origin.Reference)
-			if resp.SourceControl.Origin.SSHCredentials == nil {
-				r.SourceControl.Origin.SSHCredentials = nil
-			} else {
-				r.SourceControl.Origin.SSHCredentials = &tfTypes.GitV1SSHCredentials{}
-				r.SourceControl.Origin.SSHCredentials.Passphrase = types.StringValue(resp.SourceControl.Origin.SSHCredentials.Passphrase)
-				r.SourceControl.Origin.SSHCredentials.PrivateKey = types.StringValue(resp.SourceControl.Origin.SSHCredentials.PrivateKey)
-			}
-			r.SourceControl.Origin.URL = types.StringValue(resp.SourceControl.Origin.URL)
-		}
 		if resp.SourceControl.StackOrigin == nil {
 			r.SourceControl.StackOrigin = nil
 		} else {

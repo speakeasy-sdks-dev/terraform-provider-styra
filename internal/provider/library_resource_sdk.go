@@ -39,35 +39,9 @@ func (r *LibraryResourceModel) ToSharedLibrariesV1CreateLibraryRequest() *shared
 				URL:            url,
 			}
 		}
-		var origin *shared.GitV1GitRepoConfig
-		if r.SourceControl.Origin != nil {
-			commit1 := r.SourceControl.Origin.Commit.ValueString()
-			credentials1 := r.SourceControl.Origin.Credentials.ValueString()
-			path1 := r.SourceControl.Origin.Path.ValueString()
-			reference1 := r.SourceControl.Origin.Reference.ValueString()
-			var sshCredentials1 *shared.GitV1SSHCredentials
-			if r.SourceControl.Origin.SSHCredentials != nil {
-				passphrase1 := r.SourceControl.Origin.SSHCredentials.Passphrase.ValueString()
-				privateKey1 := r.SourceControl.Origin.SSHCredentials.PrivateKey.ValueString()
-				sshCredentials1 = &shared.GitV1SSHCredentials{
-					Passphrase: passphrase1,
-					PrivateKey: privateKey1,
-				}
-			}
-			url1 := r.SourceControl.Origin.URL.ValueString()
-			origin = &shared.GitV1GitRepoConfig{
-				Commit:         commit1,
-				Credentials:    credentials1,
-				Path:           path1,
-				Reference:      reference1,
-				SSHCredentials: sshCredentials1,
-				URL:            url1,
-			}
-		}
 		useWorkspaceSettings := r.SourceControl.UseWorkspaceSettings.ValueBool()
 		sourceControl = &shared.LibrariesV1SourceControlConfig{
 			LibraryOrigin:        libraryOrigin,
-			Origin:               origin,
 			UseWorkspaceSettings: useWorkspaceSettings,
 		}
 	}
@@ -214,23 +188,6 @@ func (r *LibraryResourceModel) RefreshFromSharedLibrariesV1LibraryResponse(resp 
 					r.Result.SourceControl.LibraryOrigin.SSHCredentials.PrivateKey = types.StringValue(resp.Result.SourceControl.LibraryOrigin.SSHCredentials.PrivateKey)
 				}
 				r.Result.SourceControl.LibraryOrigin.URL = types.StringValue(resp.Result.SourceControl.LibraryOrigin.URL)
-			}
-			if resp.Result.SourceControl.Origin == nil {
-				r.Result.SourceControl.Origin = nil
-			} else {
-				r.Result.SourceControl.Origin = &tfTypes.GitV1GitRepoConfig{}
-				r.Result.SourceControl.Origin.Commit = types.StringValue(resp.Result.SourceControl.Origin.Commit)
-				r.Result.SourceControl.Origin.Credentials = types.StringValue(resp.Result.SourceControl.Origin.Credentials)
-				r.Result.SourceControl.Origin.Path = types.StringValue(resp.Result.SourceControl.Origin.Path)
-				r.Result.SourceControl.Origin.Reference = types.StringValue(resp.Result.SourceControl.Origin.Reference)
-				if resp.Result.SourceControl.Origin.SSHCredentials == nil {
-					r.Result.SourceControl.Origin.SSHCredentials = nil
-				} else {
-					r.Result.SourceControl.Origin.SSHCredentials = &tfTypes.GitV1SSHCredentials{}
-					r.Result.SourceControl.Origin.SSHCredentials.Passphrase = types.StringValue(resp.Result.SourceControl.Origin.SSHCredentials.Passphrase)
-					r.Result.SourceControl.Origin.SSHCredentials.PrivateKey = types.StringValue(resp.Result.SourceControl.Origin.SSHCredentials.PrivateKey)
-				}
-				r.Result.SourceControl.Origin.URL = types.StringValue(resp.Result.SourceControl.Origin.URL)
 			}
 			r.Result.SourceControl.UseWorkspaceSettings = types.BoolValue(resp.Result.SourceControl.UseWorkspaceSettings)
 		}

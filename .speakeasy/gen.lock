@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: 53fed213-041c-4563-833e-e9ee4d3bb0ba
 management:
-  docChecksum: 23e1d1699a3a5304c5c38fd685db6a38
+  docChecksum: 2605cc6b1f69b2cd74c6187293059f40
   docVersion: 2.0.0
-  speakeasyVersion: 1.299.4
-  generationVersion: 2.338.7
-  releaseVersion: 0.2.2
-  configChecksum: 45e37886be57c21d59de167c2d74d652
+  speakeasyVersion: 1.300.0
+  generationVersion: 2.338.14
+  releaseVersion: 0.2.3
+  configChecksum: a56e63e51fffd34d1cf05b6f0e7f0b98
   repoURL: https://github.com/StyraInc/terraform-provider-styra.git
 features:
   terraform:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.4
-    core: 3.21.1
+    core: 3.21.2
     globalSecurity: 2.81.6
     globalServerURLs: 2.82.1
     ignores: 2.81.1

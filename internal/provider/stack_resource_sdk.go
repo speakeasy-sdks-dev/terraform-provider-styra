@@ -15,23 +15,23 @@ func (r *StackResourceModel) ToSharedStacksV1StacksPostRequest() *shared.StacksV
 	readOnly := r.ReadOnly.ValueBool()
 	var sourceControl *shared.StacksV1SourceControlConfig
 	if r.SourceControl != nil {
-		var origin *shared.GitV1GitRepoConfig
-		if r.SourceControl.Origin != nil {
-			commit := r.SourceControl.Origin.Commit.ValueString()
-			credentials := r.SourceControl.Origin.Credentials.ValueString()
-			path := r.SourceControl.Origin.Path.ValueString()
-			reference := r.SourceControl.Origin.Reference.ValueString()
+		var stackOrigin *shared.GitV1GitRepoConfig
+		if r.SourceControl.StackOrigin != nil {
+			commit := r.SourceControl.StackOrigin.Commit.ValueString()
+			credentials := r.SourceControl.StackOrigin.Credentials.ValueString()
+			path := r.SourceControl.StackOrigin.Path.ValueString()
+			reference := r.SourceControl.StackOrigin.Reference.ValueString()
 			var sshCredentials *shared.GitV1SSHCredentials
-			if r.SourceControl.Origin.SSHCredentials != nil {
-				passphrase := r.SourceControl.Origin.SSHCredentials.Passphrase.ValueString()
-				privateKey := r.SourceControl.Origin.SSHCredentials.PrivateKey.ValueString()
+			if r.SourceControl.StackOrigin.SSHCredentials != nil {
+				passphrase := r.SourceControl.StackOrigin.SSHCredentials.Passphrase.ValueString()
+				privateKey := r.SourceControl.StackOrigin.SSHCredentials.PrivateKey.ValueString()
 				sshCredentials = &shared.GitV1SSHCredentials{
 					Passphrase: passphrase,
 					PrivateKey: privateKey,
 				}
 			}
-			url := r.SourceControl.Origin.URL.ValueString()
-			origin = &shared.GitV1GitRepoConfig{
+			url := r.SourceControl.StackOrigin.URL.ValueString()
+			stackOrigin = &shared.GitV1GitRepoConfig{
 				Commit:         commit,
 				Credentials:    credentials,
 				Path:           path,
@@ -40,34 +40,8 @@ func (r *StackResourceModel) ToSharedStacksV1StacksPostRequest() *shared.StacksV
 				URL:            url,
 			}
 		}
-		var stackOrigin *shared.GitV1GitRepoConfig
-		if r.SourceControl.StackOrigin != nil {
-			commit1 := r.SourceControl.StackOrigin.Commit.ValueString()
-			credentials1 := r.SourceControl.StackOrigin.Credentials.ValueString()
-			path1 := r.SourceControl.StackOrigin.Path.ValueString()
-			reference1 := r.SourceControl.StackOrigin.Reference.ValueString()
-			var sshCredentials1 *shared.GitV1SSHCredentials
-			if r.SourceControl.StackOrigin.SSHCredentials != nil {
-				passphrase1 := r.SourceControl.StackOrigin.SSHCredentials.Passphrase.ValueString()
-				privateKey1 := r.SourceControl.StackOrigin.SSHCredentials.PrivateKey.ValueString()
-				sshCredentials1 = &shared.GitV1SSHCredentials{
-					Passphrase: passphrase1,
-					PrivateKey: privateKey1,
-				}
-			}
-			url1 := r.SourceControl.StackOrigin.URL.ValueString()
-			stackOrigin = &shared.GitV1GitRepoConfig{
-				Commit:         commit1,
-				Credentials:    credentials1,
-				Path:           path1,
-				Reference:      reference1,
-				SSHCredentials: sshCredentials1,
-				URL:            url1,
-			}
-		}
 		useWorkspaceSettings := r.SourceControl.UseWorkspaceSettings.ValueBool()
 		sourceControl = &shared.StacksV1SourceControlConfig{
-			Origin:               origin,
 			StackOrigin:          stackOrigin,
 			UseWorkspaceSettings: useWorkspaceSettings,
 		}
@@ -272,23 +246,6 @@ func (r *StackResourceModel) RefreshFromSharedStacksV1StackConfig(resp shared.St
 		r.SourceControl = nil
 	} else {
 		r.SourceControl = &tfTypes.StacksV1SourceControlConfig{}
-		if resp.SourceControl.Origin == nil {
-			r.SourceControl.Origin = nil
-		} else {
-			r.SourceControl.Origin = &tfTypes.GitV1GitRepoConfig{}
-			r.SourceControl.Origin.Commit = types.StringValue(resp.SourceControl.Origin.Commit)
-			r.SourceControl.Origin.Credentials = types.StringValue(resp.SourceControl.Origin.Credentials)
-			r.SourceControl.Origin.Path = types.StringValue(resp.SourceControl.Origin.Path)
-			r.SourceControl.Origin.Reference = types.StringValue(resp.SourceControl.Origin.Reference)
-			if resp.SourceControl.Origin.SSHCredentials == nil {
-				r.SourceControl.Origin.SSHCredentials = nil
-			} else {
-				r.SourceControl.Origin.SSHCredentials = &tfTypes.GitV1SSHCredentials{}
-				r.SourceControl.Origin.SSHCredentials.Passphrase = types.StringValue(resp.SourceControl.Origin.SSHCredentials.Passphrase)
-				r.SourceControl.Origin.SSHCredentials.PrivateKey = types.StringValue(resp.SourceControl.Origin.SSHCredentials.PrivateKey)
-			}
-			r.SourceControl.Origin.URL = types.StringValue(resp.SourceControl.Origin.URL)
-		}
 		if resp.SourceControl.StackOrigin == nil {
 			r.SourceControl.StackOrigin = nil
 		} else {
@@ -323,23 +280,23 @@ func (r *StackResourceModel) ToSharedStacksV1StacksPutRequest() *shared.StacksV1
 	readOnly := r.ReadOnly.ValueBool()
 	var sourceControl *shared.StacksV1SourceControlConfig
 	if r.SourceControl != nil {
-		var origin *shared.GitV1GitRepoConfig
-		if r.SourceControl.Origin != nil {
-			commit := r.SourceControl.Origin.Commit.ValueString()
-			credentials := r.SourceControl.Origin.Credentials.ValueString()
-			path := r.SourceControl.Origin.Path.ValueString()
-			reference := r.SourceControl.Origin.Reference.ValueString()
+		var stackOrigin *shared.GitV1GitRepoConfig
+		if r.SourceControl.StackOrigin != nil {
+			commit := r.SourceControl.StackOrigin.Commit.ValueString()
+			credentials := r.SourceControl.StackOrigin.Credentials.ValueString()
+			path := r.SourceControl.StackOrigin.Path.ValueString()
+			reference := r.SourceControl.StackOrigin.Reference.ValueString()
 			var sshCredentials *shared.GitV1SSHCredentials
-			if r.SourceControl.Origin.SSHCredentials != nil {
-				passphrase := r.SourceControl.Origin.SSHCredentials.Passphrase.ValueString()
-				privateKey := r.SourceControl.Origin.SSHCredentials.PrivateKey.ValueString()
+			if r.SourceControl.StackOrigin.SSHCredentials != nil {
+				passphrase := r.SourceControl.StackOrigin.SSHCredentials.Passphrase.ValueString()
+				privateKey := r.SourceControl.StackOrigin.SSHCredentials.PrivateKey.ValueString()
 				sshCredentials = &shared.GitV1SSHCredentials{
 					Passphrase: passphrase,
 					PrivateKey: privateKey,
 				}
 			}
-			url := r.SourceControl.Origin.URL.ValueString()
-			origin = &shared.GitV1GitRepoConfig{
+			url := r.SourceControl.StackOrigin.URL.ValueString()
+			stackOrigin = &shared.GitV1GitRepoConfig{
 				Commit:         commit,
 				Credentials:    credentials,
 				Path:           path,
@@ -348,34 +305,8 @@ func (r *StackResourceModel) ToSharedStacksV1StacksPutRequest() *shared.StacksV1
 				URL:            url,
 			}
 		}
-		var stackOrigin *shared.GitV1GitRepoConfig
-		if r.SourceControl.StackOrigin != nil {
-			commit1 := r.SourceControl.StackOrigin.Commit.ValueString()
-			credentials1 := r.SourceControl.StackOrigin.Credentials.ValueString()
-			path1 := r.SourceControl.StackOrigin.Path.ValueString()
-			reference1 := r.SourceControl.StackOrigin.Reference.ValueString()
-			var sshCredentials1 *shared.GitV1SSHCredentials
-			if r.SourceControl.StackOrigin.SSHCredentials != nil {
-				passphrase1 := r.SourceControl.StackOrigin.SSHCredentials.Passphrase.ValueString()
-				privateKey1 := r.SourceControl.StackOrigin.SSHCredentials.PrivateKey.ValueString()
-				sshCredentials1 = &shared.GitV1SSHCredentials{
-					Passphrase: passphrase1,
-					PrivateKey: privateKey1,
-				}
-			}
-			url1 := r.SourceControl.StackOrigin.URL.ValueString()
-			stackOrigin = &shared.GitV1GitRepoConfig{
-				Commit:         commit1,
-				Credentials:    credentials1,
-				Path:           path1,
-				Reference:      reference1,
-				SSHCredentials: sshCredentials1,
-				URL:            url1,
-			}
-		}
 		useWorkspaceSettings := r.SourceControl.UseWorkspaceSettings.ValueBool()
 		sourceControl = &shared.StacksV1SourceControlConfig{
-			Origin:               origin,
 			StackOrigin:          stackOrigin,
 			UseWorkspaceSettings: useWorkspaceSettings,
 		}

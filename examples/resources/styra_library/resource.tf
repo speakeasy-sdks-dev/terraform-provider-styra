@@ -14,17 +14,6 @@ resource "styra_library" "my_library" {
       }
       url = "...my_url..."
     }
-    origin = {
-      commit      = "...my_commit..."
-      credentials = "...my_credentials..."
-      path        = "...my_path..."
-      reference   = "...my_reference..."
-      ssh_credentials = {
-        passphrase  = "...my_passphrase..."
-        private_key = "...my_private_key..."
-      }
-      url = "...my_url..."
-    }
     use_workspace_settings = true
   }
 }

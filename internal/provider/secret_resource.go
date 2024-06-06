@@ -96,7 +96,8 @@ func (r *SecretResource) Schema(ctx context.Context, req resource.SchemaRequest,
 				Computed: true,
 			},
 			"secret": schema.StringAttribute{
-				Required: true,
+				Required:  true,
+				Sensitive: true,
 			},
 			"secret_id": schema.StringAttribute{
 				Required:    true,

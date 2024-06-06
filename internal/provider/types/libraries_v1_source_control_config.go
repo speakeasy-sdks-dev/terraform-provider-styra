@@ -6,6 +6,5 @@ import "github.com/hashicorp/terraform-plugin-framework/types"
 
 type LibrariesV1SourceControlConfig struct {
 	LibraryOrigin        *GitV1GitRepoConfig `tfsdk:"library_origin"`
-	Origin               *GitV1GitRepoConfig `tfsdk:"origin"`
 	UseWorkspaceSettings types.Bool          `tfsdk:"use_workspace_settings"`
 }

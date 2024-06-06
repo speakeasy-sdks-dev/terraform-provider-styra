@@ -29,7 +29,7 @@ resource "styra_secret" "my_secret" {
 
 - `description` (String)
 - `name` (String)
-- `secret` (String)
+- `secret` (String, Sensitive)
 - `secret_id` (String) secret ID
 
 ### Optional

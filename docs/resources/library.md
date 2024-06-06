@@ -29,17 +29,6 @@ resource "styra_library" "my_library" {
       }
       url = "...my_url..."
     }
-    origin = {
-      commit      = "...my_commit..."
-      credentials = "...my_credentials..."
-      path        = "...my_path..."
-      reference   = "...my_reference..."
-      ssh_credentials = {
-        passphrase  = "...my_passphrase..."
-        private_key = "...my_private_key..."
-      }
-      url = "...my_url..."
-    }
     use_workspace_settings = true
   }
 }
@@ -72,7 +61,6 @@ Required:
 Optional:
 
 - `library_origin` (Attributes) (see [below for nested schema](#nestedatt--source_control--library_origin))
-- `origin` (Attributes) (see [below for nested schema](#nestedatt--source_control--origin))
 
 <a id="nestedatt--source_control--library_origin"></a>
 ### Nested Schema for `source_control.library_origin`
@@ -91,31 +79,6 @@ Optional:
 
 <a id="nestedatt--source_control--library_origin--ssh_credentials"></a>
 ### Nested Schema for `source_control.library_origin.ssh_credentials`
-
-Required:
-
-- `passphrase` (String) Passphrase is looked under the key passphrase/<pass>
-- `private_key` (String) PrivateKey is looked under the key private-key/<key>
-
-
-
-<a id="nestedatt--source_control--origin"></a>
-### Nested Schema for `source_control.origin`
-
-Required:
-
-- `commit` (String) Commit SHA. Only one of reference or commit can be set at any time
-- `credentials` (String) Credentials are looked under the key <name>/<creds>
-- `path` (String) Path to limit the import to
-- `reference` (String) Remote reference. Only one of reference or commit can be set at any time
-- `url` (String) Repository URL
-
-Optional:
-
-- `ssh_credentials` (Attributes) (see [below for nested schema](#nestedatt--source_control--origin--ssh_credentials))
-
-<a id="nestedatt--source_control--origin--ssh_credentials"></a>
-### Nested Schema for `source_control.origin.ssh_credentials`
 
 Required:
 
@@ -244,7 +207,6 @@ Read-Only:
 Read-Only:
 
 - `library_origin` (Attributes) (see [below for nested schema](#nestedatt--result--source_control--library_origin))
-- `origin` (Attributes) (see [below for nested schema](#nestedatt--result--source_control--origin))
 - `use_workspace_settings` (Boolean)
 
 <a id="nestedatt--result--source_control--library_origin"></a>
@@ -261,28 +223,6 @@ Read-Only:
 
 <a id="nestedatt--result--source_control--library_origin--ssh_credentials"></a>
 ### Nested Schema for `result.source_control.library_origin.url`
-
-Read-Only:
-
-- `passphrase` (String) Passphrase is looked under the key passphrase/<pass>
-- `private_key` (String) PrivateKey is looked under the key private-key/<key>
-
-
-
-<a id="nestedatt--result--source_control--origin"></a>
-### Nested Schema for `result.source_control.origin`
-
-Read-Only:
-
-- `commit` (String) Commit SHA. Only one of reference or commit can be set at any time
-- `credentials` (String) Credentials are looked under the key <name>/<creds>
-- `path` (String) Path to limit the import to
-- `reference` (String) Remote reference. Only one of reference or commit can be set at any time
-- `ssh_credentials` (Attributes) (see [below for nested schema](#nestedatt--result--source_control--origin--ssh_credentials))
-- `url` (String) Repository URL
-
-<a id="nestedatt--result--source_control--origin--ssh_credentials"></a>
-### Nested Schema for `result.source_control.origin.url`
 
 Read-Only:
 

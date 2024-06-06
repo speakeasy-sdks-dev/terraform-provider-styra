@@ -5,7 +5,6 @@ package types
 import "github.com/hashicorp/terraform-plugin-framework/types"
 
 type StacksV1SourceControlConfig struct {
-	Origin               *GitV1GitRepoConfig `tfsdk:"origin"`
 	StackOrigin          *GitV1GitRepoConfig `tfsdk:"stack_origin"`
 	UseWorkspaceSettings types.Bool          `tfsdk:"use_workspace_settings"`
 }

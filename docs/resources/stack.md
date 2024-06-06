@@ -54,31 +54,8 @@ resource "styra_stack" "my_stack" {
 
 Optional:
 
-- `origin` (Attributes) (see [below for nested schema](#nestedatt--source_control--origin))
 - `stack_origin` (Attributes) (see [below for nested schema](#nestedatt--source_control--stack_origin))
 - `use_workspace_settings` (Boolean) Not Null
-
-<a id="nestedatt--source_control--origin"></a>
-### Nested Schema for `source_control.origin`
-
-Optional:
-
-- `commit` (String) Commit SHA. Only one of reference or commit can be set at any time. Not Null
-- `credentials` (String) Credentials are looked under the key <name>/<creds>. Not Null
-- `path` (String) Path to limit the import to. Not Null
-- `reference` (String) Remote reference. Only one of reference or commit can be set at any time. Not Null
-- `ssh_credentials` (Attributes) (see [below for nested schema](#nestedatt--source_control--origin--ssh_credentials))
-- `url` (String) Repository URL. Not Null
-
-<a id="nestedatt--source_control--origin--ssh_credentials"></a>
-### Nested Schema for `source_control.origin.ssh_credentials`
-
-Optional:
-
-- `passphrase` (String) Passphrase is looked under the key passphrase/<pass>. Not Null
-- `private_key` (String) PrivateKey is looked under the key private-key/<key>. Not Null
-
-
 
 <a id="nestedatt--source_control--stack_origin"></a>
 ### Nested Schema for `source_control.stack_origin`

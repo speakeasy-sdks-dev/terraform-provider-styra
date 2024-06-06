@@ -3,16 +3,8 @@
 package shared
 
 type StacksV1SourceControlConfig struct {
-	Origin               *GitV1GitRepoConfig `json:"origin,omitempty"`
 	StackOrigin          *GitV1GitRepoConfig `json:"stack_origin,omitempty"`
 	UseWorkspaceSettings bool                `json:"use_workspace_settings"`
-}
-
-func (o *StacksV1SourceControlConfig) GetOrigin() *GitV1GitRepoConfig {
-	if o == nil {
-		return nil
-	}
-	return o.Origin
 }
 
 func (o *StacksV1SourceControlConfig) GetStackOrigin() *GitV1GitRepoConfig {

@@ -145,23 +145,6 @@ func (r *LibraryDataSourceModel) RefreshFromSharedLibrariesV1LibraryResponse(res
 				}
 				r.Result.SourceControl.LibraryOrigin.URL = types.StringValue(resp.Result.SourceControl.LibraryOrigin.URL)
 			}
-			if resp.Result.SourceControl.Origin == nil {
-				r.Result.SourceControl.Origin = nil
-			} else {
-				r.Result.SourceControl.Origin = &tfTypes.GitV1GitRepoConfig{}
-				r.Result.SourceControl.Origin.Commit = types.StringValue(resp.Result.SourceControl.Origin.Commit)
-				r.Result.SourceControl.Origin.Credentials = types.StringValue(resp.Result.SourceControl.Origin.Credentials)
-				r.Result.SourceControl.Origin.Path = types.StringValue(resp.Result.SourceControl.Origin.Path)
-				r.Result.SourceControl.Origin.Reference = types.StringValue(resp.Result.SourceControl.Origin.Reference)
-				if resp.Result.SourceControl.Origin.SSHCredentials == nil {
-					r.Result.SourceControl.Origin.SSHCredentials = nil
-				} else {
-					r.Result.SourceControl.Origin.SSHCredentials = &tfTypes.GitV1SSHCredentials{}
-					r.Result.SourceControl.Origin.SSHCredentials.Passphrase = types.StringValue(resp.Result.SourceControl.Origin.SSHCredentials.Passphrase)
-					r.Result.SourceControl.Origin.SSHCredentials.PrivateKey = types.StringValue(resp.Result.SourceControl.Origin.SSHCredentials.PrivateKey)
-				}
-				r.Result.SourceControl.Origin.URL = types.StringValue(resp.Result.SourceControl.Origin.URL)
-			}
 			r.Result.SourceControl.UseWorkspaceSettings = types.BoolValue(resp.Result.SourceControl.UseWorkspaceSettings)
 		}
 		r.Result.UsedBy = []tfTypes.LibrariesV1SystemUsingLibrary{}

@@ -309,44 +309,6 @@ func (r *LibraryResource) Schema(ctx context.Context, req resource.SchemaRequest
 									},
 								},
 							},
-							"origin": schema.SingleNestedAttribute{
-								Computed: true,
-								Attributes: map[string]schema.Attribute{
-									"commit": schema.StringAttribute{
-										Computed:    true,
-										Description: `Commit SHA. Only one of reference or commit can be set at any time`,
-									},
-									"credentials": schema.StringAttribute{
-										Computed:    true,
-										Description: `Credentials are looked under the key <name>/<creds>`,
-									},
-									"path": schema.StringAttribute{
-										Computed:    true,
-										Description: `Path to limit the import to`,
-									},
-									"reference": schema.StringAttribute{
-										Computed:    true,
-										Description: `Remote reference. Only one of reference or commit can be set at any time`,
-									},
-									"ssh_credentials": schema.SingleNestedAttribute{
-										Computed: true,
-										Attributes: map[string]schema.Attribute{
-											"passphrase": schema.StringAttribute{
-												Computed:    true,
-												Description: `Passphrase is looked under the key passphrase/<pass>`,
-											},
-											"private_key": schema.StringAttribute{
-												Computed:    true,
-												Description: `PrivateKey is looked under the key private-key/<key>`,
-											},
-										},
-									},
-									"url": schema.StringAttribute{
-										Computed:    true,
-										Description: `Repository URL`,
-									},
-								},
-							},
 							"use_workspace_settings": schema.BoolAttribute{
 								Computed: true,
 							},
@@ -381,44 +343,6 @@ func (r *LibraryResource) Schema(ctx context.Context, req resource.SchemaRequest
 				Optional: true,
 				Attributes: map[string]schema.Attribute{
 					"library_origin": schema.SingleNestedAttribute{
-						Optional: true,
-						Attributes: map[string]schema.Attribute{
-							"commit": schema.StringAttribute{
-								Required:    true,
-								Description: `Commit SHA. Only one of reference or commit can be set at any time`,
-							},
-							"credentials": schema.StringAttribute{
-								Required:    true,
-								Description: `Credentials are looked under the key <name>/<creds>`,
-							},
-							"path": schema.StringAttribute{
-								Required:    true,
-								Description: `Path to limit the import to`,
-							},
-							"reference": schema.StringAttribute{
-								Required:    true,
-								Description: `Remote reference. Only one of reference or commit can be set at any time`,
-							},
-							"ssh_credentials": schema.SingleNestedAttribute{
-								Optional: true,
-								Attributes: map[string]schema.Attribute{
-									"passphrase": schema.StringAttribute{
-										Required:    true,
-										Description: `Passphrase is looked under the key passphrase/<pass>`,
-									},
-									"private_key": schema.StringAttribute{
-										Required:    true,
-										Description: `PrivateKey is looked under the key private-key/<key>`,
-									},
-								},
-							},
-							"url": schema.StringAttribute{
-								Required:    true,
-								Description: `Repository URL`,
-							},
-						},
-					},
-					"origin": schema.SingleNestedAttribute{
 						Optional: true,
 						Attributes: map[string]schema.Attribute{
 							"commit": schema.StringAttribute{
