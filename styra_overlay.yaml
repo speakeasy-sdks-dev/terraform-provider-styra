@@ -112,13 +112,13 @@ actions:
       x-speakeasy-entity-operation: Stack#delete
   - target: $["paths"]["/v1/stacks/{stack}"]["delete"]["parameters"][0]
     update:
-      x-speakeasy-match: id
+      x-speakeasy-name-override: id
   - target: $["paths"]["/v1/stacks/{stack}"]["get"]
     update:
       x-speakeasy-entity-operation: Stack#read
   - target: $["paths"]["/v1/stacks/{stack}"]["get"]["parameters"][0]
     update:
-      x-speakeasy-match: id
+      x-speakeasy-name-override: id
   - target: $["paths"]["/v1/stacks/{stack}"]["get"]["parameters"][1]
     update:
       x-speakeasy-ignore: true
@@ -127,7 +127,7 @@ actions:
       x-speakeasy-entity-operation: Stack#update
   - target: $["paths"]["/v1/stacks/{stack}"]["put"]["parameters"][0]
     update:
-      x-speakeasy-match: id
+      x-speakeasy-name-override: id
   # Systems
   - target: $["components"]["schemas"]["systems.v1.SystemConfig"]
     update:
@@ -155,13 +155,13 @@ actions:
       x-speakeasy-entity-operation: System#delete
   - target: $["paths"]["/v1/systems/{system}"]["delete"]["parameters"][0]
     update:
-      x-speakeasy-match: id
+      x-speakeasy-name-override: id
   - target: $["paths"]["/v1/systems/{system}"]["get"]
     update:
       x-speakeasy-entity-operation: System#read
   - target: $["paths"]["/v1/systems/{system}"]["get"]["parameters"][0]
     update:
-      x-speakeasy-match: id
+      x-speakeasy-name-override: id
   - target: $["paths"]["/v1/systems/{system}"]["get"]["parameters"][1]
     update:
       x-speakeasy-ignore: true
@@ -182,7 +182,7 @@ actions:
       x-speakeasy-entity-operation: System#update
   - target: $["paths"]["/v1/systems/{system}"]["put"]["parameters"][0]
     update:
-      x-speakeasy-match: id
+      x-speakeasy-name-override: id
   # Circular reference overrides
   - target: $["components"]["schemas"]["crypto.FilterTree"]
     update:
