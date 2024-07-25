@@ -18,5 +18,7 @@ terraform:
   additionalResources: []
   allowUnknownFieldsInWeakUnions: false
   author: StyraInc
-  environmentVariables: []
+  environmentVariables:
+    - env: STYRA_TOKEN
+      providerAttribute: bearer
   packageName: styra
