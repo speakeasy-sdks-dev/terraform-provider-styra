@@ -58,6 +58,25 @@ actions:
   - target: $["paths"]["/v1/policies/{policy}"]["put"]
     update:
       x-speakeasy-entity-operation: Policy#create,update
+  # RoleBindings
+  - target: $["components"]["schemas"]["authz.v2.RoleBindingConfig"]
+    update:
+      x-speakeasy-entity: RoleBinding
+  - target: $["paths"]["/v2/authz/rolebindings/{id}"]["delete"]
+    update:
+      x-speakeasy-entity-operation: RoleBinding#delete
+  - target: $["paths"]["/v2/authz/rolebindings/{id}"]["delete"]["parameters"][0]
+    update:
+      x-speakeasy-ignore: true
+  - target: $["paths"]["/v2/authz/rolebindings/{id}"]["get"]
+    update:
+      x-speakeasy-entity-operation: RoleBinding#read
+  - target: $["paths"]["/v2/authz/rolebindings"]["post"]
+    update:
+      x-speakeasy-entity-operation: RoleBinding#create,update
+  - target: $["paths"]["/v2/authz/rolebindings"]["post"]["parameters"][0]
+    update:
+      x-speakeasy-ignore: true
   # Secrets
   - target: $["components"]["schemas"]["secrets.v1.Secret"]
     update:
