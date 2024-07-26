@@ -1,21 +1,22 @@
 lockVersion: 2.0.0
 id: 53fed213-041c-4563-833e-e9ee4d3bb0ba
 management:
-  docChecksum: 2605cc6b1f69b2cd74c6187293059f40
+  docChecksum: a7e410ce4ea3cf8ce114a7de9a81e855
   docVersion: 2.0.0
-  speakeasyVersion: 1.300.0
-  generationVersion: 2.338.14
-  releaseVersion: 0.2.3
-  configChecksum: a56e63e51fffd34d1cf05b6f0e7f0b98
+  speakeasyVersion: 1.346.0
+  generationVersion: 2.379.3
+  releaseVersion: 0.3.0
+  configChecksum: 8c6b794ba56ade403cb8a76a8237f651
   repoURL: https://github.com/StyraInc/terraform-provider-styra.git
 features:
   terraform:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.4
-    core: 3.21.2
+    core: 3.24.3
     globalSecurity: 2.81.6
     globalServerURLs: 2.82.1
     ignores: 2.81.1
+    nameOverrides: 2.81.2
     typeOverrides: 2.81.1
 generatedFiles:
   - internal/sdk/libraries.go
@@ -23,8 +24,10 @@ generatedFiles:
   - internal/sdk/secrets.go
   - internal/sdk/stacks.go
   - internal/sdk/systems.go
+  - internal/sdk/authz.go
   - internal/sdk/styradas.go
   - internal/sdk/models/errors/sdkerror.go
+  - internal/sdk/retry/config.go
   - internal/sdk/types/bigint.go
   - internal/sdk/types/date.go
   - internal/sdk/types/datetime.go
@@ -57,6 +60,9 @@ generatedFiles:
   - internal/sdk/models/operations/deletesystem.go
   - internal/sdk/models/operations/getsystem.go
   - internal/sdk/models/operations/updatesystem.go
+  - internal/sdk/models/operations/createrolebinding.go
+  - internal/sdk/models/operations/deleterolebindingv2.go
+  - internal/sdk/models/operations/getrolebindingv2.go
   - internal/sdk/models/shared/librariesv1libraryresponse.go
   - internal/sdk/models/shared/librariesv1libraryentityexpanded.go
   - internal/sdk/models/shared/librariesv1systemusinglibrary.go
@@ -135,11 +141,21 @@ generatedFiles:
   - internal/sdk/models/shared/systemsv1systemsgetresponse.go
   - internal/sdk/models/shared/systemsv1systemsputresponse.go
   - internal/sdk/models/shared/systemsv1systemsputrequest.go
+  - internal/sdk/models/shared/authzv2rolebindingspostresponse.go
+  - internal/sdk/models/shared/authzv2rolebindingconfig.go
+  - internal/sdk/models/shared/authzv2subject.go
+  - internal/sdk/models/shared/authzv2claimconfig.go
+  - internal/sdk/models/shared/authzv2resourcefilter.go
+  - internal/sdk/models/shared/authzv2rolebindingspostrequest.go
+  - internal/sdk/models/shared/authzv2rolebindingsdeleteresponse.go
+  - internal/sdk/models/shared/authzv2rolebindingsgetresponse.go
   - internal/sdk/models/shared/security.go
   - internal/sdk/.gitignore
+  - internal/sdk/models/operations/options.go
   - internal/sdk/.gitattributes
   - internal/sdk/internal/hooks/registration.go
   - internal/sdk/internal/hooks/hooks.go
+  - internal/sdk/CONTRIBUTING.md
   - examples/README.md
   - go.mod
   - go.sum
@@ -198,6 +214,9 @@ generatedFiles:
   - internal/provider/types/libraries_v1_system_using_library.go
   - internal/provider/types/libraries_v1_library_entity_expanded.go
   - internal/provider/types/crypto_signature.go
+  - internal/provider/types/authz_v2_resource_filter.go
+  - internal/provider/types/authz_v2_claim_config.go
+  - internal/provider/types/authz_v2_subject.go
   - internal/provider/types/systems_v1_v1_role_binding_config.go
   - internal/provider/types/systems_v1_authz_config.go
   - internal/provider/types/systems_v1_agent_errors.go
@@ -245,6 +264,10 @@ generatedFiles:
   - internal/provider/policy_resource.go
   - internal/provider/policy_resource_sdk.go
   - examples/resources/styra_policy/resource.tf
+  - examples/resources/styra_role_binding/import.sh
+  - internal/provider/rolebinding_resource.go
+  - internal/provider/rolebinding_resource_sdk.go
+  - examples/resources/styra_role_binding/resource.tf
   - examples/resources/styra_secret/import.sh
   - internal/provider/secret_resource.go
   - internal/provider/secret_resource_sdk.go
@@ -263,6 +286,9 @@ generatedFiles:
   - internal/provider/policy_data_source.go
   - internal/provider/policy_data_source_sdk.go
   - examples/data-sources/styra_policy/data-source.tf
+  - internal/provider/rolebinding_data_source.go
+  - internal/provider/rolebinding_data_source_sdk.go
+  - examples/data-sources/styra_role_binding/data-source.tf
   - internal/provider/secret_data_source.go
   - internal/provider/secret_data_source_sdk.go
   - examples/data-sources/styra_secret/data-source.tf
@@ -273,3 +299,4 @@ generatedFiles:
   - internal/provider/system_data_source_sdk.go
   - examples/data-sources/styra_system/data-source.tf
   - .gitattributes
+  - CONTRIBUTING.md

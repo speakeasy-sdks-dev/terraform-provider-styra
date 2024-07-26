@@ -1,3 +1,3 @@
 data "styra_stack" "my_stack" {
-  id = "ef306a5e-6b16-43d8-a8ce-698faef2603e"
+  id = "21693945-86d7-45a8-8ecb-e9d0d7ffb103"
 }
