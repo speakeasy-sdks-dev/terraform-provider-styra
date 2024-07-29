@@ -26,7 +26,7 @@ terraform {
   required_providers {
     styra = {
       source  = "StyraInc/styra"
-      version = "0.3.0"
+      version = "0.3.1"
     }
   }
 }

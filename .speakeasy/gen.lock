@@ -3,16 +3,16 @@ id: 53fed213-041c-4563-833e-e9ee4d3bb0ba
 management:
   docChecksum: a7e410ce4ea3cf8ce114a7de9a81e855
   docVersion: 2.0.0
-  speakeasyVersion: 1.346.0
-  generationVersion: 2.379.3
-  releaseVersion: 0.3.0
-  configChecksum: 8c6b794ba56ade403cb8a76a8237f651
+  speakeasyVersion: 1.348.0
+  generationVersion: 2.380.1
+  releaseVersion: 0.3.1
+  configChecksum: 34da216f9b612b156c0a8012d98fa121
   repoURL: https://github.com/StyraInc/terraform-provider-styra.git
 features:
   terraform:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.4
-    core: 3.24.3
+    core: 3.24.5
     globalSecurity: 2.81.6
     globalServerURLs: 2.82.1
     ignores: 2.81.1
