@@ -14,17 +14,225 @@ System Resource
 
 ```terraform
 resource "styra_system" "my_system" {
-  context_bundle_data_only = true
-  description              = "...my_description..."
-  error_setting            = "...my_error_setting..."
-  external_id              = "...my_external_id..."
-  filter_stacks            = false
-  kafka_topic              = "...my_kafka_topic..."
-  mock_opa_enabled         = true
-  name                     = "Ms. Tim Kuvalis"
-  read_only                = false
-  recursive                = "...my_recursive..."
-  type                     = "...my_type..."
+  bundle_download = {
+    delta_bundles = true
+  }
+  bundle_registry = {
+    disable_bundle_compatibility_check = true
+    distribution_s3 = {
+      access_keys    = "...my_access_keys..."
+      bucket         = "...my_bucket..."
+      context_path   = "...my_context_path..."
+      discovery_path = "...my_discovery_path..."
+      endpoint       = "...my_endpoint..."
+      opa_credentials = {
+        environment_credentials = {
+          # ...
+        }
+        metadata_credentials = {
+          aws_region = "...my_aws_region..."
+          iam_role   = "...my_iam_role..."
+        }
+        web_identity_credentials = {
+          aws_region   = "...my_aws_region..."
+          session_name = "...my_session_name..."
+        }
+      }
+      policy_path = "...my_policy_path..."
+      region      = "...my_region..."
+      role_arn    = "...my_role_arn..."
+    }
+    entrypoints = [
+      "..."
+    ]
+    manual_deployment = true
+    # ...        max_bundles = 10
+    max_deployed_bundles = 4
+    optimization_level   = 2
+  }
+  context_bundle_data_only = false
+  context_bundle_roots = [
+    "..."
+  ]
+  decision_mappings = {
+    allowed = {
+      expected = "{ \"see\": \"documentation\" }"
+      negated  = false
+      path     = "...my_path..."
+    }
+    columns = [
+      {
+        key  = "...my_key..."
+        path = "...my_path..."
+        type = "...my_type..."
+      }
+    ]
+    reason = {
+      path = "...my_path..."
+    }
+  }
+  deployment_parameters = {
+    deny_on_opa_fail = false
+    discovery = {
+      # ...
+    }
+    extra = {
+      # ...
+    }
+    http_proxy            = "...my_http_proxy..."
+    https_proxy           = "...my_https_proxy..."
+    kubernetes_version    = "...my_kubernetes_version..."
+    mutating_webhook_name = "...my_mutating_webhook_name..."
+    namespace             = "...my_namespace..."
+    no_proxy              = "...my_no_proxy..."
+    timeout_seconds       = 4
+    trusted_ca_certs = [
+      "..."
+    ]
+    trusted_container_registry = "...my_trusted_container_registry..."
+  }
+  description   = "...my_description..."
+  error_setting = "...my_error_setting..."
+  external_bundles = {
+    bundles = {
+      persist = false
+      polling = {
+        long_polling_timeout_seconds = 1
+        max_delay_seconds            = 3
+        min_delay_seconds            = 10
+      }
+      resource = "...my_resource..."
+      service  = "...my_service..."
+      signing = {
+        exclude_files = [
+          "..."
+        ]
+        keyid = "...my_keyid..."
+        public_keys = {
+          algorithm   = "...my_algorithm..."
+          key         = "...my_key..."
+          private_key = "...my_private_key..."
+          scope       = "...my_scope..."
+        }
+        scope = "...my_scope..."
+      }
+      size_limit_bytes = 1
+    }
+    services = [
+      {
+        allow_insecure_tls = true
+        credentials = {
+          azure_managed_identity = {
+            api_version = "...my_api_version..."
+            client_id   = "...my_client_id..."
+            endpoint    = "...my_endpoint..."
+            mi_res_id   = "...my_mi_res_id..."
+            object_id   = "...my_object_id..."
+            resource    = "...my_resource..."
+          }
+          bearer = {
+            scheme     = "...my_scheme..."
+            token      = "...my_token..."
+            token_path = "...my_token_path..."
+          }
+          client_tls = {
+            cert                   = "...my_cert..."
+            private_key            = "...my_private_key..."
+            private_key_passphrase = "...my_private_key_passphrase..."
+          }
+          gcp_metadata = {
+            access_token_path = "...my_access_token_path..."
+            audience          = "...my_audience..."
+            endpoint          = "...my_endpoint..."
+            id_token_path     = "...my_id_token_path..."
+            scopes = [
+              "..."
+            ]
+          }
+          oauth2 = {
+            additional_claims = {
+              # ...
+            }
+            additional_headers = {
+              "see" : "documentation",
+            }
+            additional_parameters = {
+              "see" : "documentation",
+            }
+            client_id         = "...my_client_id..."
+            client_secret     = "...my_client_secret..."
+            grant_type        = "...my_grant_type..."
+            include_jti_claim = false
+            scopes = [
+              "..."
+            ]
+            signing_key = "...my_signing_key..."
+            thumbprint  = "...my_thumbprint..."
+            token_url   = "...my_token_url..."
+          }
+          plugin = "...my_plugin..."
+          s3_signing = {
+            environment_credentials = "{ \"see\": \"documentation\" }"
+            metadata_credentials = {
+              aws_region = "...my_aws_region..."
+              iam_role   = "...my_iam_role..."
+            }
+            profile_credentials = {
+              aws_region = "...my_aws_region..."
+              path       = "...my_path..."
+              profile    = "...my_profile..."
+            }
+            service = "...my_service..."
+            web_identity_credentials = {
+              aws_region   = "...my_aws_region..."
+              session_name = "...my_session_name..."
+            }
+          }
+        }
+        headers = {
+          "see" : "documentation",
+        }
+        keys = {
+          algorithm   = "...my_algorithm..."
+          key         = "...my_key..."
+          private_key = "...my_private_key..."
+          scope       = "...my_scope..."
+        }
+        name                            = "...my_name..."
+        response_header_timeout_seconds = 0
+        tls = {
+          ca_cert            = "...my_ca_cert..."
+          system_ca_required = true
+        }
+        type = "...my_type..."
+        url  = "...my_url..."
+      }
+    ]
+  }
+  external_id      = "...my_external_id..."
+  filter_stacks    = false
+  kafka_topic      = "...my_kafka_topic..."
+  mock_opa_enabled = true
+  name             = "...my_name..."
+  read_only        = true
+  recursive        = "...my_recursive..."
+  source_control = {
+    origin = {
+      commit      = "...my_commit..."
+      credentials = "...my_credentials..."
+      path        = "...my_path..."
+      reference   = "...my_reference..."
+      ssh_credentials = {
+        passphrase  = "...my_passphrase..."
+        private_key = "...my_private_key..."
+      }
+      url = "...my_url..."
+    }
+  }
+  type = "...my_type..."
+  type_parameters = {
+    # ...
+  }
 }
 ```
 
@@ -564,7 +772,7 @@ Read-Only:
 Read-Only:
 
 - `name` (String) module name
-- `placeholder` (Boolean) module is a placeholder
+- `placeholder` (Boolean) module is a placeholder. Default: false
 - `read_only` (Boolean) true if module is read-only
 - `rules` (Attributes) (see [below for nested schema](#nestedatt--policies--modules--rules))
 
@@ -630,7 +838,7 @@ Read-Only:
 - `mock_opa_enabled` (Boolean) enable mock OPAs for this system
 - `name` (String) system name
 - `policies` (Attributes List) policies created for the system (see [below for nested schema](#nestedatt--result--policies))
-- `read_only` (Boolean) prevents users from modifying policies using Styra UIs
+- `read_only` (Boolean) prevents users from modifying policies using Styra UIs. Default: false
 - `source_control` (Attributes) (see [below for nested schema](#nestedatt--result--source_control))
 - `status` (String) system status
 - `tokens` (Attributes List) tokens created for the system (see [below for nested schema](#nestedatt--result--tokens))
@@ -660,7 +868,7 @@ Read-Only:
 
 Read-Only:
 
-- `delta_bundles` (Boolean) enabled delta bundles on bundle download
+- `delta_bundles` (Boolean) enabled delta bundles on bundle download. Default: false
 
 
 <a id="nestedatt--result--bundle_registry"></a>
@@ -684,11 +892,11 @@ Read-Only:
 
 - `access_keys` (String) access key id and secret access key are looked under the key <name>/<access_keys>
 - `bucket` (String) bucket name
-- `context_path` (String) context bundle path. The name must not use template variables
-- `discovery_path` (String) discovery bundle path. Template variables can be used in the name
+- `context_path` (String) context bundle path. The name must not use template variables. Default: "context-{policy_path}"
+- `discovery_path` (String) discovery bundle path. Template variables can be used in the name. Default: "discovery.tgz"
 - `endpoint` (String) AWS endpoint
 - `opa_credentials` (Attributes) (see [below for nested schema](#nestedatt--result--bundle_registry--distribution_s3--opa_credentials))
-- `policy_path` (String) policy bundle path. Template variables can be used in the name
+- `policy_path` (String) policy bundle path. Template variables can be used in the name. Default: "bundle.tgz"
 - `region` (String) AWS region
 - `role_arn` (String) AWS role
 
@@ -762,7 +970,7 @@ Read-Only:
 Read-Only:
 
 - `expected` (String) Parsed as JSON.
-- `negated` (Boolean) when set to true, decision is Allowed when the mapped property IS NOT equal to the expected value
+- `negated` (Boolean) when set to true, decision is Allowed when the mapped property IS NOT equal to the expected value. Default: false
 - `path` (String) dot-separated decision property path
 
 
@@ -773,7 +981,7 @@ Read-Only:
 
 - `key` (String) column key (also the search key)
 - `path` (String) dot-separated decision property path
-- `type` (String) column type: one of "string", "boolean", "date", "integer", "float"
+- `type` (String) column type: one of "string", "boolean", "date", "integer", "float". Default: "string"
 
 
 <a id="nestedatt--result--decision_mappings--reason"></a>
@@ -790,7 +998,7 @@ Read-Only:
 
 Read-Only:
 
-- `deny_on_opa_fail` (Boolean) true to fail close
+- `deny_on_opa_fail` (Boolean) true to fail close. Default: false
 - `discovery` (Attributes) discovery config settings for OPAs linked to the system. (in case of conflict with system-type defined setting, this value takes precedence) (see [below for nested schema](#nestedatt--result--deployment_parameters--discovery))
 - `extra` (Attributes) extra deployment settings (see [below for nested schema](#nestedatt--result--deployment_parameters--extra))
 - `http_proxy` (String) HTTP proxy URL
@@ -1095,7 +1303,7 @@ Read-Only:
 Read-Only:
 
 - `name` (String) module name
-- `placeholder` (Boolean) module is a placeholder
+- `placeholder` (Boolean) module is a placeholder. Default: false
 - `read_only` (Boolean) true if module is read-only
 - `rules` (Attributes) (see [below for nested schema](#nestedatt--result--policies--modules--rules))
 
