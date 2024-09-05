@@ -1,10 +1,10 @@
 lockVersion: 2.0.0
 id: 53fed213-041c-4563-833e-e9ee4d3bb0ba
 management:
-  docChecksum: a7e410ce4ea3cf8ce114a7de9a81e855
+  docChecksum: 91931708be4f3776e96aeb8f0efb8808
   docVersion: 2.0.0
-  speakeasyVersion: 1.348.0
-  generationVersion: 2.380.1
+  speakeasyVersion: internal
+  generationVersion: 2.409.10
   releaseVersion: 0.3.1
   configChecksum: 34da216f9b612b156c0a8012d98fa121
   repoURL: https://github.com/StyraInc/terraform-provider-styra.git
@@ -12,8 +12,9 @@ features:
   terraform:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.4
-    core: 3.24.5
-    globalSecurity: 2.81.6
+    core: 3.24.8
+    envVarSecurityUsage: 0.1.0
+    globalSecurity: 2.81.8
     globalServerURLs: 2.82.1
     ignores: 2.81.1
     nameOverrides: 2.81.2
@@ -153,7 +154,6 @@ generatedFiles:
   - internal/sdk/.gitignore
   - internal/sdk/models/operations/options.go
   - internal/sdk/.gitattributes
-  - internal/sdk/internal/hooks/registration.go
   - internal/sdk/internal/hooks/hooks.go
   - internal/sdk/CONTRIBUTING.md
   - examples/README.md

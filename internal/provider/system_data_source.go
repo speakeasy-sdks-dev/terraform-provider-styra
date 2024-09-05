@@ -119,8 +119,7 @@ func (r *SystemDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 										Computed: true,
 										Attributes: map[string]schema.Attribute{
 											"environment_credentials": schema.SingleNestedAttribute{
-												Computed:   true,
-												Attributes: map[string]schema.Attribute{},
+												Computed: true,
 											},
 											"metadata_credentials": schema.SingleNestedAttribute{
 												Computed: true,
@@ -294,12 +293,10 @@ func (r *SystemDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 							},
 							"discovery": schema.SingleNestedAttribute{
 								Computed:    true,
-								Attributes:  map[string]schema.Attribute{},
 								Description: `discovery config settings for OPAs linked to the system. (in case of conflict with system-type defined setting, this value takes precedence)`,
 							},
 							"extra": schema.SingleNestedAttribute{
 								Computed:    true,
-								Attributes:  map[string]schema.Attribute{},
 								Description: `extra deployment settings`,
 							},
 							"http_proxy": schema.StringAttribute{
@@ -569,7 +566,6 @@ func (r *SystemDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 													Attributes: map[string]schema.Attribute{
 														"additional_claims": schema.SingleNestedAttribute{
 															Computed:    true,
-															Attributes:  map[string]schema.Attribute{},
 															Description: `map of claims to include in the JWT`,
 														},
 														"additional_headers": schema.MapAttribute{
@@ -1066,7 +1062,6 @@ func (r *SystemDataSource) Schema(ctx context.Context, req datasource.SchemaRequ
 					},
 					"type_parameters": schema.SingleNestedAttribute{
 						Computed:    true,
-						Attributes:  map[string]schema.Attribute{},
 						Description: `system type parameter values (for template.* types)`,
 					},
 					"uninstall": schema.MapAttribute{

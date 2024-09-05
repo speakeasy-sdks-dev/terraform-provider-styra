@@ -180,8 +180,8 @@ func New(opts ...SDKOption) *StyraDas {
 			Language:          "go",
 			OpenAPIDocVersion: "2.0.0",
 			SDKVersion:        "0.0.1",
-			GenVersion:        "2.380.1",
-			UserAgent:         "speakeasy-sdk/go 0.0.1 2.380.1 2.0.0 github.com/StyraInc/terraform-provider-styra/internal/sdk",
+			GenVersion:        "2.409.10",
+			UserAgent:         "speakeasy-sdk/go 0.0.1 2.409.10 2.0.0 github.com/StyraInc/terraform-provider-styra/internal/sdk",
 			ServerDefaults: []map[string]string{
 				{},
 				{

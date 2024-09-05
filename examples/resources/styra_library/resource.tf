@@ -1,6 +1,6 @@
 resource "styra_library" "my_library" {
   description = "...my_description..."
-  id          = "fa7ed3c3-aa52-4d40-b844-4511eaa69789"
+  id          = "...my_id..."
   read_only   = false
   source_control = {
     library_origin = {
@@ -14,6 +14,6 @@ resource "styra_library" "my_library" {
       }
       url = "...my_url..."
     }
-    use_workspace_settings = true
+    use_workspace_settings = false
   }
 }
