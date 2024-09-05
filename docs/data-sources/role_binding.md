@@ -72,5 +72,3 @@ Read-Only:
 - `identity_provider` (String) identity provider ID
 - `key` (String) OIDC claim key
 - `value` (String) OIDC claim value. Use '*' to specify any value.
-
-

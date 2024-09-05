@@ -168,7 +168,7 @@ Read-Only:
 - `url` (String) Repository URL
 
 <a id="nestedatt--result--source_control--library_origin--ssh_credentials"></a>
-### Nested Schema for `result.source_control.library_origin.url`
+### Nested Schema for `result.source_control.library_origin.ssh_credentials`
 
 Read-Only:
 
@@ -193,5 +193,3 @@ Read-Only:
 
 - `bundle_id` (String)
 - `version` (Number)
-
-

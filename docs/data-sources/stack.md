@@ -224,5 +224,3 @@ Read-Only:
 
 <a id="nestedatt--type_parameters"></a>
 ### Nested Schema for `type_parameters`
-
-
