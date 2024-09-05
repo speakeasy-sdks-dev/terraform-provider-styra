@@ -12,7 +12,7 @@ features:
   terraform:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.4
-    core: 3.24.8
+    core: 3.24.9
     envVarSecurityUsage: 0.1.0
     globalSecurity: 2.81.8
     globalServerURLs: 2.82.1
@@ -300,3 +300,117 @@ generatedFiles:
   - examples/data-sources/styra_system/data-source.tf
   - .gitattributes
   - CONTRIBUTING.md
+examples:
+  LibrariesDelete:
+    speakeasy-default-libraries-delete:
+      parameters:
+        path:
+          id: "<id>"
+  LibrariesGet:
+    speakeasy-default-libraries-get:
+      parameters:
+        path:
+          id: "<id>"
+        query: {}
+  LibrariesUpdate:
+    speakeasy-default-libraries-update:
+      parameters:
+        path:
+          id: "<id>"
+      requestBody:
+        application/json: {"description": "Front-line coherent definition", "read_only": true}
+  DeletePolicy:
+    speakeasy-default-delete-policy:
+      parameters:
+        path:
+          policy: "<value>"
+  GetPolicy:
+    speakeasy-default-get-policy:
+      parameters:
+        path:
+          policy: "<value>"
+        query: {}
+  UpdatePolicy:
+    speakeasy-default-update-policy:
+      parameters:
+        path:
+          policy: "<value>"
+        header: {}
+      requestBody:
+        application/json: {"modules": {"key": "<value>", "key1": "<value>", "key2": "<value>"}}
+  DeleteSecret:
+    speakeasy-default-delete-secret:
+      parameters:
+        path:
+          secretId: "<value>"
+  GetSecret:
+    speakeasy-default-get-secret:
+      parameters:
+        path:
+          secretId: "<value>"
+  CreateUpdateSecret:
+    speakeasy-default-create-update-secret:
+      parameters:
+        path:
+          secretId: "<value>"
+        header: {}
+      requestBody:
+        application/json: {"description": "Re-engineered 24 hour website", "name": "<value>", "secret": "<value>"}
+  CreateStack:
+    speakeasy-default-create-stack:
+      requestBody:
+        application/json: {"description": "Robust explicit support", "name": "<value>", "read_only": true, "type": "<value>"}
+  DeleteStack:
+    speakeasy-default-delete-stack:
+      parameters:
+        path:
+          stack: "<id>"
+  GetStack:
+    speakeasy-default-get-stack:
+      parameters:
+        path:
+          stack: "<id>"
+  UpdateStack:
+    speakeasy-default-update-stack:
+      parameters:
+        path:
+          stack: "<id>"
+      requestBody:
+        application/json: {"description": "Multi-channelled 6th generation utilisation", "name": "<value>", "read_only": true, "type": "<value>"}
+  CreateSystem:
+    speakeasy-default-create-system:
+      requestBody:
+        application/json: {"name": "<value>", "type": "<value>"}
+  DeleteSystem:
+    speakeasy-default-delete-system:
+      parameters:
+        path:
+          system: "<id>"
+        query: {}
+  GetSystem:
+    speakeasy-default-get-system:
+      parameters:
+        path:
+          system: "<id>"
+  UpdateSystem:
+    speakeasy-default-update-system:
+      parameters:
+        path:
+          system: "<id>"
+        header: {}
+      requestBody:
+        application/json: {"name": "<value>", "type": "<value>"}
+  CreateRoleBinding:
+    speakeasy-default-create-role-binding:
+      requestBody:
+        application/json: {"resource_filter": {"id": "<id>", "kind": "<value>"}, "role_id": "<value>", "subjects": []}
+  DeleteRoleBinding.v2:
+    speakeasy-default-delete-role-binding-v2:
+      parameters:
+        path:
+          id: "<id>"
+  GetRoleBinding.v2:
+    speakeasy-default-get-role-binding-v2:
+      parameters:
+        path:
+          id: "<id>"
