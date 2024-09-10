@@ -164,9 +164,8 @@ func (r *SystemResource) Schema(ctx context.Context, req resource.SchemaRequest,
 								Optional: true,
 								Attributes: map[string]schema.Attribute{
 									"environment_credentials": schema.SingleNestedAttribute{
-										Computed:   true,
-										Optional:   true,
-										Attributes: map[string]schema.Attribute{},
+										Computed: true,
+										Optional: true,
 									},
 									"metadata_credentials": schema.SingleNestedAttribute{
 										Computed: true,
@@ -317,6 +316,9 @@ func (r *SystemResource) Schema(ctx context.Context, req resource.SchemaRequest,
 				Computed: true,
 				Optional: true,
 				NestedObject: schema.NestedAttributeObject{
+					Validators: []validator.Object{
+						speakeasy_objectvalidators.NotNull(),
+					},
 					Attributes: map[string]schema.Attribute{
 						"allowed": schema.SingleNestedAttribute{
 							Computed: true,
@@ -350,6 +352,9 @@ func (r *SystemResource) Schema(ctx context.Context, req resource.SchemaRequest,
 							Computed: true,
 							Optional: true,
 							NestedObject: schema.NestedAttributeObject{
+								Validators: []validator.Object{
+									speakeasy_objectvalidators.NotNull(),
+								},
 								Attributes: map[string]schema.Attribute{
 									"key": schema.StringAttribute{
 										Computed:    true,
@@ -408,13 +413,11 @@ func (r *SystemResource) Schema(ctx context.Context, req resource.SchemaRequest,
 					"discovery": schema.SingleNestedAttribute{
 						Computed:    true,
 						Optional:    true,
-						Attributes:  map[string]schema.Attribute{},
 						Description: `discovery config settings for OPAs linked to the system. (in case of conflict with system-type defined setting, this value takes precedence)`,
 					},
 					"extra": schema.SingleNestedAttribute{
 						Computed:    true,
 						Optional:    true,
-						Attributes:  map[string]schema.Attribute{},
 						Description: `extra deployment settings`,
 					},
 					"http_proxy": schema.StringAttribute{
@@ -515,6 +518,9 @@ func (r *SystemResource) Schema(ctx context.Context, req resource.SchemaRequest,
 						Computed: true,
 						Optional: true,
 						NestedObject: schema.NestedAttributeObject{
+							Validators: []validator.Object{
+								speakeasy_objectvalidators.NotNull(),
+							},
 							Attributes: map[string]schema.Attribute{
 								"persist": schema.BoolAttribute{
 									Computed:    true,
@@ -574,6 +580,9 @@ func (r *SystemResource) Schema(ctx context.Context, req resource.SchemaRequest,
 											Computed: true,
 											Optional: true,
 											NestedObject: schema.NestedAttributeObject{
+												Validators: []validator.Object{
+													speakeasy_objectvalidators.NotNull(),
+												},
 												Attributes: map[string]schema.Attribute{
 													"algorithm": schema.StringAttribute{
 														Computed:    true,
@@ -619,6 +628,9 @@ func (r *SystemResource) Schema(ctx context.Context, req resource.SchemaRequest,
 						Computed: true,
 						Optional: true,
 						NestedObject: schema.NestedAttributeObject{
+							Validators: []validator.Object{
+								speakeasy_objectvalidators.NotNull(),
+							},
 							Attributes: map[string]schema.Attribute{
 								"allow_insecure_tls": schema.BoolAttribute{
 									Computed:    true,
@@ -791,7 +803,6 @@ func (r *SystemResource) Schema(ctx context.Context, req resource.SchemaRequest,
 												"additional_claims": schema.SingleNestedAttribute{
 													Computed:    true,
 													Optional:    true,
-													Attributes:  map[string]schema.Attribute{},
 													Description: `map of claims to include in the JWT. Not Null`,
 													Validators: []validator.Object{
 														speakeasy_objectvalidators.NotNull(),
@@ -974,6 +985,9 @@ func (r *SystemResource) Schema(ctx context.Context, req resource.SchemaRequest,
 									Computed: true,
 									Optional: true,
 									NestedObject: schema.NestedAttributeObject{
+										Validators: []validator.Object{
+											speakeasy_objectvalidators.NotNull(),
+										},
 										Attributes: map[string]schema.Attribute{
 											"algorithm": schema.StringAttribute{
 												Computed:    true,
@@ -1195,7 +1209,8 @@ func (r *SystemResource) Schema(ctx context.Context, req resource.SchemaRequest,
 									},
 									"placeholder": schema.BoolAttribute{
 										Computed:    true,
-										Description: `module is a placeholder`,
+										Default:     booldefault.StaticBool(false),
+										Description: `module is a placeholder. Default: false`,
 									},
 									"read_only": schema.BoolAttribute{
 										Computed:    true,
@@ -1337,7 +1352,8 @@ func (r *SystemResource) Schema(ctx context.Context, req resource.SchemaRequest,
 						Attributes: map[string]schema.Attribute{
 							"delta_bundles": schema.BoolAttribute{
 								Computed:    true,
-								Description: `enabled delta bundles on bundle download`,
+								Default:     booldefault.StaticBool(false),
+								Description: `enabled delta bundles on bundle download. Default: false`,
 							},
 						},
 					},
@@ -1361,11 +1377,13 @@ func (r *SystemResource) Schema(ctx context.Context, req resource.SchemaRequest,
 									},
 									"context_path": schema.StringAttribute{
 										Computed:    true,
-										Description: `context bundle path. The name must not use template variables`,
+										Default:     stringdefault.StaticString("context-{policy_path}"),
+										Description: `context bundle path. The name must not use template variables. Default: "context-{policy_path}"`,
 									},
 									"discovery_path": schema.StringAttribute{
 										Computed:    true,
-										Description: `discovery bundle path. Template variables can be used in the name`,
+										Default:     stringdefault.StaticString("discovery.tgz"),
+										Description: `discovery bundle path. Template variables can be used in the name. Default: "discovery.tgz"`,
 									},
 									"endpoint": schema.StringAttribute{
 										Computed:    true,
@@ -1375,8 +1393,7 @@ func (r *SystemResource) Schema(ctx context.Context, req resource.SchemaRequest,
 										Computed: true,
 										Attributes: map[string]schema.Attribute{
 											"environment_credentials": schema.SingleNestedAttribute{
-												Computed:   true,
-												Attributes: map[string]schema.Attribute{},
+												Computed: true,
 											},
 											"metadata_credentials": schema.SingleNestedAttribute{
 												Computed: true,
@@ -1404,7 +1421,8 @@ func (r *SystemResource) Schema(ctx context.Context, req resource.SchemaRequest,
 									},
 									"policy_path": schema.StringAttribute{
 										Computed:    true,
-										Description: `policy bundle path. Template variables can be used in the name`,
+										Default:     stringdefault.StaticString("bundle.tgz"),
+										Description: `policy bundle path. Template variables can be used in the name. Default: "bundle.tgz"`,
 									},
 									"region": schema.StringAttribute{
 										Computed:    true,
@@ -1506,7 +1524,8 @@ func (r *SystemResource) Schema(ctx context.Context, req resource.SchemaRequest,
 										},
 										"negated": schema.BoolAttribute{
 											Computed:    true,
-											Description: `when set to true, decision is Allowed when the mapped property IS NOT equal to the expected value`,
+											Default:     booldefault.StaticBool(false),
+											Description: `when set to true, decision is Allowed when the mapped property IS NOT equal to the expected value. Default: false`,
 										},
 										"path": schema.StringAttribute{
 											Computed:    true,
@@ -1528,7 +1547,8 @@ func (r *SystemResource) Schema(ctx context.Context, req resource.SchemaRequest,
 											},
 											"type": schema.StringAttribute{
 												Computed:    true,
-												Description: `column type: one of "string", "boolean", "date", "integer", "float"`,
+												Default:     stringdefault.StaticString("string"),
+												Description: `column type: one of "string", "boolean", "date", "integer", "float". Default: "string"`,
 											},
 										},
 									},
@@ -1552,16 +1572,15 @@ func (r *SystemResource) Schema(ctx context.Context, req resource.SchemaRequest,
 						Attributes: map[string]schema.Attribute{
 							"deny_on_opa_fail": schema.BoolAttribute{
 								Computed:    true,
-								Description: `true to fail close`,
+								Default:     booldefault.StaticBool(false),
+								Description: `true to fail close. Default: false`,
 							},
 							"discovery": schema.SingleNestedAttribute{
 								Computed:    true,
-								Attributes:  map[string]schema.Attribute{},
 								Description: `discovery config settings for OPAs linked to the system. (in case of conflict with system-type defined setting, this value takes precedence)`,
 							},
 							"extra": schema.SingleNestedAttribute{
 								Computed:    true,
-								Attributes:  map[string]schema.Attribute{},
 								Description: `extra deployment settings`,
 							},
 							"http_proxy": schema.StringAttribute{
@@ -1834,7 +1853,6 @@ func (r *SystemResource) Schema(ctx context.Context, req resource.SchemaRequest,
 													Attributes: map[string]schema.Attribute{
 														"additional_claims": schema.SingleNestedAttribute{
 															Computed:    true,
-															Attributes:  map[string]schema.Attribute{},
 															Description: `map of claims to include in the JWT`,
 														},
 														"additional_headers": schema.MapAttribute{
@@ -2133,7 +2151,8 @@ func (r *SystemResource) Schema(ctx context.Context, req resource.SchemaRequest,
 											},
 											"placeholder": schema.BoolAttribute{
 												Computed:    true,
-												Description: `module is a placeholder`,
+												Default:     booldefault.StaticBool(false),
+												Description: `module is a placeholder. Default: false`,
 											},
 											"read_only": schema.BoolAttribute{
 												Computed:    true,
@@ -2235,7 +2254,8 @@ func (r *SystemResource) Schema(ctx context.Context, req resource.SchemaRequest,
 					},
 					"read_only": schema.BoolAttribute{
 						Computed:    true,
-						Description: `prevents users from modifying policies using Styra UIs`,
+						Default:     booldefault.StaticBool(false),
+						Description: `prevents users from modifying policies using Styra UIs. Default: false`,
 					},
 					"source_control": schema.SingleNestedAttribute{
 						Computed: true,
@@ -2352,7 +2372,6 @@ func (r *SystemResource) Schema(ctx context.Context, req resource.SchemaRequest,
 					},
 					"type_parameters": schema.SingleNestedAttribute{
 						Computed:    true,
-						Attributes:  map[string]schema.Attribute{},
 						Description: `system type parameter values (for template.* types)`,
 					},
 					"uninstall": schema.MapAttribute{
@@ -2513,7 +2532,6 @@ func (r *SystemResource) Schema(ctx context.Context, req resource.SchemaRequest,
 			"type_parameters": schema.SingleNestedAttribute{
 				Computed:    true,
 				Optional:    true,
-				Attributes:  map[string]schema.Attribute{},
 				Description: `system type parameter values (for template.* types)`,
 			},
 			"uninstall": schema.MapAttribute{

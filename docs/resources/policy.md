@@ -16,8 +16,7 @@ Policy Resource
 resource "styra_policy" "my_policy" {
   if_none_match = "...my_if_none_match..."
   modules = {
-    "East"          = "..."
-    "revolutionize" = "..."
+    "see" : "documentation",
   }
   policy = "...my_policy..."
   signature = {

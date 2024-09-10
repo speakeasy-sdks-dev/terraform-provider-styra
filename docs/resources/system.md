@@ -14,17 +14,225 @@ System Resource
 
 ```terraform
 resource "styra_system" "my_system" {
-  context_bundle_data_only = true
-  description              = "...my_description..."
-  error_setting            = "...my_error_setting..."
-  external_id              = "...my_external_id..."
-  filter_stacks            = false
-  kafka_topic              = "...my_kafka_topic..."
-  mock_opa_enabled         = true
-  name                     = "Ms. Tim Kuvalis"
-  read_only                = false
-  recursive                = "...my_recursive..."
-  type                     = "...my_type..."
+  bundle_download = {
+    delta_bundles = true
+  }
+  bundle_registry = {
+    disable_bundle_compatibility_check = true
+    distribution_s3 = {
+      access_keys    = "...my_access_keys..."
+      bucket         = "...my_bucket..."
+      context_path   = "...my_context_path..."
+      discovery_path = "...my_discovery_path..."
+      endpoint       = "...my_endpoint..."
+      opa_credentials = {
+        environment_credentials = {
+          # ...
+        }
+        metadata_credentials = {
+          aws_region = "...my_aws_region..."
+          iam_role   = "...my_iam_role..."
+        }
+        web_identity_credentials = {
+          aws_region   = "...my_aws_region..."
+          session_name = "...my_session_name..."
+        }
+      }
+      policy_path = "...my_policy_path..."
+      region      = "...my_region..."
+      role_arn    = "...my_role_arn..."
+    }
+    entrypoints = [
+      "..."
+    ]
+    manual_deployment = true
+    # ...        max_bundles = 10
+    max_deployed_bundles = 4
+    optimization_level   = 2
+  }
+  context_bundle_data_only = false
+  context_bundle_roots = [
+    "..."
+  ]
+  decision_mappings = {
+    allowed = {
+      expected = "{ \"see\": \"documentation\" }"
+      negated  = false
+      path     = "...my_path..."
+    }
+    columns = [
+      {
+        key  = "...my_key..."
+        path = "...my_path..."
+        type = "...my_type..."
+      }
+    ]
+    reason = {
+      path = "...my_path..."
+    }
+  }
+  deployment_parameters = {
+    deny_on_opa_fail = false
+    discovery = {
+      # ...
+    }
+    extra = {
+      # ...
+    }
+    http_proxy            = "...my_http_proxy..."
+    https_proxy           = "...my_https_proxy..."
+    kubernetes_version    = "...my_kubernetes_version..."
+    mutating_webhook_name = "...my_mutating_webhook_name..."
+    namespace             = "...my_namespace..."
+    no_proxy              = "...my_no_proxy..."
+    timeout_seconds       = 4
+    trusted_ca_certs = [
+      "..."
+    ]
+    trusted_container_registry = "...my_trusted_container_registry..."
+  }
+  description   = "...my_description..."
+  error_setting = "...my_error_setting..."
+  external_bundles = {
+    bundles = {
+      persist = false
+      polling = {
+        long_polling_timeout_seconds = 1
+        max_delay_seconds            = 3
+        min_delay_seconds            = 10
+      }
+      resource = "...my_resource..."
+      service  = "...my_service..."
+      signing = {
+        exclude_files = [
+          "..."
+        ]
+        keyid = "...my_keyid..."
+        public_keys = {
+          algorithm   = "...my_algorithm..."
+          key         = "...my_key..."
+          private_key = "...my_private_key..."
+          scope       = "...my_scope..."
+        }
+        scope = "...my_scope..."
+      }
+      size_limit_bytes = 1
+    }
+    services = [
+      {
+        allow_insecure_tls = true
+        credentials = {
+          azure_managed_identity = {
+            api_version = "...my_api_version..."
+            client_id   = "...my_client_id..."
+            endpoint    = "...my_endpoint..."
+            mi_res_id   = "...my_mi_res_id..."
+            object_id   = "...my_object_id..."
+            resource    = "...my_resource..."
+          }
+          bearer = {
+            scheme     = "...my_scheme..."
+            token      = "...my_token..."
+            token_path = "...my_token_path..."
+          }
+          client_tls = {
+            cert                   = "...my_cert..."
+            private_key            = "...my_private_key..."
+            private_key_passphrase = "...my_private_key_passphrase..."
+          }
+          gcp_metadata = {
+            access_token_path = "...my_access_token_path..."
+            audience          = "...my_audience..."
+            endpoint          = "...my_endpoint..."
+            id_token_path     = "...my_id_token_path..."
+            scopes = [
+              "..."
+            ]
+          }
+          oauth2 = {
+            additional_claims = {
+              # ...
+            }
+            additional_headers = {
+              "see" : "documentation",
+            }
+            additional_parameters = {
+              "see" : "documentation",
+            }
+            client_id         = "...my_client_id..."
+            client_secret     = "...my_client_secret..."
+            grant_type        = "...my_grant_type..."
+            include_jti_claim = false
+            scopes = [
+              "..."
+            ]
+            signing_key = "...my_signing_key..."
+            thumbprint  = "...my_thumbprint..."
+            token_url   = "...my_token_url..."
+          }
+          plugin = "...my_plugin..."
+          s3_signing = {
+            environment_credentials = "{ \"see\": \"documentation\" }"
+            metadata_credentials = {
+              aws_region = "...my_aws_region..."
+              iam_role   = "...my_iam_role..."
+            }
+            profile_credentials = {
+              aws_region = "...my_aws_region..."
+              path       = "...my_path..."
+              profile    = "...my_profile..."
+            }
+            service = "...my_service..."
+            web_identity_credentials = {
+              aws_region   = "...my_aws_region..."
+              session_name = "...my_session_name..."
+            }
+          }
+        }
+        headers = {
+          "see" : "documentation",
+        }
+        keys = {
+          algorithm   = "...my_algorithm..."
+          key         = "...my_key..."
+          private_key = "...my_private_key..."
+          scope       = "...my_scope..."
+        }
+        name                            = "...my_name..."
+        response_header_timeout_seconds = 0
+        tls = {
+          ca_cert            = "...my_ca_cert..."
+          system_ca_required = true
+        }
+        type = "...my_type..."
+        url  = "...my_url..."
+      }
+    ]
+  }
+  external_id      = "...my_external_id..."
+  filter_stacks    = false
+  kafka_topic      = "...my_kafka_topic..."
+  mock_opa_enabled = true
+  name             = "...my_name..."
+  read_only        = true
+  recursive        = "...my_recursive..."
+  source_control = {
+    origin = {
+      commit      = "...my_commit..."
+      credentials = "...my_credentials..."
+      path        = "...my_path..."
+      reference   = "...my_reference..."
+      ssh_credentials = {
+        passphrase  = "...my_passphrase..."
+        private_key = "...my_private_key..."
+      }
+      url = "...my_url..."
+    }
+  }
+  type = "...my_type..."
+  type_parameters = {
+    # ...
+  }
 }
 ```
 
@@ -120,11 +328,11 @@ Optional:
 - `web_identity_credentials` (Attributes) (see [below for nested schema](#nestedatt--bundle_registry--distribution_s3--opa_credentials--web_identity_credentials))
 
 <a id="nestedatt--bundle_registry--distribution_s3--opa_credentials--environment_credentials"></a>
-### Nested Schema for `bundle_registry.distribution_s3.opa_credentials.web_identity_credentials`
+### Nested Schema for `bundle_registry.distribution_s3.opa_credentials.environment_credentials`
 
 
 <a id="nestedatt--bundle_registry--distribution_s3--opa_credentials--metadata_credentials"></a>
-### Nested Schema for `bundle_registry.distribution_s3.opa_credentials.web_identity_credentials`
+### Nested Schema for `bundle_registry.distribution_s3.opa_credentials.metadata_credentials`
 
 Optional:
 
@@ -250,7 +458,7 @@ Optional:
 - `scope` (String) scope to use for bundle signature verification
 
 <a id="nestedatt--external_bundles--bundles--signing--public_keys"></a>
-### Nested Schema for `external_bundles.bundles.signing.scope`
+### Nested Schema for `external_bundles.bundles.signing.public_keys`
 
 Optional:
 
@@ -291,7 +499,7 @@ Optional:
 - `s3_signing` (Attributes) (see [below for nested schema](#nestedatt--external_bundles--services--credentials--s3_signing))
 
 <a id="nestedatt--external_bundles--services--credentials--azure_managed_identity"></a>
-### Nested Schema for `external_bundles.services.credentials.s3_signing`
+### Nested Schema for `external_bundles.services.credentials.azure_managed_identity`
 
 Optional:
 
@@ -304,7 +512,7 @@ Optional:
 
 
 <a id="nestedatt--external_bundles--services--credentials--bearer"></a>
-### Nested Schema for `external_bundles.services.credentials.s3_signing`
+### Nested Schema for `external_bundles.services.credentials.bearer`
 
 Optional:
 
@@ -314,7 +522,7 @@ Optional:
 
 
 <a id="nestedatt--external_bundles--services--credentials--client_tls"></a>
-### Nested Schema for `external_bundles.services.credentials.s3_signing`
+### Nested Schema for `external_bundles.services.credentials.client_tls`
 
 Optional:
 
@@ -324,7 +532,7 @@ Optional:
 
 
 <a id="nestedatt--external_bundles--services--credentials--gcp_metadata"></a>
-### Nested Schema for `external_bundles.services.credentials.s3_signing`
+### Nested Schema for `external_bundles.services.credentials.gcp_metadata`
 
 Optional:
 
@@ -336,11 +544,11 @@ Optional:
 
 
 <a id="nestedatt--external_bundles--services--credentials--oauth2"></a>
-### Nested Schema for `external_bundles.services.credentials.s3_signing`
+### Nested Schema for `external_bundles.services.credentials.oauth2`
 
 Optional:
 
-- `additional_claims` (Attributes) map of claims to include in the JWT. Not Null (see [below for nested schema](#nestedatt--external_bundles--services--credentials--s3_signing--additional_claims))
+- `additional_claims` (Attributes) map of claims to include in the JWT. Not Null (see [below for nested schema](#nestedatt--external_bundles--services--credentials--oauth2--additional_claims))
 - `additional_headers` (Map of String) map of additional headers to send to token endpoint at the OAuth2 authorization server
 - `additional_parameters` (Map of String) map of additional body parameters to send token endpoint at the OAuth2 authorization server
 - `client_id` (String) the client ID to use for authentication. Not Null
@@ -352,8 +560,8 @@ Optional:
 - `thumbprint` (String) certificate thumbprint to use for x5t header generation. Not Null
 - `token_url` (String) URL pointing to the token endpoint at the OAuth2 authorization server. Not Null
 
-<a id="nestedatt--external_bundles--services--credentials--s3_signing--additional_claims"></a>
-### Nested Schema for `external_bundles.services.credentials.s3_signing.additional_claims`
+<a id="nestedatt--external_bundles--services--credentials--oauth2--additional_claims"></a>
+### Nested Schema for `external_bundles.services.credentials.oauth2.additional_claims`
 
 
 
@@ -564,7 +772,7 @@ Read-Only:
 Read-Only:
 
 - `name` (String) module name
-- `placeholder` (Boolean) module is a placeholder
+- `placeholder` (Boolean) module is a placeholder. Default: false
 - `read_only` (Boolean) true if module is read-only
 - `rules` (Attributes) (see [below for nested schema](#nestedatt--policies--modules--rules))
 
@@ -630,7 +838,7 @@ Read-Only:
 - `mock_opa_enabled` (Boolean) enable mock OPAs for this system
 - `name` (String) system name
 - `policies` (Attributes List) policies created for the system (see [below for nested schema](#nestedatt--result--policies))
-- `read_only` (Boolean) prevents users from modifying policies using Styra UIs
+- `read_only` (Boolean) prevents users from modifying policies using Styra UIs. Default: false
 - `source_control` (Attributes) (see [below for nested schema](#nestedatt--result--source_control))
 - `status` (String) system status
 - `tokens` (Attributes List) tokens created for the system (see [below for nested schema](#nestedatt--result--tokens))
@@ -660,7 +868,7 @@ Read-Only:
 
 Read-Only:
 
-- `delta_bundles` (Boolean) enabled delta bundles on bundle download
+- `delta_bundles` (Boolean) enabled delta bundles on bundle download. Default: false
 
 
 <a id="nestedatt--result--bundle_registry"></a>
@@ -684,29 +892,29 @@ Read-Only:
 
 - `access_keys` (String) access key id and secret access key are looked under the key <name>/<access_keys>
 - `bucket` (String) bucket name
-- `context_path` (String) context bundle path. The name must not use template variables
-- `discovery_path` (String) discovery bundle path. Template variables can be used in the name
+- `context_path` (String) context bundle path. The name must not use template variables. Default: "context-{policy_path}"
+- `discovery_path` (String) discovery bundle path. Template variables can be used in the name. Default: "discovery.tgz"
 - `endpoint` (String) AWS endpoint
 - `opa_credentials` (Attributes) (see [below for nested schema](#nestedatt--result--bundle_registry--distribution_s3--opa_credentials))
-- `policy_path` (String) policy bundle path. Template variables can be used in the name
+- `policy_path` (String) policy bundle path. Template variables can be used in the name. Default: "bundle.tgz"
 - `region` (String) AWS region
 - `role_arn` (String) AWS role
 
 <a id="nestedatt--result--bundle_registry--distribution_s3--opa_credentials"></a>
-### Nested Schema for `result.bundle_registry.distribution_s3.role_arn`
+### Nested Schema for `result.bundle_registry.distribution_s3.opa_credentials`
 
 Read-Only:
 
-- `environment_credentials` (Attributes) (see [below for nested schema](#nestedatt--result--bundle_registry--distribution_s3--role_arn--environment_credentials))
-- `metadata_credentials` (Attributes) (see [below for nested schema](#nestedatt--result--bundle_registry--distribution_s3--role_arn--metadata_credentials))
-- `web_identity_credentials` (Attributes) (see [below for nested schema](#nestedatt--result--bundle_registry--distribution_s3--role_arn--web_identity_credentials))
+- `environment_credentials` (Attributes) (see [below for nested schema](#nestedatt--result--bundle_registry--distribution_s3--opa_credentials--environment_credentials))
+- `metadata_credentials` (Attributes) (see [below for nested schema](#nestedatt--result--bundle_registry--distribution_s3--opa_credentials--metadata_credentials))
+- `web_identity_credentials` (Attributes) (see [below for nested schema](#nestedatt--result--bundle_registry--distribution_s3--opa_credentials--web_identity_credentials))
 
-<a id="nestedatt--result--bundle_registry--distribution_s3--role_arn--environment_credentials"></a>
-### Nested Schema for `result.bundle_registry.distribution_s3.role_arn.environment_credentials`
+<a id="nestedatt--result--bundle_registry--distribution_s3--opa_credentials--environment_credentials"></a>
+### Nested Schema for `result.bundle_registry.distribution_s3.opa_credentials.environment_credentials`
 
 
-<a id="nestedatt--result--bundle_registry--distribution_s3--role_arn--metadata_credentials"></a>
-### Nested Schema for `result.bundle_registry.distribution_s3.role_arn.metadata_credentials`
+<a id="nestedatt--result--bundle_registry--distribution_s3--opa_credentials--metadata_credentials"></a>
+### Nested Schema for `result.bundle_registry.distribution_s3.opa_credentials.metadata_credentials`
 
 Read-Only:
 
@@ -714,8 +922,8 @@ Read-Only:
 - `iam_role` (String)
 
 
-<a id="nestedatt--result--bundle_registry--distribution_s3--role_arn--web_identity_credentials"></a>
-### Nested Schema for `result.bundle_registry.distribution_s3.role_arn.web_identity_credentials`
+<a id="nestedatt--result--bundle_registry--distribution_s3--opa_credentials--web_identity_credentials"></a>
+### Nested Schema for `result.bundle_registry.distribution_s3.opa_credentials.web_identity_credentials`
 
 Read-Only:
 
@@ -762,7 +970,7 @@ Read-Only:
 Read-Only:
 
 - `expected` (String) Parsed as JSON.
-- `negated` (Boolean) when set to true, decision is Allowed when the mapped property IS NOT equal to the expected value
+- `negated` (Boolean) when set to true, decision is Allowed when the mapped property IS NOT equal to the expected value. Default: false
 - `path` (String) dot-separated decision property path
 
 
@@ -773,7 +981,7 @@ Read-Only:
 
 - `key` (String) column key (also the search key)
 - `path` (String) dot-separated decision property path
-- `type` (String) column type: one of "string", "boolean", "date", "integer", "float"
+- `type` (String) column type: one of "string", "boolean", "date", "integer", "float". Default: "string"
 
 
 <a id="nestedatt--result--decision_mappings--reason"></a>
@@ -790,7 +998,7 @@ Read-Only:
 
 Read-Only:
 
-- `deny_on_opa_fail` (Boolean) true to fail close
+- `deny_on_opa_fail` (Boolean) true to fail close. Default: false
 - `discovery` (Attributes) discovery config settings for OPAs linked to the system. (in case of conflict with system-type defined setting, this value takes precedence) (see [below for nested schema](#nestedatt--result--deployment_parameters--discovery))
 - `extra` (Attributes) extra deployment settings (see [below for nested schema](#nestedatt--result--deployment_parameters--extra))
 - `http_proxy` (String) HTTP proxy URL
@@ -852,7 +1060,7 @@ Read-Only:
 - `size_limit_bytes` (Number) size limit for individual files contained in the bundle
 
 <a id="nestedatt--result--external_bundles--bundles--polling"></a>
-### Nested Schema for `result.external_bundles.bundles.size_limit_bytes`
+### Nested Schema for `result.external_bundles.bundles.polling`
 
 Read-Only:
 
@@ -862,17 +1070,17 @@ Read-Only:
 
 
 <a id="nestedatt--result--external_bundles--bundles--signing"></a>
-### Nested Schema for `result.external_bundles.bundles.size_limit_bytes`
+### Nested Schema for `result.external_bundles.bundles.signing`
 
 Read-Only:
 
 - `exclude_files` (List of String) files in the bundle to exclude during verification
 - `keyid` (String) name of the key to use for bundle signature verification
-- `public_keys` (Attributes Map) information about necessary public signing keys (see [below for nested schema](#nestedatt--result--external_bundles--bundles--size_limit_bytes--public_keys))
+- `public_keys` (Attributes Map) information about necessary public signing keys (see [below for nested schema](#nestedatt--result--external_bundles--bundles--signing--public_keys))
 - `scope` (String) scope to use for bundle signature verification
 
-<a id="nestedatt--result--external_bundles--bundles--size_limit_bytes--public_keys"></a>
-### Nested Schema for `result.external_bundles.bundles.size_limit_bytes.public_keys`
+<a id="nestedatt--result--external_bundles--bundles--signing--public_keys"></a>
+### Nested Schema for `result.external_bundles.bundles.signing.public_keys`
 
 Read-Only:
 
@@ -900,20 +1108,20 @@ Read-Only:
 - `url` (String) base URL to contact the service with
 
 <a id="nestedatt--result--external_bundles--services--credentials"></a>
-### Nested Schema for `result.external_bundles.services.url`
+### Nested Schema for `result.external_bundles.services.credentials`
 
 Read-Only:
 
-- `azure_managed_identity` (Attributes) (see [below for nested schema](#nestedatt--result--external_bundles--services--url--azure_managed_identity))
-- `bearer` (Attributes) (see [below for nested schema](#nestedatt--result--external_bundles--services--url--bearer))
-- `client_tls` (Attributes) (see [below for nested schema](#nestedatt--result--external_bundles--services--url--client_tls))
-- `gcp_metadata` (Attributes) (see [below for nested schema](#nestedatt--result--external_bundles--services--url--gcp_metadata))
-- `oauth2` (Attributes) (see [below for nested schema](#nestedatt--result--external_bundles--services--url--oauth2))
+- `azure_managed_identity` (Attributes) (see [below for nested schema](#nestedatt--result--external_bundles--services--credentials--azure_managed_identity))
+- `bearer` (Attributes) (see [below for nested schema](#nestedatt--result--external_bundles--services--credentials--bearer))
+- `client_tls` (Attributes) (see [below for nested schema](#nestedatt--result--external_bundles--services--credentials--client_tls))
+- `gcp_metadata` (Attributes) (see [below for nested schema](#nestedatt--result--external_bundles--services--credentials--gcp_metadata))
+- `oauth2` (Attributes) (see [below for nested schema](#nestedatt--result--external_bundles--services--credentials--oauth2))
 - `plugin` (String) authenticate using a custom plugin
-- `s3_signing` (Attributes) (see [below for nested schema](#nestedatt--result--external_bundles--services--url--s3_signing))
+- `s3_signing` (Attributes) (see [below for nested schema](#nestedatt--result--external_bundles--services--credentials--s3_signing))
 
-<a id="nestedatt--result--external_bundles--services--url--azure_managed_identity"></a>
-### Nested Schema for `result.external_bundles.services.url.azure_managed_identity`
+<a id="nestedatt--result--external_bundles--services--credentials--azure_managed_identity"></a>
+### Nested Schema for `result.external_bundles.services.credentials.azure_managed_identity`
 
 Read-Only:
 
@@ -925,8 +1133,8 @@ Read-Only:
 - `resource` (String) app ID URI of the target resource
 
 
-<a id="nestedatt--result--external_bundles--services--url--bearer"></a>
-### Nested Schema for `result.external_bundles.services.url.bearer`
+<a id="nestedatt--result--external_bundles--services--credentials--bearer"></a>
+### Nested Schema for `result.external_bundles.services.credentials.bearer`
 
 Read-Only:
 
@@ -935,8 +1143,8 @@ Read-Only:
 - `token_path` (String) enables token-based authentication and supplies the path to the bearer token to authenticate with
 
 
-<a id="nestedatt--result--external_bundles--services--url--client_tls"></a>
-### Nested Schema for `result.external_bundles.services.url.client_tls`
+<a id="nestedatt--result--external_bundles--services--credentials--client_tls"></a>
+### Nested Schema for `result.external_bundles.services.credentials.client_tls`
 
 Read-Only:
 
@@ -945,8 +1153,8 @@ Read-Only:
 - `private_key_passphrase` (String) the passphrase to use for the private key
 
 
-<a id="nestedatt--result--external_bundles--services--url--gcp_metadata"></a>
-### Nested Schema for `result.external_bundles.services.url.gcp_metadata`
+<a id="nestedatt--result--external_bundles--services--credentials--gcp_metadata"></a>
+### Nested Schema for `result.external_bundles.services.credentials.gcp_metadata`
 
 Read-Only:
 
@@ -957,12 +1165,12 @@ Read-Only:
 - `scopes` (List of String) the set of scopes to use when fetching access token
 
 
-<a id="nestedatt--result--external_bundles--services--url--oauth2"></a>
-### Nested Schema for `result.external_bundles.services.url.oauth2`
+<a id="nestedatt--result--external_bundles--services--credentials--oauth2"></a>
+### Nested Schema for `result.external_bundles.services.credentials.oauth2`
 
 Read-Only:
 
-- `additional_claims` (Attributes) map of claims to include in the JWT (see [below for nested schema](#nestedatt--result--external_bundles--services--url--oauth2--additional_claims))
+- `additional_claims` (Attributes) map of claims to include in the JWT (see [below for nested schema](#nestedatt--result--external_bundles--services--credentials--oauth2--additional_claims))
 - `additional_headers` (Map of String) map of additional headers to send to token endpoint at the OAuth2 authorization server
 - `additional_parameters` (Map of String) map of additional body parameters to send token endpoint at the OAuth2 authorization server
 - `client_id` (String) the client ID to use for authentication
@@ -974,24 +1182,24 @@ Read-Only:
 - `thumbprint` (String) certificate thumbprint to use for x5t header generation
 - `token_url` (String) URL pointing to the token endpoint at the OAuth2 authorization server
 
-<a id="nestedatt--result--external_bundles--services--url--oauth2--additional_claims"></a>
-### Nested Schema for `result.external_bundles.services.url.oauth2.token_url`
+<a id="nestedatt--result--external_bundles--services--credentials--oauth2--additional_claims"></a>
+### Nested Schema for `result.external_bundles.services.credentials.oauth2.additional_claims`
 
 
 
-<a id="nestedatt--result--external_bundles--services--url--s3_signing"></a>
-### Nested Schema for `result.external_bundles.services.url.s3_signing`
+<a id="nestedatt--result--external_bundles--services--credentials--s3_signing"></a>
+### Nested Schema for `result.external_bundles.services.credentials.s3_signing`
 
 Read-Only:
 
 - `environment_credentials` (String) Parsed as JSON.
-- `metadata_credentials` (Attributes) (see [below for nested schema](#nestedatt--result--external_bundles--services--url--s3_signing--metadata_credentials))
-- `profile_credentials` (Attributes) (see [below for nested schema](#nestedatt--result--external_bundles--services--url--s3_signing--profile_credentials))
+- `metadata_credentials` (Attributes) (see [below for nested schema](#nestedatt--result--external_bundles--services--credentials--s3_signing--metadata_credentials))
+- `profile_credentials` (Attributes) (see [below for nested schema](#nestedatt--result--external_bundles--services--credentials--s3_signing--profile_credentials))
 - `service` (String) the AWS service to sign requests with, eg execute-api or s3 (default: s3)
-- `web_identity_credentials` (Attributes) (see [below for nested schema](#nestedatt--result--external_bundles--services--url--s3_signing--web_identity_credentials))
+- `web_identity_credentials` (Attributes) (see [below for nested schema](#nestedatt--result--external_bundles--services--credentials--s3_signing--web_identity_credentials))
 
-<a id="nestedatt--result--external_bundles--services--url--s3_signing--metadata_credentials"></a>
-### Nested Schema for `result.external_bundles.services.url.s3_signing.web_identity_credentials`
+<a id="nestedatt--result--external_bundles--services--credentials--s3_signing--metadata_credentials"></a>
+### Nested Schema for `result.external_bundles.services.credentials.s3_signing.metadata_credentials`
 
 Read-Only:
 
@@ -999,8 +1207,8 @@ Read-Only:
 - `iam_role` (String) the IAM role to use for the AWS signing service credential method
 
 
-<a id="nestedatt--result--external_bundles--services--url--s3_signing--profile_credentials"></a>
-### Nested Schema for `result.external_bundles.services.url.s3_signing.web_identity_credentials`
+<a id="nestedatt--result--external_bundles--services--credentials--s3_signing--profile_credentials"></a>
+### Nested Schema for `result.external_bundles.services.credentials.s3_signing.profile_credentials`
 
 Read-Only:
 
@@ -1009,8 +1217,8 @@ Read-Only:
 - `profile` (String) AWS Profile to extract credentials from the credentials file
 
 
-<a id="nestedatt--result--external_bundles--services--url--s3_signing--web_identity_credentials"></a>
-### Nested Schema for `result.external_bundles.services.url.s3_signing.web_identity_credentials`
+<a id="nestedatt--result--external_bundles--services--credentials--s3_signing--web_identity_credentials"></a>
+### Nested Schema for `result.external_bundles.services.credentials.s3_signing.web_identity_credentials`
 
 Read-Only:
 
@@ -1021,7 +1229,7 @@ Read-Only:
 
 
 <a id="nestedatt--result--external_bundles--services--keys"></a>
-### Nested Schema for `result.external_bundles.services.url`
+### Nested Schema for `result.external_bundles.services.keys`
 
 Read-Only:
 
@@ -1032,7 +1240,7 @@ Read-Only:
 
 
 <a id="nestedatt--result--external_bundles--services--tls"></a>
-### Nested Schema for `result.external_bundles.services.url`
+### Nested Schema for `result.external_bundles.services.tls`
 
 Read-Only:
 
@@ -1095,7 +1303,7 @@ Read-Only:
 Read-Only:
 
 - `name` (String) module name
-- `placeholder` (Boolean) module is a placeholder
+- `placeholder` (Boolean) module is a placeholder. Default: false
 - `read_only` (Boolean) true if module is read-only
 - `rules` (Attributes) (see [below for nested schema](#nestedatt--result--policies--modules--rules))
 
@@ -1153,7 +1361,7 @@ Read-Only:
 - `url` (String) Repository URL
 
 <a id="nestedatt--result--source_control--origin--ssh_credentials"></a>
-### Nested Schema for `result.source_control.origin.url`
+### Nested Schema for `result.source_control.origin.ssh_credentials`
 
 Read-Only:
 
