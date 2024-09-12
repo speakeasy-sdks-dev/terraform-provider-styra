@@ -1,10 +1,10 @@
 lockVersion: 2.0.0
 id: 53fed213-041c-4563-833e-e9ee4d3bb0ba
 management:
-  docChecksum: a7e410ce4ea3cf8ce114a7de9a81e855
+  docChecksum: 91931708be4f3776e96aeb8f0efb8808
   docVersion: 2.0.0
-  speakeasyVersion: 1.348.0
-  generationVersion: 2.380.1
+  speakeasyVersion: internal
+  generationVersion: 2.415.4
   releaseVersion: 0.3.1
   configChecksum: 34da216f9b612b156c0a8012d98fa121
   repoURL: https://github.com/StyraInc/terraform-provider-styra.git
@@ -12,151 +12,37 @@ features:
   terraform:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.4
-    core: 3.24.5
-    globalSecurity: 2.81.6
+    core: 3.24.10
+    envVarSecurityUsage: 0.1.0
+    globalSecurity: 2.81.8
     globalServerURLs: 2.82.1
     ignores: 2.81.1
     nameOverrides: 2.81.2
     typeOverrides: 2.81.1
 generatedFiles:
-  - internal/sdk/libraries.go
-  - internal/sdk/policies.go
-  - internal/sdk/secrets.go
-  - internal/sdk/stacks.go
-  - internal/sdk/systems.go
-  - internal/sdk/authz.go
-  - internal/sdk/styradas.go
-  - internal/sdk/models/errors/sdkerror.go
-  - internal/sdk/retry/config.go
-  - internal/sdk/types/bigint.go
-  - internal/sdk/types/date.go
-  - internal/sdk/types/datetime.go
-  - internal/sdk/types/decimal.go
-  - internal/sdk/types/pointers.go
-  - internal/sdk/internal/utils/contenttype.go
-  - internal/sdk/internal/utils/form.go
-  - internal/sdk/internal/utils/headers.go
-  - internal/sdk/internal/utils/json.go
-  - internal/sdk/internal/utils/pathparams.go
-  - internal/sdk/internal/utils/queryparams.go
-  - internal/sdk/internal/utils/requestbody.go
-  - internal/sdk/internal/utils/retries.go
-  - internal/sdk/internal/utils/security.go
-  - internal/sdk/internal/utils/utils.go
-  - internal/sdk/models/operations/librariesdelete.go
-  - internal/sdk/models/operations/librariesget.go
-  - internal/sdk/models/operations/librariesupdate.go
-  - internal/sdk/models/operations/deletepolicy.go
-  - internal/sdk/models/operations/getpolicy.go
-  - internal/sdk/models/operations/updatepolicy.go
-  - internal/sdk/models/operations/deletesecret.go
-  - internal/sdk/models/operations/getsecret.go
-  - internal/sdk/models/operations/createupdatesecret.go
-  - internal/sdk/models/operations/createstack.go
-  - internal/sdk/models/operations/deletestack.go
-  - internal/sdk/models/operations/getstack.go
-  - internal/sdk/models/operations/updatestack.go
-  - internal/sdk/models/operations/createsystem.go
-  - internal/sdk/models/operations/deletesystem.go
-  - internal/sdk/models/operations/getsystem.go
-  - internal/sdk/models/operations/updatesystem.go
-  - internal/sdk/models/operations/createrolebinding.go
-  - internal/sdk/models/operations/deleterolebindingv2.go
-  - internal/sdk/models/operations/getrolebindingv2.go
-  - internal/sdk/models/shared/librariesv1libraryresponse.go
-  - internal/sdk/models/shared/librariesv1libraryentityexpanded.go
-  - internal/sdk/models/shared/librariesv1systemusinglibrary.go
-  - internal/sdk/models/shared/librariesv1systembundle.go
-  - internal/sdk/models/shared/librariesv1sourcecontrolconfig.go
-  - internal/sdk/models/shared/gitv1gitrepoconfig.go
-  - internal/sdk/models/shared/gitv1sshcredentials.go
-  - internal/sdk/models/shared/systemsv1policyconfig.go
-  - internal/sdk/models/shared/policiesv1rulecounts.go
-  - internal/sdk/models/shared/systemsv1module.go
-  - internal/sdk/models/shared/systemsv1enforcementconfig.go
-  - internal/sdk/models/shared/metav2objectmeta.go
-  - internal/sdk/models/shared/systemsv1datasourceconfig.go
-  - internal/sdk/models/shared/metav1status.go
-  - internal/sdk/models/shared/librariesv1createlibraryrequest.go
-  - internal/sdk/models/shared/metav1errorresponse.go
-  - internal/sdk/models/shared/policiesv1policydeleteresponse.go
-  - internal/sdk/models/shared/policiesv1policygetresponse.go
-  - internal/sdk/models/shared/policiesv1policyputresponse.go
-  - internal/sdk/models/shared/policiesv1policiesputrequest.go
-  - internal/sdk/models/shared/cryptosignature.go
-  - internal/sdk/models/shared/secretsv1secretsdeleteresponse.go
-  - internal/sdk/models/shared/secretsv1secretsgetresponse.go
-  - internal/sdk/models/shared/secretsv1secret.go
-  - internal/sdk/models/shared/metav1objectmeta.go
-  - internal/sdk/models/shared/secretsv1secretsputresponse.go
-  - internal/sdk/models/shared/secretsv1secretsputrequest.go
-  - internal/sdk/models/shared/stacksv1stackspostresponse.go
-  - internal/sdk/models/shared/stacksv1stackconfig.go
-  - internal/sdk/models/shared/stacksv1sourcecontrolconfig.go
-  - internal/sdk/models/shared/systemsv1migrationrecord.go
-  - internal/sdk/models/shared/systemsv1agenterrors.go
-  - internal/sdk/models/shared/systemsv1authzconfig.go
-  - internal/sdk/models/shared/systemsv1v1rolebindingconfig.go
-  - internal/sdk/models/shared/stacksv1stackspostrequest.go
-  - internal/sdk/models/shared/stacksv1stacksdeleteresponse.go
-  - internal/sdk/models/shared/stacksv1stacksgetresponse.go
-  - internal/sdk/models/shared/stacksv1stacksputresponse.go
-  - internal/sdk/models/shared/stacksv1stacksputrequest.go
-  - internal/sdk/models/shared/systemsv1systemspostresponse.go
-  - internal/sdk/models/shared/systemsv1systemconfig.go
-  - internal/sdk/models/shared/tokensv1token.go
-  - internal/sdk/models/shared/gitv1sourcecontrolconfig.go
-  - internal/sdk/models/shared/systemsv1externalbundleconfig.go
-  - internal/sdk/models/shared/systemsv1opaconfigservicedeclaration.go
-  - internal/sdk/models/shared/systemsv1servertlsconfig.go
-  - internal/sdk/models/shared/keysconfig.go
-  - internal/sdk/models/shared/systemsv1opaconfigservicedeclarationcredentials.go
-  - internal/sdk/models/shared/systemsv1awssigningauthplugin.go
-  - internal/sdk/models/shared/systemsv1awswebidentitycredentialservice.go
-  - internal/sdk/models/shared/systemsv1awsprofilecredentialservice.go
-  - internal/sdk/models/shared/systemsv1awsmetadatacredentialservice.go
-  - internal/sdk/models/shared/systemsv1oauth2clientcredentialsauthplugin.go
-  - internal/sdk/models/shared/systemsv1gcpmetadataauthplugin.go
-  - internal/sdk/models/shared/systemsv1clienttlsauthplugin.go
-  - internal/sdk/models/shared/systemsv1bearerauthplugin.go
-  - internal/sdk/models/shared/systemsv1azuremanagedidentitiesauthplugin.go
-  - internal/sdk/models/shared/systemsv1opaconfigbundledeclaration.go
-  - internal/sdk/models/shared/systemsv1verificationconfig.go
-  - internal/sdk/models/shared/systemsv1keyconfig.go
-  - internal/sdk/models/shared/systemsv1pollingconfig.go
-  - internal/sdk/models/shared/systemsv1systemdeploymentparameters.go
-  - internal/sdk/models/shared/systemsv1ruledecisionmappings.go
-  - internal/sdk/models/shared/systemsv1reasonmapping.go
-  - internal/sdk/models/shared/systemsv1columnmapping.go
-  - internal/sdk/models/shared/systemsv1allowedmapping.go
-  - internal/sdk/models/shared/systemsv1bundleregistryconfig.go
-  - internal/sdk/models/shared/systemsv1bundledistributions3config.go
-  - internal/sdk/models/shared/systemsv1bundledistributions3configopacredentials.go
-  - internal/sdk/models/shared/systemsv1bundledistributions3configopacredentialswebidentitycredentials.go
-  - internal/sdk/models/shared/systemsv1bundledistributions3configopacredentialsmetadatacredentials.go
-  - internal/sdk/models/shared/systemsv1bundledistributions3configopacredentialsenvironmentcredentials.go
-  - internal/sdk/models/shared/systemsv1bundledownloadconfig.go
-  - internal/sdk/models/shared/systemsv1systemspostrequest.go
-  - internal/sdk/models/shared/systemsv1systemsdeleteresponse.go
-  - internal/sdk/models/shared/systemsv1systemsgetresponse.go
-  - internal/sdk/models/shared/systemsv1systemsputresponse.go
-  - internal/sdk/models/shared/systemsv1systemsputrequest.go
-  - internal/sdk/models/shared/authzv2rolebindingspostresponse.go
-  - internal/sdk/models/shared/authzv2rolebindingconfig.go
-  - internal/sdk/models/shared/authzv2subject.go
-  - internal/sdk/models/shared/authzv2claimconfig.go
-  - internal/sdk/models/shared/authzv2resourcefilter.go
-  - internal/sdk/models/shared/authzv2rolebindingspostrequest.go
-  - internal/sdk/models/shared/authzv2rolebindingsdeleteresponse.go
-  - internal/sdk/models/shared/authzv2rolebindingsgetresponse.go
-  - internal/sdk/models/shared/security.go
-  - internal/sdk/.gitignore
-  - internal/sdk/models/operations/options.go
-  - internal/sdk/.gitattributes
-  - internal/sdk/internal/hooks/registration.go
-  - internal/sdk/internal/hooks/hooks.go
-  - internal/sdk/CONTRIBUTING.md
+  - .gitattributes
+  - CONTRIBUTING.md
+  - USAGE.md
   - examples/README.md
+  - examples/data-sources/styra_library/data-source.tf
+  - examples/data-sources/styra_policy/data-source.tf
+  - examples/data-sources/styra_role_binding/data-source.tf
+  - examples/data-sources/styra_secret/data-source.tf
+  - examples/data-sources/styra_stack/data-source.tf
+  - examples/data-sources/styra_system/data-source.tf
+  - examples/provider/provider.tf
+  - examples/resources/styra_library/import.sh
+  - examples/resources/styra_library/resource.tf
+  - examples/resources/styra_policy/import.sh
+  - examples/resources/styra_policy/resource.tf
+  - examples/resources/styra_role_binding/import.sh
+  - examples/resources/styra_role_binding/resource.tf
+  - examples/resources/styra_secret/import.sh
+  - examples/resources/styra_secret/resource.tf
+  - examples/resources/styra_stack/import.sh
+  - examples/resources/styra_stack/resource.tf
+  - examples/resources/styra_system/import.sh
+  - examples/resources/styra_system/resource.tf
   - go.mod
   - go.sum
   - internal/planmodifiers/boolplanmodifier/suppress_diff.go
@@ -169,6 +55,15 @@ generatedFiles:
   - internal/planmodifiers/setplanmodifier/suppress_diff.go
   - internal/planmodifiers/stringplanmodifier/suppress_diff.go
   - internal/planmodifiers/utils/state_check.go
+  - internal/provider/library_data_source.go
+  - internal/provider/library_data_source_sdk.go
+  - internal/provider/library_resource.go
+  - internal/provider/library_resource_sdk.go
+  - internal/provider/policy_data_source.go
+  - internal/provider/policy_data_source_sdk.go
+  - internal/provider/policy_resource.go
+  - internal/provider/policy_resource_sdk.go
+  - internal/provider/provider.go
   - internal/provider/reflect/diags.go
   - internal/provider/reflect/doc.go
   - internal/provider/reflect/generic_attr_value.go
@@ -183,7 +78,212 @@ generatedFiles:
   - internal/provider/reflect/primitive.go
   - internal/provider/reflect/slice.go
   - internal/provider/reflect/struct.go
+  - internal/provider/rolebinding_data_source.go
+  - internal/provider/rolebinding_data_source_sdk.go
+  - internal/provider/rolebinding_resource.go
+  - internal/provider/rolebinding_resource_sdk.go
+  - internal/provider/secret_data_source.go
+  - internal/provider/secret_data_source_sdk.go
+  - internal/provider/secret_resource.go
+  - internal/provider/secret_resource_sdk.go
+  - internal/provider/stack_data_source.go
+  - internal/provider/stack_data_source_sdk.go
+  - internal/provider/stack_resource.go
+  - internal/provider/stack_resource_sdk.go
+  - internal/provider/system_data_source.go
+  - internal/provider/system_data_source_sdk.go
+  - internal/provider/system_resource.go
+  - internal/provider/system_resource_sdk.go
+  - internal/provider/types/authz_v2_claim_config.go
+  - internal/provider/types/authz_v2_resource_filter.go
+  - internal/provider/types/authz_v2_subject.go
+  - internal/provider/types/crypto_signature.go
+  - internal/provider/types/git_v1_git_repo_config.go
+  - internal/provider/types/git_v1_source_control_config.go
+  - internal/provider/types/git_v1_ssh_credentials.go
+  - internal/provider/types/keys_config.go
+  - internal/provider/types/libraries_v1_library_entity_expanded.go
+  - internal/provider/types/libraries_v1_source_control_config.go
+  - internal/provider/types/libraries_v1_system_bundle.go
+  - internal/provider/types/libraries_v1_system_using_library.go
+  - internal/provider/types/meta_v1_status.go
+  - internal/provider/types/meta_v2_object_meta.go
+  - internal/provider/types/policies_v1_rule_counts.go
+  - internal/provider/types/stacks_v1_source_control_config.go
+  - internal/provider/types/systems_v1_agent_errors.go
+  - internal/provider/types/systems_v1_allowed_mapping.go
+  - internal/provider/types/systems_v1_authz_config.go
+  - internal/provider/types/systems_v1_aws_profile_credential_service.go
+  - internal/provider/types/systems_v1_aws_signing_auth_plugin.go
+  - internal/provider/types/systems_v1_azure_managed_identities_auth_plugin.go
+  - internal/provider/types/systems_v1_bearer_auth_plugin.go
+  - internal/provider/types/systems_v1_bundle_distribution_s3_config.go
+  - internal/provider/types/systems_v1_bundle_distribution_s3_config_opa_credentials.go
+  - internal/provider/types/systems_v1_bundle_distribution_s3_config_opa_credentials_metadata_credentials.go
+  - internal/provider/types/systems_v1_bundle_distribution_s3_config_opa_credentials_web_identity_credentials.go
+  - internal/provider/types/systems_v1_bundle_download_config.go
+  - internal/provider/types/systems_v1_bundle_registry_config.go
+  - internal/provider/types/systems_v1_client_tls_auth_plugin.go
+  - internal/provider/types/systems_v1_column_mapping.go
+  - internal/provider/types/systems_v1_datasource_config.go
+  - internal/provider/types/systems_v1_enforcement_config.go
+  - internal/provider/types/systems_v1_external_bundle_config.go
+  - internal/provider/types/systems_v1_gcp_metadata_auth_plugin.go
+  - internal/provider/types/systems_v1_key_config.go
+  - internal/provider/types/systems_v1_migration_record.go
+  - internal/provider/types/systems_v1_module.go
+  - internal/provider/types/systems_v1_oauth2_client_credentials_auth_plugin.go
+  - internal/provider/types/systems_v1_opa_config_bundle_declaration.go
+  - internal/provider/types/systems_v1_opa_config_service_declaration.go
+  - internal/provider/types/systems_v1_opa_config_service_declaration_credentials.go
+  - internal/provider/types/systems_v1_policy_config.go
+  - internal/provider/types/systems_v1_polling_config.go
+  - internal/provider/types/systems_v1_reason_mapping.go
+  - internal/provider/types/systems_v1_rule_decision_mappings.go
+  - internal/provider/types/systems_v1_server_tls_config.go
+  - internal/provider/types/systems_v1_system_config.go
+  - internal/provider/types/systems_v1_system_deployment_parameters.go
+  - internal/provider/types/systems_v1_v1_role_binding_config.go
+  - internal/provider/types/systems_v1_verification_config.go
+  - internal/provider/types/tokens_v1_token.go
+  - internal/provider/types/type_parameters.go
   - internal/provider/utils.go
+  - internal/sdk/.gitattributes
+  - internal/sdk/.gitignore
+  - internal/sdk/CONTRIBUTING.md
+  - internal/sdk/authz.go
+  - internal/sdk/internal/hooks/hooks.go
+  - internal/sdk/internal/utils/contenttype.go
+  - internal/sdk/internal/utils/form.go
+  - internal/sdk/internal/utils/headers.go
+  - internal/sdk/internal/utils/json.go
+  - internal/sdk/internal/utils/pathparams.go
+  - internal/sdk/internal/utils/queryparams.go
+  - internal/sdk/internal/utils/requestbody.go
+  - internal/sdk/internal/utils/retries.go
+  - internal/sdk/internal/utils/security.go
+  - internal/sdk/internal/utils/utils.go
+  - internal/sdk/libraries.go
+  - internal/sdk/models/errors/sdkerror.go
+  - internal/sdk/models/operations/createrolebinding.go
+  - internal/sdk/models/operations/createstack.go
+  - internal/sdk/models/operations/createsystem.go
+  - internal/sdk/models/operations/createupdatesecret.go
+  - internal/sdk/models/operations/deletepolicy.go
+  - internal/sdk/models/operations/deleterolebindingv2.go
+  - internal/sdk/models/operations/deletesecret.go
+  - internal/sdk/models/operations/deletestack.go
+  - internal/sdk/models/operations/deletesystem.go
+  - internal/sdk/models/operations/getpolicy.go
+  - internal/sdk/models/operations/getrolebindingv2.go
+  - internal/sdk/models/operations/getsecret.go
+  - internal/sdk/models/operations/getstack.go
+  - internal/sdk/models/operations/getsystem.go
+  - internal/sdk/models/operations/librariesdelete.go
+  - internal/sdk/models/operations/librariesget.go
+  - internal/sdk/models/operations/librariesupdate.go
+  - internal/sdk/models/operations/options.go
+  - internal/sdk/models/operations/updatepolicy.go
+  - internal/sdk/models/operations/updatestack.go
+  - internal/sdk/models/operations/updatesystem.go
+  - internal/sdk/models/shared/authzv2claimconfig.go
+  - internal/sdk/models/shared/authzv2resourcefilter.go
+  - internal/sdk/models/shared/authzv2rolebindingconfig.go
+  - internal/sdk/models/shared/authzv2rolebindingsdeleteresponse.go
+  - internal/sdk/models/shared/authzv2rolebindingsgetresponse.go
+  - internal/sdk/models/shared/authzv2rolebindingspostrequest.go
+  - internal/sdk/models/shared/authzv2rolebindingspostresponse.go
+  - internal/sdk/models/shared/authzv2subject.go
+  - internal/sdk/models/shared/cryptosignature.go
+  - internal/sdk/models/shared/gitv1gitrepoconfig.go
+  - internal/sdk/models/shared/gitv1sourcecontrolconfig.go
+  - internal/sdk/models/shared/gitv1sshcredentials.go
+  - internal/sdk/models/shared/keysconfig.go
+  - internal/sdk/models/shared/librariesv1createlibraryrequest.go
+  - internal/sdk/models/shared/librariesv1libraryentityexpanded.go
+  - internal/sdk/models/shared/librariesv1libraryresponse.go
+  - internal/sdk/models/shared/librariesv1sourcecontrolconfig.go
+  - internal/sdk/models/shared/librariesv1systembundle.go
+  - internal/sdk/models/shared/librariesv1systemusinglibrary.go
+  - internal/sdk/models/shared/metav1errorresponse.go
+  - internal/sdk/models/shared/metav1objectmeta.go
+  - internal/sdk/models/shared/metav1status.go
+  - internal/sdk/models/shared/metav2objectmeta.go
+  - internal/sdk/models/shared/policiesv1policiesputrequest.go
+  - internal/sdk/models/shared/policiesv1policydeleteresponse.go
+  - internal/sdk/models/shared/policiesv1policygetresponse.go
+  - internal/sdk/models/shared/policiesv1policyputresponse.go
+  - internal/sdk/models/shared/policiesv1rulecounts.go
+  - internal/sdk/models/shared/secretsv1secret.go
+  - internal/sdk/models/shared/secretsv1secretsdeleteresponse.go
+  - internal/sdk/models/shared/secretsv1secretsgetresponse.go
+  - internal/sdk/models/shared/secretsv1secretsputrequest.go
+  - internal/sdk/models/shared/secretsv1secretsputresponse.go
+  - internal/sdk/models/shared/security.go
+  - internal/sdk/models/shared/stacksv1sourcecontrolconfig.go
+  - internal/sdk/models/shared/stacksv1stackconfig.go
+  - internal/sdk/models/shared/stacksv1stacksdeleteresponse.go
+  - internal/sdk/models/shared/stacksv1stacksgetresponse.go
+  - internal/sdk/models/shared/stacksv1stackspostrequest.go
+  - internal/sdk/models/shared/stacksv1stackspostresponse.go
+  - internal/sdk/models/shared/stacksv1stacksputrequest.go
+  - internal/sdk/models/shared/stacksv1stacksputresponse.go
+  - internal/sdk/models/shared/systemsv1agenterrors.go
+  - internal/sdk/models/shared/systemsv1allowedmapping.go
+  - internal/sdk/models/shared/systemsv1authzconfig.go
+  - internal/sdk/models/shared/systemsv1awsmetadatacredentialservice.go
+  - internal/sdk/models/shared/systemsv1awsprofilecredentialservice.go
+  - internal/sdk/models/shared/systemsv1awssigningauthplugin.go
+  - internal/sdk/models/shared/systemsv1awswebidentitycredentialservice.go
+  - internal/sdk/models/shared/systemsv1azuremanagedidentitiesauthplugin.go
+  - internal/sdk/models/shared/systemsv1bearerauthplugin.go
+  - internal/sdk/models/shared/systemsv1bundledistributions3config.go
+  - internal/sdk/models/shared/systemsv1bundledistributions3configopacredentials.go
+  - internal/sdk/models/shared/systemsv1bundledistributions3configopacredentialsenvironmentcredentials.go
+  - internal/sdk/models/shared/systemsv1bundledistributions3configopacredentialsmetadatacredentials.go
+  - internal/sdk/models/shared/systemsv1bundledistributions3configopacredentialswebidentitycredentials.go
+  - internal/sdk/models/shared/systemsv1bundledownloadconfig.go
+  - internal/sdk/models/shared/systemsv1bundleregistryconfig.go
+  - internal/sdk/models/shared/systemsv1clienttlsauthplugin.go
+  - internal/sdk/models/shared/systemsv1columnmapping.go
+  - internal/sdk/models/shared/systemsv1datasourceconfig.go
+  - internal/sdk/models/shared/systemsv1enforcementconfig.go
+  - internal/sdk/models/shared/systemsv1externalbundleconfig.go
+  - internal/sdk/models/shared/systemsv1gcpmetadataauthplugin.go
+  - internal/sdk/models/shared/systemsv1keyconfig.go
+  - internal/sdk/models/shared/systemsv1migrationrecord.go
+  - internal/sdk/models/shared/systemsv1module.go
+  - internal/sdk/models/shared/systemsv1oauth2clientcredentialsauthplugin.go
+  - internal/sdk/models/shared/systemsv1opaconfigbundledeclaration.go
+  - internal/sdk/models/shared/systemsv1opaconfigservicedeclaration.go
+  - internal/sdk/models/shared/systemsv1opaconfigservicedeclarationcredentials.go
+  - internal/sdk/models/shared/systemsv1policyconfig.go
+  - internal/sdk/models/shared/systemsv1pollingconfig.go
+  - internal/sdk/models/shared/systemsv1reasonmapping.go
+  - internal/sdk/models/shared/systemsv1ruledecisionmappings.go
+  - internal/sdk/models/shared/systemsv1servertlsconfig.go
+  - internal/sdk/models/shared/systemsv1systemconfig.go
+  - internal/sdk/models/shared/systemsv1systemdeploymentparameters.go
+  - internal/sdk/models/shared/systemsv1systemsdeleteresponse.go
+  - internal/sdk/models/shared/systemsv1systemsgetresponse.go
+  - internal/sdk/models/shared/systemsv1systemspostrequest.go
+  - internal/sdk/models/shared/systemsv1systemspostresponse.go
+  - internal/sdk/models/shared/systemsv1systemsputrequest.go
+  - internal/sdk/models/shared/systemsv1systemsputresponse.go
+  - internal/sdk/models/shared/systemsv1v1rolebindingconfig.go
+  - internal/sdk/models/shared/systemsv1verificationconfig.go
+  - internal/sdk/models/shared/tokensv1token.go
+  - internal/sdk/policies.go
+  - internal/sdk/retry/config.go
+  - internal/sdk/secrets.go
+  - internal/sdk/stacks.go
+  - internal/sdk/styradas.go
+  - internal/sdk/systems.go
+  - internal/sdk/types/bigint.go
+  - internal/sdk/types/date.go
+  - internal/sdk/types/datetime.go
+  - internal/sdk/types/decimal.go
+  - internal/sdk/types/pointers.go
   - internal/validators/DateValidator.go
   - internal/validators/ExactlyOneChild.go
   - internal/validators/JSONParseValidator.go
@@ -200,103 +300,172 @@ generatedFiles:
   - main.go
   - terraform-registry-manifest.json
   - tools/tools.go
-  - internal/provider/types/meta_v1_status.go
-  - internal/provider/types/systems_v1_datasource_config.go
-  - internal/provider/types/meta_v2_object_meta.go
-  - internal/provider/types/systems_v1_enforcement_config.go
-  - internal/provider/types/policies_v1_rule_counts.go
-  - internal/provider/types/systems_v1_module.go
-  - internal/provider/types/systems_v1_policy_config.go
-  - internal/provider/types/git_v1_ssh_credentials.go
-  - internal/provider/types/git_v1_git_repo_config.go
-  - internal/provider/types/libraries_v1_source_control_config.go
-  - internal/provider/types/libraries_v1_system_bundle.go
-  - internal/provider/types/libraries_v1_system_using_library.go
-  - internal/provider/types/libraries_v1_library_entity_expanded.go
-  - internal/provider/types/crypto_signature.go
-  - internal/provider/types/authz_v2_resource_filter.go
-  - internal/provider/types/authz_v2_claim_config.go
-  - internal/provider/types/authz_v2_subject.go
-  - internal/provider/types/systems_v1_v1_role_binding_config.go
-  - internal/provider/types/systems_v1_authz_config.go
-  - internal/provider/types/systems_v1_agent_errors.go
-  - internal/provider/types/systems_v1_migration_record.go
-  - internal/provider/types/stacks_v1_source_control_config.go
-  - internal/provider/types/type_parameters.go
-  - internal/provider/types/systems_v1_bundle_download_config.go
-  - internal/provider/types/systems_v1_bundle_distribution_s3_config_opa_credentials_metadata_credentials.go
-  - internal/provider/types/systems_v1_bundle_distribution_s3_config_opa_credentials_web_identity_credentials.go
-  - internal/provider/types/systems_v1_bundle_distribution_s3_config_opa_credentials.go
-  - internal/provider/types/systems_v1_bundle_distribution_s3_config.go
-  - internal/provider/types/systems_v1_bundle_registry_config.go
-  - internal/provider/types/systems_v1_allowed_mapping.go
-  - internal/provider/types/systems_v1_column_mapping.go
-  - internal/provider/types/systems_v1_reason_mapping.go
-  - internal/provider/types/systems_v1_rule_decision_mappings.go
-  - internal/provider/types/systems_v1_system_deployment_parameters.go
-  - internal/provider/types/systems_v1_polling_config.go
-  - internal/provider/types/systems_v1_key_config.go
-  - internal/provider/types/systems_v1_verification_config.go
-  - internal/provider/types/systems_v1_opa_config_bundle_declaration.go
-  - internal/provider/types/systems_v1_azure_managed_identities_auth_plugin.go
-  - internal/provider/types/systems_v1_bearer_auth_plugin.go
-  - internal/provider/types/systems_v1_client_tls_auth_plugin.go
-  - internal/provider/types/systems_v1_gcp_metadata_auth_plugin.go
-  - internal/provider/types/systems_v1_oauth2_client_credentials_auth_plugin.go
-  - internal/provider/types/systems_v1_aws_profile_credential_service.go
-  - internal/provider/types/systems_v1_aws_signing_auth_plugin.go
-  - internal/provider/types/systems_v1_opa_config_service_declaration_credentials.go
-  - internal/provider/types/keys_config.go
-  - internal/provider/types/systems_v1_server_tls_config.go
-  - internal/provider/types/systems_v1_opa_config_service_declaration.go
-  - internal/provider/types/systems_v1_external_bundle_config.go
-  - internal/provider/types/git_v1_source_control_config.go
-  - internal/provider/types/tokens_v1_token.go
-  - internal/provider/types/systems_v1_system_config.go
-  - USAGE.md
-  - internal/provider/provider.go
-  - examples/provider/provider.tf
-  - examples/resources/styra_library/import.sh
-  - internal/provider/library_resource.go
-  - internal/provider/library_resource_sdk.go
-  - examples/resources/styra_library/resource.tf
-  - examples/resources/styra_policy/import.sh
-  - internal/provider/policy_resource.go
-  - internal/provider/policy_resource_sdk.go
-  - examples/resources/styra_policy/resource.tf
-  - examples/resources/styra_role_binding/import.sh
-  - internal/provider/rolebinding_resource.go
-  - internal/provider/rolebinding_resource_sdk.go
-  - examples/resources/styra_role_binding/resource.tf
-  - examples/resources/styra_secret/import.sh
-  - internal/provider/secret_resource.go
-  - internal/provider/secret_resource_sdk.go
-  - examples/resources/styra_secret/resource.tf
-  - examples/resources/styra_stack/import.sh
-  - internal/provider/stack_resource.go
-  - internal/provider/stack_resource_sdk.go
-  - examples/resources/styra_stack/resource.tf
-  - examples/resources/styra_system/import.sh
-  - internal/provider/system_resource.go
-  - internal/provider/system_resource_sdk.go
-  - examples/resources/styra_system/resource.tf
-  - internal/provider/library_data_source.go
-  - internal/provider/library_data_source_sdk.go
-  - examples/data-sources/styra_library/data-source.tf
-  - internal/provider/policy_data_source.go
-  - internal/provider/policy_data_source_sdk.go
-  - examples/data-sources/styra_policy/data-source.tf
-  - internal/provider/rolebinding_data_source.go
-  - internal/provider/rolebinding_data_source_sdk.go
-  - examples/data-sources/styra_role_binding/data-source.tf
-  - internal/provider/secret_data_source.go
-  - internal/provider/secret_data_source_sdk.go
-  - examples/data-sources/styra_secret/data-source.tf
-  - internal/provider/stack_data_source.go
-  - internal/provider/stack_data_source_sdk.go
-  - examples/data-sources/styra_stack/data-source.tf
-  - internal/provider/system_data_source.go
-  - internal/provider/system_data_source_sdk.go
-  - examples/data-sources/styra_system/data-source.tf
-  - .gitattributes
-  - CONTRIBUTING.md
+examples:
+  LibrariesDelete:
+    speakeasy-default-libraries-delete:
+      parameters:
+        path:
+          id: "<id>"
+  LibrariesGet:
+    speakeasy-default-libraries-get:
+      parameters:
+        path:
+          id: "<id>"
+        query: {}
+      responses:
+        "200":
+          application/json: {"result": {"datasources": [], "description": "Programmable bandwidth-monitored focus group", "id": "<id>", "policies": [], "read_only": false}}
+  LibrariesUpdate:
+    speakeasy-default-libraries-update:
+      parameters:
+        path:
+          id: "<id>"
+      requestBody:
+        application/json: {"description": "Front-line coherent definition", "read_only": true}
+      responses:
+        "200":
+          application/json: {"result": {"datasources": [], "description": "Down-sized composite hub", "id": "<id>", "policies": [], "read_only": true}}
+  DeletePolicy:
+    speakeasy-default-delete-policy:
+      parameters:
+        path:
+          policy: "<value>"
+      responses:
+        "404":
+          application/json: {"code": "<value>", "message": "<value>"}
+  GetPolicy:
+    speakeasy-default-get-policy:
+      parameters:
+        path:
+          policy: "<value>"
+        query: {}
+      responses:
+        "200":
+          application/json: {"result": "<value>"}
+        "404":
+          application/json: {"code": "<value>", "message": "<value>"}
+  UpdatePolicy:
+    speakeasy-default-update-policy:
+      parameters:
+        path:
+          policy: "<value>"
+        header: {}
+      requestBody:
+        application/json: {"modules": {"key": "<value>", "key1": "<value>", "key2": "<value>"}}
+  DeleteSecret:
+    speakeasy-default-delete-secret:
+      parameters:
+        path:
+          secretId: "<value>"
+  GetSecret:
+    speakeasy-default-get-secret:
+      parameters:
+        path:
+          secretId: "<value>"
+      responses:
+        "404":
+          application/json: {"code": "<value>", "message": "<value>"}
+  CreateUpdateSecret:
+    speakeasy-default-create-update-secret:
+      parameters:
+        path:
+          secretId: "<value>"
+        header: {}
+      requestBody:
+        application/json: {"description": "Re-engineered 24 hour website", "name": "<value>", "secret": "<value>"}
+  CreateStack:
+    speakeasy-default-create-stack:
+      requestBody:
+        application/json: {"description": "Robust explicit support", "name": "<value>", "read_only": true, "type": "<value>"}
+      responses:
+        "200":
+          application/json: {"result": {"description": "Multi-tiered human-resource neural-net", "id": "<id>", "name": "<value>", "policies": [], "read_only": false, "status": "<value>", "type": "<value>"}}
+  DeleteStack:
+    speakeasy-default-delete-stack:
+      parameters:
+        path:
+          stack: "<id>"
+      responses:
+        "404":
+          application/json: {"code": "<value>", "message": "<value>"}
+  GetStack:
+    speakeasy-default-get-stack:
+      parameters:
+        path:
+          stack: "<id>"
+      responses:
+        "200":
+          application/json: {"result": {"description": "Customer-focused modular knowledge user", "id": "<id>", "name": "<value>", "policies": [], "read_only": true, "status": "<value>", "type": "<value>"}}
+  UpdateStack:
+    speakeasy-default-update-stack:
+      parameters:
+        path:
+          stack: "<id>"
+      requestBody:
+        application/json: {"description": "Multi-channelled 6th generation utilisation", "name": "<value>", "read_only": true, "type": "<value>"}
+  CreateSystem:
+    speakeasy-default-create-system:
+      requestBody:
+        application/json: {"name": "<value>", "type": "<value>"}
+      responses:
+        "200":
+          application/json: {"result": {"id": "<id>", "name": "<value>", "policies": [], "status": "<value>", "type": "<value>"}}
+  DeleteSystem:
+    speakeasy-default-delete-system:
+      parameters:
+        path:
+          system: "<id>"
+        query: {}
+      responses:
+        "404":
+          application/json: {"code": "<value>", "message": "<value>"}
+  GetSystem:
+    speakeasy-default-get-system:
+      parameters:
+        path:
+          system: "<id>"
+      responses:
+        "200":
+          application/json: {"result": {"id": "<id>", "name": "<value>", "policies": [], "status": "<value>", "type": "<value>"}}
+        "404":
+          application/json: {"code": "<value>", "message": "<value>"}
+  UpdateSystem:
+    speakeasy-default-update-system:
+      parameters:
+        path:
+          system: "<id>"
+        header: {}
+      requestBody:
+        application/json: {"name": "<value>", "type": "<value>"}
+      responses:
+        "200":
+          application/json: {"result": {"id": "<id>", "name": "<value>", "policies": [], "status": "<value>", "type": "<value>"}}
+        "400":
+          application/json: {"code": "<value>", "message": "<value>"}
+  CreateRoleBinding:
+    speakeasy-default-create-role-binding:
+      requestBody:
+        application/json: {"resource_filter": {"id": "<id>", "kind": "<value>"}, "role_id": "<value>", "subjects": []}
+      responses:
+        "200":
+          application/json: {"rolebinding": {"id": "<id>", "resource_filter": {"id": "<id>", "kind": "<value>"}, "role_id": "<value>", "subjects": []}}
+        "404":
+          application/json: {"code": "<value>", "message": "<value>"}
+  DeleteRoleBinding.v2:
+    speakeasy-default-delete-role-binding-v2:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "404":
+          application/json: {"code": "<value>", "message": "<value>"}
+  GetRoleBinding.v2:
+    speakeasy-default-get-role-binding-v2:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "200":
+          application/json: {"rolebinding": {"id": "<id>", "resource_filter": {"id": "<id>", "kind": "<value>"}, "role_id": "<value>", "subjects": []}}
+        "404":
+          application/json: {"code": "<value>", "message": "<value>"}

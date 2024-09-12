@@ -15,6 +15,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/path"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
+	"github.com/hashicorp/terraform-plugin-framework/resource/schema/booldefault"
 	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/hashicorp/terraform-plugin-framework/types/basetypes"
@@ -267,7 +268,8 @@ func (r *StackResource) Schema(ctx context.Context, req resource.SchemaRequest, 
 									},
 									"placeholder": schema.BoolAttribute{
 										Computed:    true,
-										Description: `module is a placeholder`,
+										Default:     booldefault.StaticBool(false),
+										Description: `module is a placeholder. Default: false`,
 									},
 									"read_only": schema.BoolAttribute{
 										Computed:    true,
@@ -460,7 +462,6 @@ func (r *StackResource) Schema(ctx context.Context, req resource.SchemaRequest, 
 			"type_parameters": schema.SingleNestedAttribute{
 				Computed:    true,
 				Optional:    true,
-				Attributes:  map[string]schema.Attribute{},
 				Description: `stack type parameter values (for template.* types)`,
 			},
 		},
