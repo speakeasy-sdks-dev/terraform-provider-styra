@@ -231,7 +231,7 @@ func (r *PolicyResource) Read(ctx context.Context, req resource.ReadRequest, res
 	var policy string
 	policy = data.Policy.ValueString()
 
-	// read.policy.dependenciesread.policy.dependencies impedance mismatch: boolean != classtrace=["Policy#create,update.req","Policy#create,update"]
+	// read.policy.dependenciesread.policy.dependencies impedance mismatch: boolean != classtrace=["Policy#create,update","Policy#create,update.req"]
 	var dependencies *bool
 	request := operations.GetPolicyRequest{
 		Policy:       policy,
