@@ -14,7 +14,7 @@ RoleBinding DataSource
 
 ```terraform
 data "styra_role_binding" "my_rolebinding" {
-  id = "bebbc75a-c456-428a-b4f2-fa136607e384"
+  id = "...my_id..."
 }
 ```
 
@@ -72,5 +72,3 @@ Read-Only:
 - `identity_provider` (String) identity provider ID
 - `key` (String) OIDC claim key
 - `value` (String) OIDC claim value. Use '*' to specify any value.
-
-
