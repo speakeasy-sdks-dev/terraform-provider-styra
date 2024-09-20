@@ -14,7 +14,7 @@ Policy DataSource
 
 ```terraform
 data "styra_policy" "my_policy" {
-  dependencies = false
+  dependencies = true
   policy       = "...my_policy..."
 }
 ```

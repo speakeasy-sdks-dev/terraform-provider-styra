@@ -3,7 +3,7 @@ resource "styra_system" "my_system" {
     delta_bundles = true
   }
   bundle_registry = {
-    disable_bundle_compatibility_check = true
+    disable_bundle_compatibility_check = false
     distribution_s3 = {
       access_keys    = "...my_access_keys..."
       bucket         = "...my_bucket..."
@@ -30,12 +30,12 @@ resource "styra_system" "my_system" {
     entrypoints = [
       "..."
     ]
-    manual_deployment = true
+    manual_deployment = false
     # ...        max_bundles = 10
     max_deployed_bundles = 4
     optimization_level   = 2
   }
-  context_bundle_data_only = false
+  context_bundle_data_only = true
   context_bundle_roots = [
     "..."
   ]
@@ -57,7 +57,7 @@ resource "styra_system" "my_system" {
     }
   }
   deployment_parameters = {
-    deny_on_opa_fail = false
+    deny_on_opa_fail = true
     discovery = {
       # ...
     }
@@ -80,7 +80,7 @@ resource "styra_system" "my_system" {
   error_setting = "...my_error_setting..."
   external_bundles = {
     bundles = {
-      persist = false
+      persist = true
       polling = {
         long_polling_timeout_seconds = 1
         max_delay_seconds            = 3
@@ -105,7 +105,7 @@ resource "styra_system" "my_system" {
     }
     services = [
       {
-        allow_insecure_tls = true
+        allow_insecure_tls = false
         credentials = {
           azure_managed_identity = {
             api_version = "...my_api_version..."
@@ -147,7 +147,7 @@ resource "styra_system" "my_system" {
             client_id         = "...my_client_id..."
             client_secret     = "...my_client_secret..."
             grant_type        = "...my_grant_type..."
-            include_jti_claim = false
+            include_jti_claim = true
             scopes = [
               "..."
             ]
@@ -199,7 +199,7 @@ resource "styra_system" "my_system" {
   kafka_topic      = "...my_kafka_topic..."
   mock_opa_enabled = true
   name             = "...my_name..."
-  read_only        = true
+  read_only        = false
   recursive        = "...my_recursive..."
   source_control = {
     origin = {

@@ -14,6 +14,6 @@ resource "styra_library" "my_library" {
       }
       url = "...my_url..."
     }
-    use_workspace_settings = false
+    use_workspace_settings = true
   }
 }
