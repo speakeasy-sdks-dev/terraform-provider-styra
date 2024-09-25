@@ -44,5 +44,3 @@ Read-Only:
 - `last_modified_at` (String)
 - `last_modified_by` (String)
 - `last_modified_through` (String)
-
-
