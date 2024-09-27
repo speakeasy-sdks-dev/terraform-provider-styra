@@ -14,7 +14,7 @@ Stack DataSource
 
 ```terraform
 data "styra_stack" "my_stack" {
-  id = "21693945-86d7-45a8-8ecb-e9d0d7ffb103"
+  id = "...my_id..."
 }
 ```
 
@@ -224,5 +224,3 @@ Read-Only:
 
 <a id="nestedatt--type_parameters"></a>
 ### Nested Schema for `type_parameters`
-
-

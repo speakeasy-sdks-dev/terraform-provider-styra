@@ -15,7 +15,7 @@ Library Resource
 ```terraform
 resource "styra_library" "my_library" {
   description = "...my_description..."
-  id          = "fa7ed3c3-aa52-4d40-b844-4511eaa69789"
+  id          = "...my_id..."
   read_only   = false
   source_control = {
     library_origin = {
@@ -163,7 +163,7 @@ Read-Only:
 Read-Only:
 
 - `name` (String) module name
-- `placeholder` (Boolean) module is a placeholder
+- `placeholder` (Boolean) module is a placeholder. Default: false
 - `read_only` (Boolean) true if module is read-only
 - `rules` (Attributes) (see [below for nested schema](#nestedatt--result--policies--modules--rules))
 
@@ -222,7 +222,7 @@ Read-Only:
 - `url` (String) Repository URL
 
 <a id="nestedatt--result--source_control--library_origin--ssh_credentials"></a>
-### Nested Schema for `result.source_control.library_origin.url`
+### Nested Schema for `result.source_control.library_origin.ssh_credentials`
 
 Read-Only:
 

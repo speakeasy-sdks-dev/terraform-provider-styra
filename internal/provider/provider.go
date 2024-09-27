@@ -51,8 +51,8 @@ func (p *StyraProvider) Schema(ctx context.Context, req provider.SchemaRequest, 
 				Required:            false,
 			},
 			"bearer": schema.StringAttribute{
-				Optional:  true,
 				Sensitive: true,
+				Optional:  true,
 			},
 		},
 	}
@@ -73,13 +73,16 @@ func (p *StyraProvider) Configure(ctx context.Context, req provider.ConfigureReq
 		ServerURL = "https://TENANT.styra.com/"
 	}
 
-	var bearer string
-	if len(os.Getenv("STYRA_TOKEN")) > 0 {
-		bearer = os.Getenv("STYRA_TOKEN")
+	bearer := new(string)
+	if !data.Bearer.IsUnknown() && !data.Bearer.IsNull() {
+		*bearer = data.Bearer.ValueString()
 	} else {
-		bearer = data.Bearer.ValueString()
+		if len(os.Getenv("STYRA_TOKEN")) > 0 {
+			*bearer = os.Getenv("STYRA_TOKEN")
+		} else {
+			bearer = nil
+		}
 	}
-
 	security := shared.Security{
 		Bearer: bearer,
 	}
