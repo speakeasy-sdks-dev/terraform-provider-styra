@@ -1,4 +1,4 @@
-speakeasyVersion: 1.348.0
+speakeasyVersion: internal
 sources:
     openapi:
         sourceNamespace: openapi
@@ -13,7 +13,6 @@ targets:
         sourceNamespace: openapi
         sourceRevisionDigest: sha256:19828ac4b51c628039423b2c8c8b5e47f7dda027517a1673a83ce6b34e0ac0ad
         sourceBlobDigest: sha256:2e0e2168800256a8ace8bd2f1575da9ab65a87995ecfb1cbcf8005447d4bb0f9
-        outLocation: /github/workspace/repo
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
