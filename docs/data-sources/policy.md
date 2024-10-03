@@ -34,5 +34,3 @@ data "styra_policy" "my_policy" {
 
 - `request_id` (String)
 - `result` (String) Parsed as JSON.
-
-
