@@ -177,7 +177,7 @@ func (r *PolicyResource) Create(ctx context.Context, req resource.CreateRequest,
 	var policy1 string
 	policy1 = data.Policy.ValueString()
 
-	// create.policy.dependenciescreate.policy.dependencies impedance mismatch: boolean != classtrace=["Policy#create,update","Policy#create,update.req"]
+	// create.policy.dependenciescreate.policy.dependencies impedance mismatch: boolean != classtrace=["Policy#create,update.req","Policy#create,update"]
 	var dependencies *bool
 	request1 := operations.GetPolicyRequest{
 		Policy:       policy1,
@@ -231,7 +231,7 @@ func (r *PolicyResource) Read(ctx context.Context, req resource.ReadRequest, res
 	var policy string
 	policy = data.Policy.ValueString()
 
-	// read.policy.dependenciesread.policy.dependencies impedance mismatch: boolean != classtrace=["Policy#create,update","Policy#create,update.req"]
+	// read.policy.dependenciesread.policy.dependencies impedance mismatch: boolean != classtrace=["Policy#create,update.req","Policy#create,update"]
 	var dependencies *bool
 	request := operations.GetPolicyRequest{
 		Policy:       policy,
@@ -321,7 +321,7 @@ func (r *PolicyResource) Update(ctx context.Context, req resource.UpdateRequest,
 	var policy1 string
 	policy1 = data.Policy.ValueString()
 
-	// update.policy.dependenciesupdate.policy.dependencies impedance mismatch: boolean != classtrace=["Policy#create,update","Policy#create,update.req"]
+	// update.policy.dependenciesupdate.policy.dependencies impedance mismatch: boolean != classtrace=["Policy#create,update.req","Policy#create,update"]
 	var dependencies *bool
 	request1 := operations.GetPolicyRequest{
 		Policy:       policy1,
