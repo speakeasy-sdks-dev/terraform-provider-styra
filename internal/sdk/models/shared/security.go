@@ -3,12 +3,12 @@
 package shared
 
 type Security struct {
-	Bearer string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
+	Bearer *string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
 }
 
-func (o *Security) GetBearer() string {
+func (o *Security) GetBearer() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.Bearer
 }
