@@ -12,7 +12,7 @@ features:
   terraform:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.4
-    core: 3.24.17
+    core: 3.25.0
     envVarSecurityUsage: 0.1.0
     globalSecurity: 2.81.8
     globalServerURLs: 2.82.1
@@ -333,6 +333,7 @@ examples:
       responses:
         "404":
           application/json: {"code": "<value>", "message": "<value>"}
+        "200": {}
   GetPolicy:
     speakeasy-default-get-policy:
       parameters:
@@ -365,6 +366,7 @@ examples:
       responses:
         "404":
           application/json: {"code": "<value>", "message": "<value>"}
+        "200": {}
   CreateUpdateSecret:
     speakeasy-default-create-update-secret:
       parameters:
@@ -388,6 +390,7 @@ examples:
       responses:
         "404":
           application/json: {"code": "<value>", "message": "<value>"}
+        "200": {}
   GetStack:
     speakeasy-default-get-stack:
       parameters:
@@ -419,6 +422,7 @@ examples:
       responses:
         "404":
           application/json: {"code": "<value>", "message": "<value>"}
+        "200": {}
   GetSystem:
     speakeasy-default-get-system:
       parameters:
@@ -459,6 +463,7 @@ examples:
       responses:
         "404":
           application/json: {"code": "<value>", "message": "<value>"}
+        "200": {}
   GetRoleBinding.v2:
     speakeasy-default-get-role-binding-v2:
       parameters:
