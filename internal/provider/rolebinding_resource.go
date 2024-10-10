@@ -9,6 +9,7 @@ import (
 	"github.com/StyraInc/terraform-provider-styra/internal/sdk"
 	"github.com/StyraInc/terraform-provider-styra/internal/sdk/models/operations"
 	"github.com/StyraInc/terraform-provider-styra/internal/validators"
+	speakeasy_objectvalidators "github.com/StyraInc/terraform-provider-styra/internal/validators/objectvalidators"
 	speakeasy_stringvalidators "github.com/StyraInc/terraform-provider-styra/internal/validators/stringvalidators"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/path"
@@ -54,7 +55,7 @@ func (r *RoleBindingResource) Schema(ctx context.Context, req resource.SchemaReq
 			"id": schema.StringAttribute{
 				Computed:    true,
 				Optional:    true,
-				Description: `rolebinding ID`,
+				Description: `if present, implies updating existing rolebinding in its entirety, otherwise create new`,
 				Validators: []validator.String{
 					stringvalidator.RegexMatches(regexp.MustCompile(`.*`), "must match pattern "+regexp.MustCompile(`.*`).String()),
 				},
@@ -111,6 +112,9 @@ func (r *RoleBindingResource) Schema(ctx context.Context, req resource.SchemaReq
 			"subjects": schema.ListNestedAttribute{
 				Required: true,
 				NestedObject: schema.NestedAttributeObject{
+					Validators: []validator.Object{
+						speakeasy_objectvalidators.NotNull(),
+					},
 					Attributes: map[string]schema.Attribute{
 						"claim_config": schema.SingleNestedAttribute{
 							Computed: true,
