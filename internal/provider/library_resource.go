@@ -467,7 +467,7 @@ func (r *LibraryResource) Create(ctx context.Context, req resource.CreateRequest
 	var id1 string
 	id1 = data.ID.ValueString()
 
-	// create.library.dependant_bundlescreate.library.dependant_bundles impedance mismatch: string != classtrace=["Library#create,update","Library#create,update.req"]
+	// create.library.dependant_bundlescreate.library.dependant_bundles impedance mismatch: string != classtrace=["Library#create,update.req","Library#create,update"]
 	var dependantBundles *string
 	request1 := operations.LibrariesGetRequest{
 		ID:               id1,
@@ -604,7 +604,7 @@ func (r *LibraryResource) Update(ctx context.Context, req resource.UpdateRequest
 	var id1 string
 	id1 = data.ID.ValueString()
 
-	// update.library.dependant_bundlesupdate.library.dependant_bundles impedance mismatch: string != classtrace=["Library#create,update","Library#create,update.req"]
+	// update.library.dependant_bundlesupdate.library.dependant_bundles impedance mismatch: string != classtrace=["Library#create,update.req","Library#create,update"]
 	var dependantBundles *string
 	request1 := operations.LibrariesGetRequest{
 		ID:               id1,
