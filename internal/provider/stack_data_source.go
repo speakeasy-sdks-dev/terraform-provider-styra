@@ -401,7 +401,6 @@ func (r *StackDataSource) Schema(ctx context.Context, req datasource.SchemaReque
 			},
 			"type_parameters": schema.SingleNestedAttribute{
 				Computed:    true,
-				Attributes:  map[string]schema.Attribute{},
 				Description: `stack type parameter values (for template.* types)`,
 			},
 		},
