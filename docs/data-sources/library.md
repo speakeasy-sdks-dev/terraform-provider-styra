@@ -15,7 +15,7 @@ Library DataSource
 ```terraform
 data "styra_library" "my_library" {
   dependant_bundles = "...my_dependant_bundles..."
-  id                = "868f8811-31cc-41fe-9bed-4d86ab720859"
+  id                = "...my_id..."
 }
 ```
 
@@ -168,7 +168,7 @@ Read-Only:
 - `url` (String) Repository URL
 
 <a id="nestedatt--result--source_control--library_origin--ssh_credentials"></a>
-### Nested Schema for `result.source_control.library_origin.url`
+### Nested Schema for `result.source_control.library_origin.ssh_credentials`
 
 Read-Only:
 
@@ -193,5 +193,3 @@ Read-Only:
 
 - `bundle_id` (String)
 - `version` (Number)
-
-
